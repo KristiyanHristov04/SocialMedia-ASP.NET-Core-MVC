@@ -10,4 +10,9 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
+    <PackageReference Include="SendGrid" Version="9.29.1" />
+  </ItemGroup>
+
 </Project>
