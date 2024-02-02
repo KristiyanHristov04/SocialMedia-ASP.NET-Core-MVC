@@ -26,6 +26,12 @@ namespace SocialMedia
             builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
+            builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
+                googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
