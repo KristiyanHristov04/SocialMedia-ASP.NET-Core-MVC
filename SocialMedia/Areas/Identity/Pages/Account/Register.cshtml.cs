@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using SocialMedia.Data.Models;
+using static SocialMedia.Common.DataConstants.ApplicationUser;
 
 namespace SocialMedia.Areas.Identity.Pages.Account
 {
@@ -53,12 +54,12 @@ namespace SocialMedia.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(30, MinimumLength = 2)]
+            [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength)]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
-            [StringLength(30, MinimumLength = 2)]
+            [StringLength(LastNameMaxLength, MinimumLength = LastNameMinLength)]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 

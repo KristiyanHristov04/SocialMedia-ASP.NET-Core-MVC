@@ -40,7 +40,7 @@ namespace SocialMedia.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("kristiyan_hristov04@abv.bg", "Password Recovery"),
+                From = new EmailAddress("kristiyan_hristov04@abv.bg", "SocialMedia"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
