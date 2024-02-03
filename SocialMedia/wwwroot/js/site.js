@@ -6,6 +6,9 @@
 let postsCounter = 0;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
+const isImage = ['.gif', '.jpg', '.jpeg', '.png'];
+const isVideo = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
+
 loadPostsButton.addEventListener('click', () => {
     console.log('Testing');
     fetch(`https://localhost:7045/api/posts?counter=${postsCounter}`)
@@ -24,7 +27,7 @@ loadPostsButton.addEventListener('click', () => {
 
 function createPost(id, path, text, userId) {
     let mainContainer = document.createElement('div');
-    mainContainer.classList.add('border', 'border-dark', 'border-1', 'mb-2', 'd-flex', 'flex-column', 'rounded-3');
+    mainContainer.classList.add('border', 'border-dark', 'border-1', 'mb-2', 'd-flex', 'flex-column', 'rounded-3', 'bg-dark', 'text-white');
     mainContainer.style.width = '500px';
     mainContainer.style.height = '600px';
 
@@ -33,26 +36,36 @@ function createPost(id, path, text, userId) {
     textContainer.classList.add('p-2');
 
     let mediaContainer = document.createElement('div');
-    mediaContainer.classList.add('h-75');
+    mediaContainer.classList.add('h-75', 'p-2');
 
-    let image = document.createElement('img');
-    image.src = window.location.origin + `/${path}`;
-    image.classList.add('w-100', 'h-100');
-    image.style.objectFit = 'cover';
+    let index = path.indexOf('.');
+    let pathExtension = path.substr(index);
+    console.log(pathExtension);
+
+    let media = '';
+    if (isImage.includes(pathExtension)) {
+        media = document.createElement('img');
+        media.src = window.location.origin + `/${path}`;
+        media.classList.add('w-100', 'h-100', 'rounded-3');
+        media.style.objectFit = 'cover';
+    } else {
+        media = document.createElement('video');
+        media.setAttribute('controls', '');
+        media.classList.add('w-100', 'h-100', 'rounded-3');
+        media.style.objectFit = 'cover';
+
+        let source = document.createElement('source');
+        source.src = window.location.origin + `/${path}`;
+
+        media.appendChild(source);
+    }
 
     let paragraphText = document.createElement('p');
     paragraphText.textContent = text;
 
-    // let paragraphUser = document.createElement('p');
-    // paragraphUser.textContent = 'User: ' + userId;
-
     textContainer.appendChild(paragraphText);
 
-    mediaContainer.appendChild(image);
-    // mainContainer.appendChild(textContainer);
-    // mainContainer.appendChild(mediaContainer);
-
-    // posts.appendChild(mainContainer);
+    mediaContainer.appendChild(media);
 
     mainContainer.appendChild(textContainer);
     mainContainer.appendChild(mediaContainer);
