@@ -6,8 +6,8 @@
 let postsCounter = 0;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
-const isImage = ['.gif', '.jpg', '.jpeg', '.png'];
-const isVideo = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
+const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
+const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 
 loadPostsButton.addEventListener('click', () => {
     console.log('Testing');
@@ -47,7 +47,7 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     console.log(pathExtension);
 
     let media = '';
-    if (isImage.includes(pathExtension)) {
+    if (imageFormats.includes(pathExtension)) {
         media = document.createElement('img');
         media.src = window.location.origin + `/${path}`;
         media.classList.add('w-100', 'h-100', 'rounded-3');
