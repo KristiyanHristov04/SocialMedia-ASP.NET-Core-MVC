@@ -17,15 +17,15 @@ namespace SocialMedia.Controllers.API
 
         public async Task<List<PostViewModel>> Posts(int counter)
         {
-            return await this.context.Posts.Select(x => new PostViewModel
+            return await this.context.Posts.Select(p => new PostViewModel
             {
-                Id = x.Id,
-                Text = x.Text,
-                Path = x.Path,
-                UserId = x.UserId,
-                FirstName = x.User.FirstName,
-                LastName = x.User.LastName,
-                Username = x.User.UserName
+                Id = p.Id,
+                Text = p.Text,
+                Path = p.Path,
+                UserId = p.UserId,
+                FirstName = p.User.FirstName,
+                LastName = p.User.LastName,
+                Username = p.User.UserName
             })
             .OrderByDescending(x => x.Id)
             .Skip(3 * counter)
