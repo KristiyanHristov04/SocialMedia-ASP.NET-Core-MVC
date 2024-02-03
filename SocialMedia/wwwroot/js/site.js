@@ -16,7 +16,6 @@ function loadPosts() {
     fetch(`https://localhost:7045/api/posts?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
-            console.log(counter);
             counter++;
             for (let post of data) {
                 let postId = post.id;
