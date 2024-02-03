@@ -8,6 +8,8 @@
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
+        <h2>Add Post</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <form asp-controller="Post" asp-action="Add" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label asp-for="Text" class="form-label"></label>
@@ -17,7 +19,7 @@
             <div class="mb-3">
                 <label asp-for="File" class="form-label"></label>
                 <input asp-for="File" class="form-control">
-                <span asp-validation-for="File" class="text-danger"></span>
+                <span class="fst-italic fw-light">*Max allowed size is 1 MB.</span>
             </div>
             <button type="submit" class="btn btn-primary">Publish Post</button>
         </form>
