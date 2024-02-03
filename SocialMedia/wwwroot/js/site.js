@@ -57,7 +57,7 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
         media = document.createElement('video');
         media.setAttribute('controls', '');
         media.classList.add('w-100', 'h-100', 'rounded-3');
-        media.style.objectFit = 'cover';
+        /*media.style.objectFit = 'cover';*/
 
         let source = document.createElement('source');
         source.src = window.location.origin + `/${path}`;
