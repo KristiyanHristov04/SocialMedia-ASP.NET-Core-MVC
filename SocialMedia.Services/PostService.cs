@@ -49,7 +49,7 @@ namespace SocialMedia.Services
         {
             Post post = await this.context.Posts.FindAsync(id);
 
-            post.Text = model.Text;
+            post!.Text = model.Text;
 
             await context.SaveChangesAsync();
         }
@@ -60,8 +60,20 @@ namespace SocialMedia.Services
 
             return new PostFormModel()
             {
-                Text = post.Text
+                Text = post!.Text
             };
+        }
+
+        public async Task<bool> ValidatePostUserAsync(string userId, int postId)
+        {
+            Post? post = await this.context.Posts.FindAsync(postId);
+
+            if (post == null || post.UserId != userId)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
