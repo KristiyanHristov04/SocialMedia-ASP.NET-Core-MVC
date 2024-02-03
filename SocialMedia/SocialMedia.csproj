@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SocialMedia.Common\SocialMedia.Common.csproj" />
     <ProjectReference Include="..\SocialMedia.Data\SocialMedia.Data.csproj" />
+    <ProjectReference Include="..\SocialMedia.Extensions\SocialMedia.Extensions.csproj" />
     <ProjectReference Include="..\SocialMedia.Services\SocialMedia.Services.csproj" />
     <ProjectReference Include="..\SocialMedia.ViewModels\SocialMedia.ViewModels.csproj" />
   </ItemGroup>

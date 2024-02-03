@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SocialMedia.Extensions;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.ViewModels.Post;
 using System.Security.Claims;
@@ -35,7 +36,7 @@ namespace SocialMedia.Controllers
                 return View(model);
             }
 
-            string currentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            string currentUserId = this.User.GetUserId();
             await postService.AddPostAsync(model, currentUserId);
 
             return RedirectToAction("Index", "Home");
