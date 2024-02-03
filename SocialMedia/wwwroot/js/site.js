@@ -78,6 +78,7 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
         let editLink = document.createElement('a');
         editLink.textContent = 'Edit';
         editLink.href = window.location.origin + `/Post/Edit/${id}`;
+        editLink.classList.add('btn', 'btn-primary');
         paragraphNames.appendChild(editLink);
     }
     //
