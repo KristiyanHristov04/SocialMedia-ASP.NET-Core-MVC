@@ -1,0 +1,31 @@
+﻿@using SocialMedia.ViewModels.Post
+@using System.Security.Claims
+@model PostFormModel
+
+@{
+    ViewData["Title"] = "Edit Post";
+}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edit Post</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-controller="Post" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="Text" class="form-label"></label>
+                <textarea asp-for="Text" class="form-control" rows="5" placeholder="Add text to your post" style="resize: none;"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            @* <div class="mb-3">
+                <label asp-for="File" class="form-label"></label>
+                <input asp-for="File" class="form-control">
+                <span class="fst-italic fw-light">*Max allowed size is 3 MB.</span>
+            </div> *@
+            <button type="submit" class="btn btn-primary">Edit Post</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

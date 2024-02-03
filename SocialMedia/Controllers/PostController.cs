@@ -41,5 +41,19 @@ namespace SocialMedia.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            PostFormModel post = await this.postService.GetPostByIdAsync(id);
+            return View(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, PostFormModel model)
+        {
+            await this.postService.EditPostAsync(id, model);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

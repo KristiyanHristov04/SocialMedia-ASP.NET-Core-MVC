@@ -1,4 +1,5 @@
 ﻿let counter = 0;
+const currentUserId = document.getElementById('user-id').textContent;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
@@ -71,6 +72,15 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     let paragraphNames = document.createElement('p');
     paragraphNames.textContent = `${firstName} ${lastName}`;
     paragraphNames.style.marginBottom = '0';
+
+    // Edit Post Logic
+    if (userId == currentUserId) {
+        let editLink = document.createElement('a');
+        editLink.textContent = 'Edit';
+        editLink.href = window.location.origin + `/Post/Edit/${id}`;
+        paragraphNames.appendChild(editLink);
+    }
+    //
 
     let spanUsername = document.createElement('span');
     spanUsername.textContent = '@' + username;

@@ -44,5 +44,24 @@ namespace SocialMedia.Services
             await context.Posts.AddAsync(post);
             await context.SaveChangesAsync();   
         }
+
+        public async Task EditPostAsync(int id, PostFormModel model)
+        {
+            Post post = await this.context.Posts.FindAsync(id);
+
+            post.Text = model.Text;
+
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<PostFormModel> GetPostByIdAsync(int id)
+        {
+            Post post = await this.context.Posts.FindAsync(id);
+
+            return new PostFormModel()
+            {
+                Text = post.Text
+            };
+        }
     }
 }

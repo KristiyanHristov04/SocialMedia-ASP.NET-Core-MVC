@@ -1,7 +1,9 @@
-﻿@{
+﻿@using SocialMedia.Extensions
+@{
     ViewData["Title"] = "Home Page";
+    string currentUserId = this.User.GetUserId();
 }
-
+<span class="d-none" id="user-id">@currentUserId</span>
 <div class="text-center">
     <h1 class="display-4">Social Media</h1>
 </div>

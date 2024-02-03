@@ -10,5 +10,7 @@ namespace SocialMedia.Services.Interfaces
     public interface IPostService
     {
         Task AddPostAsync(PostFormModel model, string userId);
+        Task EditPostAsync(int id, PostFormModel model);
+        Task<PostFormModel> GetPostByIdAsync(int id);
     }
 }
