@@ -1,4 +1,4 @@
-﻿let postsCounter = 0;
+﻿let counter = 0;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
@@ -13,10 +13,11 @@ window.addEventListener('scroll', () => {
 });
 
 function loadPosts() {
-    fetch(`https://localhost:7045/api/posts?counter=${postsCounter}`)
+    fetch(`https://localhost:7045/api/posts?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
-            postsCounter++;
+            console.log(counter);
+            counter++;
             for (let post of data) {
                 let postId = post.id;
                 let postPath = post.path;
@@ -27,7 +28,8 @@ function loadPosts() {
                 let postUsername = post.username;
                 createPost(postId, postPath, postText, postUserId, postFirstName, postLastName, postUsername);
             }
-        });
+        })
+        .catch(err => console.error(err));
 }
 
 function createPost(id, path, text, userId, firstName, lastName, username) {
