@@ -10,5 +10,7 @@ namespace SocialMedia.Data
             : base(options)
         {
         }
+
+        public DbSet<Post> Posts { get; set; }
     }
 }

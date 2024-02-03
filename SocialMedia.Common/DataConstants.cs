@@ -16,5 +16,10 @@ namespace SocialMedia.Common
             public const int LastNameMinLength = 2;
             public const int LastNameMaxLength = 30;
         }
+
+        public static class Post
+        {
+            public const int TextMaxLength = 450;
+        }
     }
 }
