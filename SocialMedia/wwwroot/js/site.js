@@ -9,13 +9,13 @@ const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
 const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 
-loadPostsButton.addEventListener('click', () => {
-    console.log('Testing');
+loadPostsButton.addEventListener('click', loadPosts);
+
+function loadPosts() {
     fetch(`https://localhost:7045/api/posts?counter=${postsCounter}`)
         .then(res => res.json())
         .then(data => {
             postsCounter++;
-            console.log(data);
             for (let post of data) {
                 let postId = post.id;
                 let postPath = post.path;
@@ -27,7 +27,7 @@ loadPostsButton.addEventListener('click', () => {
                 createPost(postId, postPath, postText, postUserId, postFirstName, postLastName, postUsername);
             }
         });
-});
+}
 
 function createPost(id, path, text, userId, firstName, lastName, username) {
     let mainContainer = document.createElement('div');
@@ -44,7 +44,6 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
 
     let index = path.indexOf('.');
     let pathExtension = path.substr(index);
-    console.log(pathExtension);
 
     let media = '';
     if (imageFormats.includes(pathExtension)) {
@@ -74,7 +73,6 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     let spanUsername = document.createElement('span');
     spanUsername.textContent = '@' + username;
     spanUsername.style.color = 'gray';
-
 
     let paragraphText = document.createElement('p');
     paragraphText.textContent = text;
