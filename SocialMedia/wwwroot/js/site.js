@@ -11,7 +11,7 @@ window.addEventListener('scroll', () => {
     console.log('scrollY: ' + window.scrollY);
     console.log('innerHeight: ' + window.innerHeight);
     console.log('document scrollHeight: ' + document.documentElement.scrollHeight);
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+    if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight) {
         loadPosts();
     }
 });
