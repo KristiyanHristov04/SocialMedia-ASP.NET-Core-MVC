@@ -24,6 +24,7 @@ namespace SocialMedia.Controllers.API
                 Path = x.Path,
                 UserId = x.UserId,
             })
+            .OrderByDescending(x => x.Id)
             .Skip(3 * counter)
             .Take(3)
             .ToListAsync();
