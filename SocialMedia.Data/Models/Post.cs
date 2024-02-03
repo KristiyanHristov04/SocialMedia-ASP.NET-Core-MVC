@@ -20,7 +20,7 @@ namespace SocialMedia.Data.Models
         public string Text { get; set; } = null!;
 
         [Required]
-        public IFormFile File { get; set; } = null!;
+        public string Path { get; set; } = null!;
 
         [Required]
         [ForeignKey(nameof(User))]
