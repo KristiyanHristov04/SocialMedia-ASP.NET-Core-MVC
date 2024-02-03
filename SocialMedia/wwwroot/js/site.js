@@ -1,15 +1,16 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-
-let postsCounter = 0;
+﻿let postsCounter = 0;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
 const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 
-loadPostsButton.addEventListener('click', loadPosts);
+loadPosts();
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+        loadPosts();
+    }
+});
 
 function loadPosts() {
     fetch(`https://localhost:7045/api/posts?counter=${postsCounter}`)
