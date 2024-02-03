@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
 using SocialMedia.Services;
+using SocialMedia.Services.Interfaces;
 
 namespace SocialMedia
 {
@@ -24,6 +25,7 @@ namespace SocialMedia
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
             builder.Services.AddAuthentication().AddGoogle(googleOptions =>

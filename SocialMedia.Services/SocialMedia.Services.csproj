@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
+    <PackageReference Include="SendGrid" Version="9.29.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
-    <PackageReference Include="SendGrid" Version="9.29.1" />
+    <ProjectReference Include="..\SocialMedia.Data\SocialMedia.Data.csproj" />
+    <ProjectReference Include="..\SocialMedia.ViewModels\SocialMedia.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

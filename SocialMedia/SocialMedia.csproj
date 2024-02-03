@@ -26,4 +26,8 @@
     <ProjectReference Include="..\SocialMedia.ViewModels\SocialMedia.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\files\" />
+  </ItemGroup>
+
 </Project>

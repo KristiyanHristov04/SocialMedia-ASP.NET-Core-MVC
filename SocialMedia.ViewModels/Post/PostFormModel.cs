@@ -18,8 +18,5 @@ namespace SocialMedia.ViewModels.Post
 
         [Required]
         public IFormFile File { get; set; } = null!;
-
-        [Required]
-        public string UserId { get; set; } = null!;
     }
 }
