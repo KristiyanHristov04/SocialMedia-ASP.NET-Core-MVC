@@ -23,6 +23,9 @@ namespace SocialMedia.Controllers.API
                 Text = x.Text,
                 Path = x.Path,
                 UserId = x.UserId,
+                FirstName = x.User.FirstName,
+                LastName = x.User.LastName,
+                Username = x.User.UserName
             })
             .OrderByDescending(x => x.Id)
             .Skip(3 * counter)

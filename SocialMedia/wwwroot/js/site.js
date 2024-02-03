@@ -15,17 +15,21 @@ loadPostsButton.addEventListener('click', () => {
         .then(res => res.json())
         .then(data => {
             postsCounter++;
+            console.log(data);
             for (let post of data) {
                 let postId = post.id;
                 let postPath = post.path;
                 let postText = post.text;
                 let postUserId = post.userId;
-                createPost(postId, postPath, postText, postUserId);
+                let postFirstName = post.firstName;
+                let postLastName = post.lastName;
+                let postUsername = post.username;
+                createPost(postId, postPath, postText, postUserId, postFirstName, postLastName, postUsername);
             }
         });
 });
 
-function createPost(id, path, text, userId) {
+function createPost(id, path, text, userId, firstName, lastName, username) {
     let mainContainer = document.createElement('div');
     mainContainer.classList.add('border', 'border-dark', 'border-1', 'mb-2', 'd-flex', 'flex-column', 'rounded-3', 'bg-dark', 'text-white');
     mainContainer.style.width = '500px';
@@ -34,7 +38,7 @@ function createPost(id, path, text, userId) {
     let textContainer = document.createElement('div');
     textContainer.classList.add('h-25');
     textContainer.classList.add('p-2');
-
+    
     let mediaContainer = document.createElement('div');
     mediaContainer.classList.add('h-75', 'p-2');
 
@@ -60,9 +64,25 @@ function createPost(id, path, text, userId) {
         media.appendChild(source);
     }
 
+    let divUserInfo = document.createElement('div');
+    divUserInfo.classList.add('user-info', 'mb-2');
+
+    let paragraphNames = document.createElement('p');
+    paragraphNames.textContent = `${firstName} ${lastName}`;
+    paragraphNames.style.marginBottom = '0';
+
+    let spanUsername = document.createElement('span');
+    spanUsername.textContent = '@' + username;
+    spanUsername.style.color = 'gray';
+
+
     let paragraphText = document.createElement('p');
     paragraphText.textContent = text;
 
+    divUserInfo.appendChild(paragraphNames);
+    divUserInfo.appendChild(spanUsername);
+
+    textContainer.appendChild(divUserInfo);
     textContainer.appendChild(paragraphText);
 
     mediaContainer.appendChild(media);
