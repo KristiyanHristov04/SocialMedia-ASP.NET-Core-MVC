@@ -19,6 +19,7 @@ namespace SocialMedia.Controllers.API
             this.postService = postService;
         }
 
+        [HttpGet]
         public async Task<List<PostViewModel>> Posts(int counter)
         {
             return await this.context.Posts.Select(p => new PostViewModel
