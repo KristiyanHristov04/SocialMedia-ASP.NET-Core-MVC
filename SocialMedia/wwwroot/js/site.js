@@ -148,7 +148,9 @@ function prepareForDelete(postId, event) {
             method: 'DELETE'
         })
             .then(res => console.log(res))
-            .then(element.remove())
+            .then(() => {
+                element.remove();
+            })
             .catch(err => console.error(error));
     });
 }

@@ -1,22 +1,8 @@
 ﻿@using SocialMedia.Extensions
+
 @{
     ViewData["Title"] = "Home Page";
     string currentUserId = this.User.GetUserId();
-}
-
-@if (TempData["SuccessAdd"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessAdd"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
-else if (TempData["SuccessEdit"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessEdit"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 }
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,4 +39,25 @@ else if (TempData["SuccessEdit"] != null)
 
 @section Scripts {
     <script src="~/js/site.js"></script>
+    @if (TempData["SuccessAdd"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('Post added successfully!');
+        </script>
+    }
+
+    @if (TempData["SuccessEdit"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('Post edited successfully!');
+        </script>
+    }
 }
