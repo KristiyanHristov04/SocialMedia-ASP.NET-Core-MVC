@@ -65,7 +65,7 @@ namespace SocialMedia.Controllers
 
             TempData["SuccessEdit"] = "Post was edited successfully!";
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Mine));
         }
 
         [HttpGet]
