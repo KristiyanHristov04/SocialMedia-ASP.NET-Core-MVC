@@ -26,7 +26,8 @@ namespace SocialMedia.Services
 
         public async Task AddPostAsync(PostFormModel model, string userId)
         {
-            string filesFolderPath = "files/" + Guid.NewGuid().ToString() + "_" + model.File.FileName;
+            string generatedGuid = Guid.NewGuid().ToString();
+            string filesFolderPath = "files/" + generatedGuid + "_" + model.File.FileName;
             string fullPath = Path.Combine(webHostEnvironment.WebRootPath, filesFolderPath);
             //await model.File.CopyToAsync(new FileStream(fullPath, FileMode.Create));
 
