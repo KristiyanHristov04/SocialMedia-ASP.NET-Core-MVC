@@ -1,4 +1,5 @@
-﻿let counter = 0;
+﻿let counter = 1;
+let scrolled = false;
 const currentUserId = document.getElementById('user-id').textContent;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
@@ -8,28 +9,38 @@ const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 loadPosts();
 
 window.addEventListener('scroll', () => {
-    console.log('scrollY: ' + window.scrollY);
-    console.log('innerHeight: ' + window.innerHeight);
-    console.log('document scrollHeight: ' + document.documentElement.scrollHeight);
-    if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight) {
+    //console.log('scrollY: ' + window.scrollY);
+    //console.log('innerHeight: ' + window.innerHeight);
+    //console.log('document scrollHeight: ' + document.documentElement.scrollHeight);
+    if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight && !scrolled) {
+        scrolled = true;
+        console.log('NEED TO LOAD POSTS!!!');
         loadPosts();
     }
 });
 
 function loadPosts() {
+    console.log('LOADING POSTS...')
     fetch(`https://localhost:7045/api/posts?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
-            counter++;
-            for (let post of data) {
-                let postId = post.id;
-                let postPath = post.path;
-                let postText = post.text;
-                let postUserId = post.userId;
-                let postFirstName = post.firstName;
-                let postLastName = post.lastName;
-                let postUsername = post.username;
-                createPost(postId, postPath, postText, postUserId, postFirstName, postLastName, postUsername);
+            console.log(data);
+            console.log(data.length);
+            if (data.length > 0) {
+                for (let post of data) {
+                    let postId = post.id;
+                    let postPath = post.path;
+                    let postText = post.text;
+                    let postUserId = post.userId;
+                    let postFirstName = post.firstName;
+                    let postLastName = post.lastName;
+                    let postUsername = post.username;
+                    createPost(postId, postPath, postText, postUserId, postFirstName, postLastName, postUsername);
+                }
+                counter++;
+                scrolled = false;
+            } else {
+                noMorePostsMessage();
             }
         })
         .catch(err => console.error(err));
@@ -105,4 +116,11 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     mainContainer.appendChild(mediaContainer);
 
     posts.appendChild(mainContainer);
+}
+
+function noMorePostsMessage() {
+    let noMorePostsParagraph = document.createElement('p');
+    noMorePostsParagraph.textContent = 'No more posts in the database! Please try again later.';
+    noMorePostsParagraph.classList.add('text-info', 'text-center');
+    posts.appendChild(noMorePostsParagraph);
 }

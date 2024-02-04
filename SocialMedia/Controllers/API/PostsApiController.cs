@@ -27,8 +27,8 @@ namespace SocialMedia.Controllers.API
                 LastName = p.User.LastName,
                 Username = p.User.UserName
             })
-            .OrderByDescending(x => x.Id)
-            .Skip(3 * counter)
+            .OrderByDescending(p => p.Id)
+            .Skip(3 * (counter - 1))
             .Take(3)
             .ToListAsync();
         }
