@@ -142,6 +142,7 @@ function noMorePostsMessage() {
 function prepareForDelete(postId, event) {
     const deleteButton = document.getElementById('delete-button');
     const element = event.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement;
+    let isAlertShowed = false;
 
     deleteButton.addEventListener('click', () => {
         fetch(`https://localhost:7045/api/posts/delete/${postId}`, {
@@ -150,6 +151,15 @@ function prepareForDelete(postId, event) {
             .then(res => console.log(res))
             .then(() => {
                 element.remove();
+                if (!isAlertShowed) {
+                    toastr.options = {
+                        positionClass: "toast-bottom-right"
+                    };
+
+                    toastr.success('Post deleted successfully!');
+
+                    isAlertShowed = true;
+                }
             })
             .catch(err => console.error(error));
     });
