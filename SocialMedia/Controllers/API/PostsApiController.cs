@@ -29,7 +29,7 @@ namespace SocialMedia.Controllers.API
                 UserId = p.UserId,
                 FirstName = p.User.FirstName,
                 LastName = p.User.LastName,
-                Username = p.User.UserName
+                Username = p.User.UserName!
             })
             .OrderByDescending(p => p.Id)
             .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1 ))

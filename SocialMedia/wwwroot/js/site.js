@@ -19,8 +19,6 @@ function loadPosts() {
     fetch(`https://localhost:7045/api/posts?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
-            console.log(data.length);
             if (data.length > 0) {
                 for (let post of data) {
                     let postId = post.id;
@@ -142,7 +140,6 @@ function noMorePostsMessage() {
 }
 
 function prepareForDelete(postId, event) {
-    console.log(`${postId} - ${event.currentTarget}`);
     const deleteButton = document.getElementById('delete-button');
     const element = event.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement;
 
@@ -151,9 +148,7 @@ function prepareForDelete(postId, event) {
             method: 'DELETE'
         })
             .then(res => console.log(res))
-            .then(data => {
-                element.remove();
-            })
+            .then(element.remove())
             .catch(err => console.error(error));
     });
 }
