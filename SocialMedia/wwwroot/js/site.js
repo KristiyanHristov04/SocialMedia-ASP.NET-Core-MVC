@@ -161,6 +161,6 @@ function prepareForDelete(postId, event) {
                     isAlertShowed = true;
                 }
             })
-            .catch(err => console.error(error));
+            .catch(err => console.error(err));
     });
 }
