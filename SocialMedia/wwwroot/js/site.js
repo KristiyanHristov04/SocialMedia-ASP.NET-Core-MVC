@@ -95,16 +95,10 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
         editLink.classList.add('btn', 'btn-primary');
         paragraphNames.appendChild(editLink);
 
-        //let deleteLink = document.createElement('a');
-        //deleteLink.textContent = 'Delete';
-        ///*deleteLink.href = window.location.origin + `/Post/Edit/${id}`;*/
-        //deleteLink.classList.add('btn', 'btn-danger');
-        //paragraphNames.appendChild(deleteLink);
-
-
-        paragraphNames.innerHTML += `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" id="${id}" onclick="test(${id})">
-                                Delete
-                            </button>`;
+        paragraphNames.innerHTML +=
+            `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="prepareForDelete(${id})">
+                Delete
+             </button>`;
     }
     //
 
@@ -136,8 +130,7 @@ function noMorePostsMessage() {
     posts.appendChild(noMorePostsParagraph);
 }
 
-function test(postId) {
+function prepareForDelete(postId) {
     const form = document.getElementById('delete-form');
     form.setAttribute('action', `/Post/Delete/${postId}`);
-    console.log(form);
 }
