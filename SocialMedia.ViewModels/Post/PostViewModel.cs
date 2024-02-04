@@ -1,4 +1,4 @@
-﻿namespace SocialMedia.Controllers.API.Models
+﻿namespace SocialMedia.ViewModels.Post
 {
     public class PostViewModel
     {

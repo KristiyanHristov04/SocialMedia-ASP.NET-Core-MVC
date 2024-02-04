@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
 using SocialMedia.Services.Interfaces;
@@ -69,6 +70,24 @@ namespace SocialMedia.Services
             {
                 Text = post!.Text
             };
+        }
+
+        public async Task<List<PostViewModel>> GetPostsAsync(int counter)
+        {
+            return await this.context.Posts.Select(p => new PostViewModel
+            {
+                Id = p.Id,
+                Text = p.Text,
+                Path = p.Path,
+                UserId = p.UserId,
+                FirstName = p.User.FirstName,
+                LastName = p.User.LastName,
+                Username = p.User.UserName!
+            })
+            .OrderByDescending(p => p.Id)
+            .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+            .Take(3)
+            .ToListAsync();
         }
 
         public async Task<bool> ValidatePostUserAsync(string userId, int postId)
