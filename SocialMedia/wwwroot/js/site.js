@@ -145,7 +145,7 @@ function prepareForDelete(postId, event) {
     let isAlertShowed = false;
 
     deleteButton.addEventListener('click', () => {
-        fetch(`https://localhost:7045/api/posts/delete/${postId}`, {
+        fetch(`https://localhost:7045/api/posts/${postId}`, {
             method: 'DELETE'
         })
             .then(res => console.log(res))

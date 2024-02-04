@@ -23,7 +23,7 @@ namespace SocialMedia.Controllers.API
             return await postService.GetPostsAsync(counter);
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             string currentUserId = this.User.GetUserId();
