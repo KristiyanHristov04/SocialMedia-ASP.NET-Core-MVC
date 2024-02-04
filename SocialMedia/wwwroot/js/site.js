@@ -9,18 +9,13 @@ const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 loadPosts();
 
 window.addEventListener('scroll', () => {
-    //console.log('scrollY: ' + window.scrollY);
-    //console.log('innerHeight: ' + window.innerHeight);
-    //console.log('document scrollHeight: ' + document.documentElement.scrollHeight);
     if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight && !scrolled) {
         scrolled = true;
-        /*console.log('NEED TO LOAD POSTS!!!');*/
         loadPosts();
     }
 });
 
 function loadPosts() {
-    /*console.log('LOADING POSTS...')*/
     fetch(`https://localhost:7045/api/posts?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
@@ -72,7 +67,6 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
         media = document.createElement('video');
         media.setAttribute('controls', '');
         media.classList.add('w-100', 'h-100', 'rounded-3');
-        /*media.style.objectFit = 'cover';*/
 
         let source = document.createElement('source');
         source.src = window.location.origin + `/${path}`;
@@ -99,10 +93,20 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
         editLink.classList.add('btn', 'btn-primary', 'btn-sm');
         divOperations.appendChild(editLink);
 
-        divOperations.innerHTML +=
-            `<button type="button" class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="prepareForDelete(${id})">
-                Delete <i class="fa-regular fa-trash-can"></i>
-             </button>`;
+        let button = document.createElement('button');
+        button.type = 'button';
+        button.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+        button.setAttribute('data-bs-toggle', 'modal');
+        button.setAttribute('data-bs-target', '#exampleModal');
+        button.textContent = 'Delete ';
+        button.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
+
+        button.addEventListener('click', (e) => {
+            prepareForDelete(id, e);
+        });
+
+        divOperations.appendChild(button);
+
     }
 
     divNamesAndOperationsFlex.appendChild(paragraphNames);
@@ -137,7 +141,19 @@ function noMorePostsMessage() {
     posts.appendChild(noMorePostsParagraph);
 }
 
-function prepareForDelete(postId) {
-    const form = document.getElementById('delete-form');
-    form.setAttribute('action', `/Post/Delete/${postId}`);
+function prepareForDelete(postId, event) {
+    console.log(`${postId} - ${event.currentTarget}`);
+    const deleteButton = document.getElementById('delete-button');
+    const element = event.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement;
+
+    deleteButton.addEventListener('click', () => {
+        fetch(`https://localhost:7045/api/posts/delete/${postId}`, {
+            method: 'DELETE'
+        })
+            .then(res => console.log(res))
+            .then(data => {
+                element.remove();
+            })
+            .catch(err => console.error(error));
+    });
 }

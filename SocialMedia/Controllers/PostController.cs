@@ -63,18 +63,18 @@ namespace SocialMedia.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(int id)
-        {
-            string currentUserId = this.User.GetUserId();
-            if (!await postService.ValidatePostUserAsync(currentUserId, id))
-            {
-                return BadRequest();
-            }
+        //[HttpPost]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    string currentUserId = this.User.GetUserId();
+        //    if (!await postService.ValidatePostUserAsync(currentUserId, id))
+        //    {
+        //        return BadRequest();
+        //    }
 
-            await this.postService.DeletePostAsync(id);
+        //    await this.postService.DeletePostAsync(id);
 
-            return RedirectToAction("Index", "Home");
-        }
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

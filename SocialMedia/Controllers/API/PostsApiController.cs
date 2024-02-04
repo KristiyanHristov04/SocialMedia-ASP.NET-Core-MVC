@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Controllers.API.Models;
 using SocialMedia.Data;
+using SocialMedia.Extensions;
+using SocialMedia.Services.Interfaces;
 
 namespace SocialMedia.Controllers.API
 {
@@ -10,9 +12,11 @@ namespace SocialMedia.Controllers.API
     public class PostsApiController : ControllerBase
     {
         private readonly ApplicationDbContext context;
-        public PostsApiController(ApplicationDbContext context)
+        private readonly IPostService postService;
+        public PostsApiController(ApplicationDbContext context, IPostService postService)
         {
             this.context = context;
+            this.postService = postService;
         }
 
         public async Task<List<PostViewModel>> Posts(int counter)
@@ -28,9 +32,22 @@ namespace SocialMedia.Controllers.API
                 Username = p.User.UserName
             })
             .OrderByDescending(p => p.Id)
-            .Skip(3 * (counter - 1))
+            .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1 ))
             .Take(3)
             .ToListAsync();
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            string currentUserId = this.User.GetUserId();
+            if (!await postService.ValidatePostUserAsync(currentUserId, id))
+            {
+                return BadRequest();
+            }
+
+            await this.postService.DeletePostAsync(id);
+            return Ok();
         }
     }
 }
