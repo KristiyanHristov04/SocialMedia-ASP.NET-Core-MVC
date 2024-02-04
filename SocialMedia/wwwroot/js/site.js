@@ -14,13 +14,13 @@ window.addEventListener('scroll', () => {
     //console.log('document scrollHeight: ' + document.documentElement.scrollHeight);
     if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight && !scrolled) {
         scrolled = true;
-        console.log('NEED TO LOAD POSTS!!!');
+        /*console.log('NEED TO LOAD POSTS!!!');*/
         loadPosts();
     }
 });
 
 function loadPosts() {
-    console.log('LOADING POSTS...')
+    /*console.log('LOADING POSTS...')*/
     fetch(`https://localhost:7045/api/posts?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
@@ -90,14 +90,14 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     // Edit/Delete Post  Logic
     if (userId == currentUserId) {
         let editLink = document.createElement('a');
-        editLink.textContent = 'Edit';
+        editLink.innerHTML = 'Edit <i class="fa-regular fa-pen-to-square"></i>';
         editLink.href = window.location.origin + `/Post/Edit/${id}`;
         editLink.classList.add('btn', 'btn-primary');
         paragraphNames.appendChild(editLink);
 
         paragraphNames.innerHTML +=
             `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="prepareForDelete(${id})">
-                Delete
+                Delete <i class="fa-regular fa-trash-can"></i>
              </button>`;
     }
     //
