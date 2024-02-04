@@ -55,7 +55,7 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     let textContainer = document.createElement('div');
     textContainer.classList.add('h-25');
     textContainer.classList.add('p-2');
-    
+
     let mediaContainer = document.createElement('div');
     mediaContainer.classList.add('h-75', 'p-2');
 
@@ -87,13 +87,24 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     paragraphNames.textContent = `${firstName} ${lastName}`;
     paragraphNames.style.marginBottom = '0';
 
-    // Edit Post Logic
+    // Edit/Delete Post  Logic
     if (userId == currentUserId) {
         let editLink = document.createElement('a');
         editLink.textContent = 'Edit';
         editLink.href = window.location.origin + `/Post/Edit/${id}`;
         editLink.classList.add('btn', 'btn-primary');
         paragraphNames.appendChild(editLink);
+
+        //let deleteLink = document.createElement('a');
+        //deleteLink.textContent = 'Delete';
+        ///*deleteLink.href = window.location.origin + `/Post/Edit/${id}`;*/
+        //deleteLink.classList.add('btn', 'btn-danger');
+        //paragraphNames.appendChild(deleteLink);
+
+
+        paragraphNames.innerHTML += `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" id="${id}" onclick="test(${id})">
+                                Delete
+                            </button>`;
     }
     //
 
@@ -121,6 +132,12 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
 function noMorePostsMessage() {
     let noMorePostsParagraph = document.createElement('p');
     noMorePostsParagraph.textContent = 'No more posts in the database! Please try again later.';
-    noMorePostsParagraph.classList.add('text-info', 'text-center');
+    noMorePostsParagraph.classList.add('text-info');
     posts.appendChild(noMorePostsParagraph);
+}
+
+function test(postId) {
+    const form = document.getElementById('delete-form');
+    form.setAttribute('action', `/Post/Delete/${postId}`);
+    console.log(form);
 }

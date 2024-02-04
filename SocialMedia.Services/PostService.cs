@@ -45,6 +45,13 @@ namespace SocialMedia.Services
             await context.SaveChangesAsync();   
         }
 
+        public async Task DeletePostAsync(int id)
+        {
+            Post postToDelete = await this.context.Posts.FindAsync(id);
+            this.context.Posts.Remove(postToDelete!);
+            await context.SaveChangesAsync();
+        }
+
         public async Task EditPostAsync(int id, PostFormModel model)
         {
             Post post = await this.context.Posts.FindAsync(id);
