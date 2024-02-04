@@ -43,7 +43,7 @@ namespace SocialMedia.Services
             };
 
             await context.Posts.AddAsync(post);
-            await context.SaveChangesAsync();   
+            await context.SaveChangesAsync();
         }
 
         public async Task DeletePostAsync(int id)
@@ -65,6 +65,26 @@ namespace SocialMedia.Services
             post!.Text = model.Text;
 
             await context.SaveChangesAsync();
+        }
+
+        public async Task<List<PostViewModel>> GetMyPostsAsync(int counter, string userId)
+        {
+            return await this.context.Posts
+                .Where(p => p.UserId == userId)
+                .Select(p => new PostViewModel
+                {
+                    Id = p.Id,
+                    Text = p.Text,
+                    Path = p.Path,
+                    UserId = p.UserId,
+                    FirstName = p.User.FirstName,
+                    LastName = p.User.LastName,
+                    Username = p.User.UserName!
+                })
+                .OrderByDescending(p => p.Id)
+                .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+                .Take(3)
+                .ToListAsync();
         }
 
         public async Task<PostFormModel> GetPostByIdAsync(int id)

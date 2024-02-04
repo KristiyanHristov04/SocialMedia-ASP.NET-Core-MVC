@@ -67,5 +67,11 @@ namespace SocialMedia.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Mine()
+        {
+            return View();
+        }
     }
 }

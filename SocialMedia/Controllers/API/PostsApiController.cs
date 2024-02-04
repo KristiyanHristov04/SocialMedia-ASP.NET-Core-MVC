@@ -23,6 +23,14 @@ namespace SocialMedia.Controllers.API
             return await postService.GetPostsAsync(counter);
         }
 
+        [Route("mine")]
+        [HttpGet]
+        public async Task<List<PostViewModel>> MyPosts(int counter)
+        {
+            string currentUserId = this.User.GetUserId();
+            return await postService.GetMyPostsAsync(counter, currentUserId);
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
