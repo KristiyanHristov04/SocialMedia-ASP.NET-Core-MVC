@@ -134,7 +134,7 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
 
 function noMorePostsMessage() {
     let noMorePostsParagraph = document.createElement('p');
-    noMorePostsParagraph.textContent = 'No more posts in the database! Please try again later.';
+    noMorePostsParagraph.textContent = 'You have no more posts.';
     noMorePostsParagraph.classList.add('text-info');
     posts.appendChild(noMorePostsParagraph);
 }

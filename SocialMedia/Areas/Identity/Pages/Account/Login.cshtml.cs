@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SocialMedia.Data.Models;
+using System.Security.Claims;
 
 namespace SocialMedia.Areas.Identity.Pages.Account
 {
@@ -95,6 +96,13 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                     var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
+                        bool doesClaimExists = this.User.HasClaim("names", user.FirstName + " " + user.LastName);
+                        if (!doesClaimExists)
+                        {
+                            var namesClaim = new Claim("names", user.FirstName + " " + user.LastName);
+                            await _userManager.AddClaimAsync(user, namesClaim);
+                        }
+
                         _logger.LogInformation("User logged in.");
                         return LocalRedirect(returnUrl);
                     }
