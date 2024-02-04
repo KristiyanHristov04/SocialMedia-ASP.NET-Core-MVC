@@ -29,7 +29,6 @@ namespace SocialMedia.Services
             string generatedGuid = Guid.NewGuid().ToString();
             string filesFolderPath = "files/" + generatedGuid + "_" + model.File.FileName;
             string fullPath = Path.Combine(webHostEnvironment.WebRootPath, filesFolderPath);
-            //await model.File.CopyToAsync(new FileStream(fullPath, FileMode.Create));
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
@@ -50,7 +49,12 @@ namespace SocialMedia.Services
         public async Task DeletePostAsync(int id)
         {
             Post postToDelete = await this.context.Posts.FindAsync(id);
+
             this.context.Posts.Remove(postToDelete!);
+
+            string pathToDelete = Path.Combine(webHostEnvironment.WebRootPath, postToDelete!.Path);
+            File.Delete(pathToDelete);
+
             await context.SaveChangesAsync();
         }
 
