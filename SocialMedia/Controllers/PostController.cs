@@ -39,6 +39,8 @@ namespace SocialMedia.Controllers
             string currentUserId = this.User.GetUserId();
             await postService.AddPostAsync(model, currentUserId);
 
+            TempData["SuccessAdd"] = "New post was added successfully!";
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -60,6 +62,9 @@ namespace SocialMedia.Controllers
         public async Task<IActionResult> Edit(int id, PostFormModel model)
         {
             await this.postService.EditPostAsync(id, model);
+
+            TempData["SuccessEdit"] = "Post was edited successfully!";
+
             return RedirectToAction("Index", "Home");
         }
     }
