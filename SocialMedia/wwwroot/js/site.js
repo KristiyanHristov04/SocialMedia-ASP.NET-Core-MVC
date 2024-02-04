@@ -83,24 +83,30 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     let divUserInfo = document.createElement('div');
     divUserInfo.classList.add('user-info', 'mb-2');
 
+    let divNamesAndOperationsFlex = document.createElement('div');
+    divNamesAndOperationsFlex.classList.add('flex-container', 'd-flex', 'justify-content-between', 'align-items-center');
+
+    let divOperations = document.createElement('div');
+
     let paragraphNames = document.createElement('p');
     paragraphNames.textContent = `${firstName} ${lastName}`;
     paragraphNames.style.marginBottom = '0';
 
-    // Edit/Delete Post  Logic
     if (userId == currentUserId) {
         let editLink = document.createElement('a');
         editLink.innerHTML = 'Edit <i class="fa-regular fa-pen-to-square"></i>';
         editLink.href = window.location.origin + `/Post/Edit/${id}`;
-        editLink.classList.add('btn', 'btn-primary');
-        paragraphNames.appendChild(editLink);
+        editLink.classList.add('btn', 'btn-primary', 'btn-sm');
+        divOperations.appendChild(editLink);
 
-        paragraphNames.innerHTML +=
-            `<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="prepareForDelete(${id})">
+        divOperations.innerHTML +=
+            `<button type="button" class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="prepareForDelete(${id})">
                 Delete <i class="fa-regular fa-trash-can"></i>
              </button>`;
     }
-    //
+
+    divNamesAndOperationsFlex.appendChild(paragraphNames);
+    divNamesAndOperationsFlex.appendChild(divOperations);
 
     let spanUsername = document.createElement('span');
     spanUsername.textContent = '@' + username;
@@ -109,7 +115,8 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     let paragraphText = document.createElement('p');
     paragraphText.textContent = text;
 
-    divUserInfo.appendChild(paragraphNames);
+    divUserInfo.appendChild(divNamesAndOperationsFlex);
+
     divUserInfo.appendChild(spanUsername);
 
     textContainer.appendChild(divUserInfo);
