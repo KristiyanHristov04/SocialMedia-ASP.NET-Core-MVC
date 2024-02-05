@@ -161,6 +161,9 @@ namespace SocialMedia.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    _logger.LogWarning("Creating new user(Google). Add new claims here!");
+                    await _userManager.AddClaimAsync(user, new Claim("names", user.FirstName + " " + user.LastName));
+
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {

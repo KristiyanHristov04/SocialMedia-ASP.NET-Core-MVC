@@ -14,5 +14,10 @@ namespace SocialMedia.Extensions
         {
             return principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
         }
+
+        public static string GetUserNames(this ClaimsPrincipal principal)
+        {
+            return principal.FindFirst("names")!.Value;
+        }
     }
 }
