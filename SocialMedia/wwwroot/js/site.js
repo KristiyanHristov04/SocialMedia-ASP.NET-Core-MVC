@@ -25,8 +25,9 @@ function loadPosts() {
                     let postPath = post.path;
                     let postText = post.text;
                     let postUserId = post.userId;
-                    //
-                    console.log(post);
+                    let postFirstName = post.firstName;
+                    let postLastName = post.lastName;
+                    let postUsername = post.username;
                     let postDateSeconds = post.dateSeconds;
                     let postDateMinutes = post.dateMinutes;
                     let postDateHours = post.dateHours;
@@ -37,25 +38,25 @@ function loadPosts() {
                     let currentDate = new Date();
                     let postDate = new Date(postDateYear, postDateMonth - 1, postDateDay, postDateHours, postDateMinutes, postDateSeconds);
                     let dateDiffResultObj = differenceBetweenDates(currentDate, postDate);
-                    console.log(dateDiffResultObj.days);
-                    console.log(dateDiffResultObj.hours);
-                    console.log(dateDiffResultObj.minutes);
-                    console.log(dateDiffResultObj.seconds);
+
                     let result = '';
+
                     if (dateDiffResultObj.days != 0) {
                         result = `${postDateDay}.${postDateMonth}.${postDateYear}`;
-                    } else if (dateDiffResultObj.hours != 0) {
-                        result = `${dateDiffResultObj.hours} hour/s ago`;
-                    } else if (dateDiffResultObj.minutes != 0) {
-                        result = `${dateDiffResultObj.minutes} minute/s ago`;
+                    } else if (dateDiffResultObj.hours > 1) {
+                        result = `${dateDiffResultObj.hours} hours ago`;
+                    } else if (dateDiffResultObj.hours == 1) {
+                        result = `An hour ago`;
+                    } else if (dateDiffResultObj.minutes > 1) {
+                        result = `${dateDiffResultObj.minutes} minutes ago`;
+                    } else if (dateDiffResultObj.minutes == 1) {
+                        result = `A minute ago`;
+                    } else if (dateDiffResultObj.seconds > 1) {
+                        result = `${dateDiffResultObj.seconds} seconds ago`;
                     } else {
-                        result = `${dateDiffResultObj.seconds} minute/s ago`;
+                        result = `A second ago`;
                     }
 
-                    //
-                    let postFirstName = post.firstName;
-                    let postLastName = post.lastName;
-                    let postUsername = post.username;
                     createPost(postId, postPath, postText, postUserId, result, postFirstName, postLastName, postUsername);
                 }
                 counter++;
