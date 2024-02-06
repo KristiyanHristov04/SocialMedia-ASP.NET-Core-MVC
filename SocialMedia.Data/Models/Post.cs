@@ -26,6 +26,9 @@ namespace SocialMedia.Data.Models
         [ForeignKey(nameof(User))]
         public string UserId { get; set; } = null!;
 
+        [Required]
+        public DateTime Date { get; set; }
+
         //Navigation Property
         public ApplicationUser User { get; set; } = null!;
     }
