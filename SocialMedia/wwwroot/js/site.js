@@ -119,7 +119,6 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     let media = '';
 
     let isImage = false;
-    let anchor = document.createElement('a');
     if (imageFormats.includes(pathExtension)) {
         isImage = true;
         media = document.createElement('img');
@@ -127,11 +126,12 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
         media.classList.add('w-100', 'h-100', 'rounded-3');
         media.style.objectFit = 'cover';
 
-        anchor.href = window.location.origin + `/${path}`;
-        anchor.target = '_blank';
-        anchor.appendChild(media);
+        let anchorMedia = document.createElement('a');
+        anchorMedia.href = window.location.origin + `/${path}`;
+        anchorMedia.target = '_blank';
+        anchorMedia.appendChild(media);
 
-        mediaContainer.appendChild(anchor);
+        mediaContainer.appendChild(anchorMedia);
     } else {
         media = document.createElement('video');
         media.setAttribute('controls', '');
