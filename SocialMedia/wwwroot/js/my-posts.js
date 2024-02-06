@@ -118,11 +118,21 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     let pathExtension = path.substr(index);
 
     let media = '';
+
+    let isImage = false;
     if (imageFormats.includes(pathExtension)) {
+        isImage = true;
         media = document.createElement('img');
         media.src = window.location.origin + `/${path}`;
         media.classList.add('w-100', 'h-100', 'rounded-3');
         media.style.objectFit = 'cover';
+
+        let anchorMedia = document.createElement('a');
+        anchorMedia.href = window.location.origin + `/${path}`;
+        anchorMedia.target = '_blank';
+        anchorMedia.appendChild(media);
+
+        mediaContainer.appendChild(anchorMedia);
     } else {
         media = document.createElement('video');
         media.setAttribute('controls', '');
@@ -186,7 +196,9 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     textContainer.appendChild(divUserInfo);
     textContainer.appendChild(paragraphText);
 
-    mediaContainer.appendChild(media);
+    if (!isImage) {
+        mediaContainer.appendChild(media);
+    }
 
     mainContainer.appendChild(textContainer);
     mainContainer.appendChild(mediaContainer);
