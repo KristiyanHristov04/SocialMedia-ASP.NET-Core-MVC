@@ -39,7 +39,8 @@ namespace SocialMedia.Services
             {
                 Text = model.Text,
                 Path = filesFolderPath,
-                UserId = userId
+                UserId = userId,
+                Date = DateTime.Now
             };
 
             await context.Posts.AddAsync(post);
@@ -77,6 +78,12 @@ namespace SocialMedia.Services
                     Text = p.Text,
                     Path = p.Path,
                     UserId = p.UserId,
+                    DateSeconds = p.Date.Second,
+                    DateMinutes = p.Date.Minute,
+                    DateHours = p.Date.Hour,
+                    DateDay = p.Date.Day,
+                    DateMonth = p.Date.Month,
+                    DateYear = p.Date.Year,
                     FirstName = p.User.FirstName,
                     LastName = p.User.LastName,
                     Username = p.User.UserName!
@@ -105,6 +112,12 @@ namespace SocialMedia.Services
                 Text = p.Text,
                 Path = p.Path,
                 UserId = p.UserId,
+                DateSeconds = p.Date.Second,
+                DateMinutes = p.Date.Minute,
+                DateHours = p.Date.Hour,
+                DateDay = p.Date.Day,
+                DateMonth = p.Date.Month,
+                DateYear = p.Date.Year,
                 FirstName = p.User.FirstName,
                 LastName = p.User.LastName,
                 Username = p.User.UserName!
