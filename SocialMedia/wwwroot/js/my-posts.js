@@ -28,7 +28,36 @@ function loadPosts() {
                     let postFirstName = post.firstName;
                     let postLastName = post.lastName;
                     let postUsername = post.username;
-                    createPost(postId, postPath, postText, postUserId, postFirstName, postLastName, postUsername);
+                    let postDateSeconds = post.dateSeconds;
+                    let postDateMinutes = post.dateMinutes;
+                    let postDateHours = post.dateHours;
+                    let postDateDay = post.dateDay;
+                    let postDateMonth = post.dateMonth;
+                    let postDateYear = post.dateYear;
+
+                    let currentDate = new Date();
+                    let postDate = new Date(postDateYear, postDateMonth - 1, postDateDay, postDateHours, postDateMinutes, postDateSeconds);
+                    let dateDiffResultObj = differenceBetweenDates(currentDate, postDate);
+
+                    let result = '';
+
+                    if (dateDiffResultObj.days != 0) {
+                        result = `${postDateDay.toString().padStart(2, 0)}.${postDateMonth.toString().padStart(2, 0)}.${postDateYear}`;
+                    } else if (dateDiffResultObj.hours > 1) {
+                        result = `${dateDiffResultObj.hours} hours ago`;
+                    } else if (dateDiffResultObj.hours == 1) {
+                        result = `An hour ago`;
+                    } else if (dateDiffResultObj.minutes > 1) {
+                        result = `${dateDiffResultObj.minutes} minutes ago`;
+                    } else if (dateDiffResultObj.minutes == 1) {
+                        result = `A minute ago`;
+                    } else if (dateDiffResultObj.seconds > 1) {
+                        result = `${dateDiffResultObj.seconds} seconds ago`;
+                    } else {
+                        result = `A second ago`;
+                    }
+
+                    createPost(postId, postPath, postText, postUserId, result, postFirstName, postLastName, postUsername);
                 }
                 counter++;
                 scrolled = false;
@@ -39,7 +68,34 @@ function loadPosts() {
         .catch(err => console.error(err));
 }
 
-function createPost(id, path, text, userId, firstName, lastName, username) {
+function differenceBetweenDates(date1, date2) {
+    var date1InMilliseconds = date1.getTime();
+    var date2InMilliseconds = date2.getTime();
+
+    var differenceInMilliseconds = Math.abs(date2InMilliseconds - date1InMilliseconds);
+
+    var millisecondsPerSecond = 1000;
+    var millisecondsPerMinute = millisecondsPerSecond * 60;
+    var millisecondsPerHour = millisecondsPerMinute * 60;
+    var millisecondsPerDay = millisecondsPerHour * 24;
+
+    var days = Math.floor(differenceInMilliseconds / millisecondsPerDay);
+    var hours = Math.floor((differenceInMilliseconds % millisecondsPerDay) / millisecondsPerHour);
+    var minutes = Math.floor((differenceInMilliseconds % millisecondsPerHour) / millisecondsPerMinute);
+    var seconds = Math.floor((differenceInMilliseconds % millisecondsPerMinute) / millisecondsPerSecond);
+
+    var result = {
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds
+    };
+
+    return result;
+}
+
+
+function createPost(id, path, text, userId, date, firstName, lastName, username) {
     let mainContainer = document.createElement('div');
     mainContainer.classList.add('border', 'border-dark', 'border-1', 'mb-2', 'd-flex', 'flex-column', 'rounded-3', 'bg-dark', 'text-white');
     mainContainer.style.width = '500px';
@@ -48,6 +104,12 @@ function createPost(id, path, text, userId, firstName, lastName, username) {
     let textContainer = document.createElement('div');
     textContainer.classList.add('h-25');
     textContainer.classList.add('p-2');
+
+    let postPublishDate = document.createElement('span');
+    postPublishDate.style.color = 'gray';
+    postPublishDate.textContent = date;
+
+    textContainer.appendChild(postPublishDate);
 
     let mediaContainer = document.createElement('div');
     mediaContainer.classList.add('h-75', 'p-2');
