@@ -42,7 +42,7 @@ function loadPosts() {
                     let result = '';
 
                     if (dateDiffResultObj.days != 0) {
-                        result = `${postDateDay}.${postDateMonth}.${postDateYear}`;
+                        result = `${postDateDay.toString().padStart(2, 0)}.${postDateMonth.toString().padStart(2, 0)}.${postDateYear}`;
                     } else if (dateDiffResultObj.hours > 1) {
                         result = `${dateDiffResultObj.hours} hours ago`;
                     } else if (dateDiffResultObj.hours == 1) {
