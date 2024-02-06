@@ -83,7 +83,6 @@ function differenceBetweenDates(date1, date2) {
     var minutes = Math.floor((differenceInMilliseconds % millisecondsPerHour) / millisecondsPerMinute);
     var seconds = Math.floor((differenceInMilliseconds % millisecondsPerMinute) / millisecondsPerSecond);
 
-    // Construct the result
     var result = {
         days: days,
         hours: hours,
@@ -105,6 +104,7 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     textContainer.classList.add('p-2');
 
     let postPublishDate = document.createElement('span');
+    postPublishDate.style.color = 'gray';
     postPublishDate.textContent = date;
 
     textContainer.appendChild(postPublishDate);
