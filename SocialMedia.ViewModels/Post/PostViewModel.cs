@@ -3,12 +3,12 @@
     public class PostViewModel
     {
         public int Id { get; set; }
-        public string Text { get; set; }
-        public string Path { get; set; }
-        public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Username { get; set; }
+        public string Text { get; set; } = null!;
+        public string Path { get; set; } = null!;
+        public string UserId { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+        public string Username { get; set; } = null!;
         public int DateSeconds { get; set; }
         public int DateMinutes { get; set; }
         public int DateHours { get; set; }
