@@ -34,13 +34,20 @@ namespace SocialMedia.Controllers.API
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            string currentUserId = this.User.GetUserId();
-            if (!await postService.ValidatePostUserAsync(currentUserId, id))
+            if (!await this.postService.ValidateIfPostExistsAsync(id))
             {
                 return BadRequest();
             }
 
+            string currentUserId = this.User.GetUserId();
+
+            if (!await postService.ValidatePostUserAsync(currentUserId, id))
+            {
+                return Unauthorized();
+            }
+
             await this.postService.DeletePostAsync(id);
+
             return Ok();
         }
     }

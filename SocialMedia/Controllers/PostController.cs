@@ -47,10 +47,16 @@ namespace SocialMedia.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            string currentUserId = this.User.GetUserId();
-            if (!await postService.ValidatePostUserAsync(currentUserId, id))
+            if (!await this.postService.ValidateIfPostExistsAsync(id))
             {
                 return BadRequest();
+            }
+
+            string currentUserId = this.User.GetUserId();
+
+            if (!await postService.ValidatePostUserAsync(currentUserId, id))
+            {
+                return Unauthorized();
             }
 
             PostFormModel post = await this.postService.GetPostByIdAsync(id);

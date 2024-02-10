@@ -128,11 +128,23 @@ namespace SocialMedia.Services
             .ToListAsync();
         }
 
-        public async Task<bool> ValidatePostUserAsync(string userId, int postId)
+        public async Task<bool> ValidateIfPostExistsAsync(int postId)
         {
             Post? post = await this.context.Posts.FindAsync(postId);
 
-            if (post == null || post.UserId != userId)
+            if (post == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public async Task<bool> ValidatePostUserAsync(string userId, int postId)
+        {
+            Post post = await this.context.Posts.FindAsync(postId);
+
+            if (post!.UserId != userId)
             {
                 return false;
             }

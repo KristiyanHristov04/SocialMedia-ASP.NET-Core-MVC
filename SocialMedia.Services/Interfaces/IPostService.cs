@@ -14,6 +14,7 @@ namespace SocialMedia.Services.Interfaces
         Task EditPostAsync(int id, PostFormModel model);
         Task<PostFormModel> GetPostByIdAsync(int id);
         Task<bool> ValidatePostUserAsync(string userId, int postId);
+        Task<bool> ValidateIfPostExistsAsync(int postId);
         Task<List<PostViewModel>> GetPostsAsync(int counter);
         Task<List<PostViewModel>> GetMyPostsAsync(int counter, string userId);
     }
