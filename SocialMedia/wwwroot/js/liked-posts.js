@@ -19,6 +19,7 @@ function loadPosts() {
     fetch(`https://localhost:7045/api/posts/liked?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
+            console.log(data.length);
             if (data.length > 0) {
                 for (let post of data) {
                     let postId = post.id;
@@ -61,7 +62,14 @@ function loadPosts() {
                 }
                 counter++;
                 scrolled = false;
-            } else {
+            }
+            else {
+                noMorePostsMessage();
+            }
+
+            //If only one image is displayed the text is not being shown since
+            //it activates on scroll. That's why I use this if statement over here
+            if (data.length == 1) {
                 noMorePostsMessage();
             }
         })
@@ -252,7 +260,7 @@ function checkIfPostIsLikedByUser(postId, likeText) {
 
 function noMorePostsMessage() {
     let noMorePostsParagraph = document.createElement('p');
-    noMorePostsParagraph.textContent = 'You have no more posts.';
+    noMorePostsParagraph.textContent = 'You have no more liked posts.';
     noMorePostsParagraph.classList.add('text-info');
     posts.appendChild(noMorePostsParagraph);
 }

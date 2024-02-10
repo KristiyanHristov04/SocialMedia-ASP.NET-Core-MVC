@@ -64,6 +64,12 @@ function loadPosts() {
             } else {
                 noMorePostsMessage();
             }
+
+            //If only one image is displayed the text is not being shown since
+            //it activates on scroll. That's why I use this if statement over here
+            if (data.length == 1) {
+                noMorePostsMessage();
+            }
         })
         .catch(err => console.error(err));
 }
