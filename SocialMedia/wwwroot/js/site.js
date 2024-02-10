@@ -205,6 +205,7 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
 
     let likeText = document.createElement('a');
     likeText.style.cursor = 'pointer';
+    likeText.classList.add('p-2', 'text-decoration-none');
 
     checkIfPostIsLikedByUser(id, likeText);
 
@@ -236,9 +237,11 @@ function checkIfPostIsLikedByUser(postId, likeText) {
             if (data === false) {
                 likeText.textContent = 'Like';
                 likeText.style.color = 'white';
+                likeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
             } else {
                 likeText.textContent = 'Liked';
                 likeText.style.color = 'green';
+                likeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
             }
         })
         .catch(err => console.error(err));
