@@ -111,7 +111,8 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     textContainer.appendChild(postPublishDate);
 
     let mediaContainer = document.createElement('div');
-    mediaContainer.classList.add('h-75', 'p-2');
+    mediaContainer.classList.add('p-2');
+    mediaContainer.style.height = '67%';
 
     let index = path.indexOf('.');
     let pathExtension = path.substr(index);
@@ -202,10 +203,11 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     //Like posts implementation
 
     let likeContainer = document.createElement('div');
+    likeContainer.classList.add('p-2', 'text-center');
 
     let likeText = document.createElement('a');
     likeText.style.cursor = 'pointer';
-    likeText.classList.add('p-2', 'text-decoration-none');
+    likeText.classList.add('text-decoration-none');
 
     checkIfPostIsLikedByUser(id, likeText);
 
