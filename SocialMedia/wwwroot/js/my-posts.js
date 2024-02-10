@@ -112,7 +112,8 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     textContainer.appendChild(postPublishDate);
 
     let mediaContainer = document.createElement('div');
-    mediaContainer.classList.add('h-75', 'p-2');
+    mediaContainer.classList.add('p-2');
+    mediaContainer.style.height = '67%';
 
     let index = path.indexOf('.');
     let pathExtension = path.substr(index);
@@ -200,10 +201,53 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
         mediaContainer.appendChild(media);
     }
 
+    //Like posts implementation
+
+    let likeContainer = document.createElement('div');
+    likeContainer.classList.add('p-2', 'text-center');
+
+    let likeText = document.createElement('a');
+    likeText.style.cursor = 'pointer';
+    likeText.classList.add('text-decoration-none');
+
+    checkIfPostIsLikedByUser(id, likeText);
+
+    likeText.addEventListener('click', () => {
+
+        fetch(`https://localhost:7045/api/posts/like/${id}`, {
+            method: 'POST'
+        })
+            .then(() => checkIfPostIsLikedByUser(id, likeText))
+            .catch(err => console.error(err));
+    });
+
+    likeContainer.appendChild(likeText);
+    //
+
     mainContainer.appendChild(textContainer);
     mainContainer.appendChild(mediaContainer);
+    mainContainer.appendChild(likeContainer);
 
     posts.appendChild(mainContainer);
+}
+
+function checkIfPostIsLikedByUser(postId, likeText) {
+    console.log('Test');
+    fetch(`https://localhost:7045/api/posts/isliked/${postId}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data === false) {
+                likeText.textContent = 'Like';
+                likeText.style.color = 'white';
+                likeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
+            } else {
+                likeText.textContent = 'Liked';
+                likeText.style.color = 'green';
+                likeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
+            }
+        })
+        .catch(err => console.error(err));
 }
 
 function noMorePostsMessage() {
