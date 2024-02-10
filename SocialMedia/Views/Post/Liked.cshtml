@@ -1,0 +1,63 @@
+﻿@using SocialMedia.Extensions
+
+@{
+    ViewData["Title"] = "Home Page";
+    string currentUserId = this.User.GetUserId();
+}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete this post?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                If you delete this post it will be removed from the database.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="delete-button">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<span class="d-none" id="user-id">@currentUserId</span>
+<div class="text-center">
+    <h1 class="display-4">Liked Posts</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div id="posts"></div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css" />
+}
+
+@section Scripts {
+    <script src="~/js/liked-posts.js"></script>
+    @if (TempData["SuccessAdd"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('Post added successfully!');
+        </script>
+    }
+
+    @if (TempData["SuccessEdit"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('Post edited successfully!');
+        </script>
+    }
+}

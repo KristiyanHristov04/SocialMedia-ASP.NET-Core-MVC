@@ -179,5 +179,36 @@ namespace SocialMedia.Services
 
             return true;
         }
+
+        public async Task<List<PostViewModel>> GetMyLikedPostsAsync(int counter, string userId)
+        {
+            var allLikedPosts = await this.context.LikedPosts
+                .Where(lp => lp.UserId == userId)
+                .Select(lp => lp.PostId)
+                .ToListAsync();
+
+            return await this.context.Posts
+                .Where(p => allLikedPosts.Contains(p.Id))
+                .Select(p => new PostViewModel
+                {
+                    Id = p.Id,
+                    Text = p.Text,
+                    Path = p.Path,
+                    UserId = p.UserId,
+                    FirstName = p.User.FirstName,
+                    LastName = p.User.LastName,
+                    Username = p.User.UserName!,
+                    DateSeconds = p.Date.Second,
+                    DateMinutes = p.Date.Minute,
+                    DateHours = p.Date.Hour,
+                    DateDay = p.Date.Day,
+                    DateMonth = p.Date.Month,
+                    DateYear = p.Date.Year
+                })
+                .OrderByDescending(p => p.Id)
+                .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+                .Take(3)
+                .ToListAsync();
+        }
     }
 }

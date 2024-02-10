@@ -31,6 +31,14 @@ namespace SocialMedia.Controllers.API
             return await postService.GetMyPostsAsync(counter, currentUserId);
         }
 
+        [Route("liked")]
+        [HttpGet]
+        public async Task<List<PostViewModel>> MyLikedPosts(int counter)
+        {
+            string currentUserId = this.User.GetUserId();
+            return await postService.GetMyLikedPostsAsync(counter, currentUserId);
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

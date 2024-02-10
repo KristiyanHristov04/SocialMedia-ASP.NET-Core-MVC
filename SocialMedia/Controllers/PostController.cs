@@ -79,5 +79,11 @@ namespace SocialMedia.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Liked()
+        {
+            return View();
+        }
     }
 }
