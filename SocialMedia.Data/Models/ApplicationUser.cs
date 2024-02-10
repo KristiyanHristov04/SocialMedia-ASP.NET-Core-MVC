@@ -18,5 +18,8 @@ namespace SocialMedia.Data.Models
         [Required]
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; } = null!;
+
+        public ICollection<LikedPost> LikedPosts { get; set; } 
+            = new List<LikedPost>();    
     }
 }

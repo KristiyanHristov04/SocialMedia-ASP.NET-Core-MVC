@@ -50,5 +50,23 @@ namespace SocialMedia.Controllers.API
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route("isLiked/{id}")]
+        public async Task<bool> IsLiked(int id)
+        {
+            string currentUserId = this.User.GetUserId();
+
+            return await this.postService.CheckIfPostByUserIsLikedAsync(id, currentUserId);
+        }
+
+        [HttpPost]
+        [Route("like/{id}")]
+        public async Task LikeDislikePost(int id)
+        {
+            string currentUserId = this.User.GetUserId();
+
+            await this.postService.LikeDislikePostAsync(id, currentUserId);
+        }
     }
 }

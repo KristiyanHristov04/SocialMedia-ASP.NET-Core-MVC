@@ -199,10 +199,49 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
         mediaContainer.appendChild(media);
     }
 
+    //Like posts implementation
+
+    let likeContainer = document.createElement('div');
+
+    let likeText = document.createElement('a');
+    likeText.style.cursor = 'pointer';
+
+    checkIfPostIsLikedByUser(id, likeText);
+
+    likeText.addEventListener('click', () => {
+
+        fetch(`https://localhost:7045/api/posts/like/${id}`, {
+            method: 'POST'
+        })
+            .then(() => checkIfPostIsLikedByUser(id, likeText))
+            .catch(err => console.error(err));
+    });
+
+    likeContainer.appendChild(likeText);
+    //
+
     mainContainer.appendChild(textContainer);
     mainContainer.appendChild(mediaContainer);
+    mainContainer.appendChild(likeContainer);
 
     posts.appendChild(mainContainer);
+}
+
+function checkIfPostIsLikedByUser(postId, likeText) {
+    console.log('Test');
+    fetch(`https://localhost:7045/api/posts/isliked/${postId}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data === false) {
+                likeText.textContent = 'Like';
+                likeText.style.color = 'white';
+            } else {
+                likeText.textContent = 'Liked';
+                likeText.style.color = 'green';
+            }
+        })
+        .catch(err => console.error(err));
 }
 
 function noMorePostsMessage() {

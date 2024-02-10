@@ -47,6 +47,34 @@ namespace SocialMedia.Services
             await context.SaveChangesAsync();
         }
 
+        public async Task<bool> CheckIfPostByUserIsLikedAsync(int id, string userId)
+        {
+            return await this.context.LikedPosts.AnyAsync(lp => lp.UserId == userId && lp.PostId == id);
+        }
+
+        public async Task LikeDislikePostAsync(int id, string userId)
+        {
+            bool isLiked = await CheckIfPostByUserIsLikedAsync(id, userId);
+
+            if (isLiked)
+            {
+                LikedPost likedPostToRemove = await this.context.LikedPosts.Where(lp => lp.PostId == id && lp.UserId == userId).FirstOrDefaultAsync();
+                this.context.LikedPosts.Remove(likedPostToRemove);
+                await this.context.SaveChangesAsync();
+            }
+            else
+            {
+                LikedPost newLikedPost = new LikedPost()
+                {
+                    PostId = id,
+                    UserId = userId
+                };
+
+                await this.context.LikedPosts.AddAsync(newLikedPost);
+                await this.context.SaveChangesAsync();
+            }
+        }
+
         public async Task DeletePostAsync(int id)
         {
             Post postToDelete = await this.context.Posts.FindAsync(id);
