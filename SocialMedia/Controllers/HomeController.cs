@@ -65,7 +65,7 @@ namespace SocialMedia.Controllers
             }
             else
             {
-                TempData["EmailNotSent"] = "Something went wrong with sending the email! Try again.";
+                TempData["EmailNotSent"] = "Something went wrong!";
             }
 
             return RedirectToAction(nameof(Index));
