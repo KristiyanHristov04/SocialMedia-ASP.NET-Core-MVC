@@ -4,11 +4,6 @@ using SocialMedia.Data;
 using SocialMedia.Data.Models;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.ViewModels.Post;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialMedia.Services
 {

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SocialMedia.Data;
 using SocialMedia.Extensions;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.ViewModels.Post;

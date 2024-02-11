@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SocialMedia.Extensions;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.ViewModels.Post;
-using System.Security.Claims;
 
 namespace SocialMedia.Controllers
 {
