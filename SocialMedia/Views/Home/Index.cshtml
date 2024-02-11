@@ -39,28 +39,6 @@
 
 @section Scripts {
     <script src="~/js/site.js"></script>
-    @if (TempData["SuccessAdd"] != null)
-    {
-        <script>
-            toastr.options = {
-                positionClass: "toast-bottom-right"
-            };
-
-            toastr.success('@TempData["SuccessAdd"]');
-        </script>
-    }
-
-    @if (TempData["SuccessEdit"] != null)
-    {
-        <script>
-            toastr.options = {
-                positionClass: "toast-bottom-right"
-            };
-
-            toastr.success('@TempData["SuccessEdit"]');
-        </script>
-    }
-
     @if (TempData["EmailSent"] != null)
     {
         <script>

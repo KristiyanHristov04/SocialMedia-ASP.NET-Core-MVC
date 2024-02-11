@@ -40,7 +40,7 @@ namespace SocialMedia.Controllers
 
             TempData["SuccessAdd"] = "Post added successfully!";
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Mine));
         }
 
         [HttpGet]
@@ -80,7 +80,7 @@ namespace SocialMedia.Controllers
 
             await this.postService.EditPostAsync(id, model);
 
-            TempData["SuccessEdit"] = "Post was edited successfully.";
+            TempData["SuccessEdit"] = "Post edited successfully!";
 
             return RedirectToAction(nameof(Mine));
         }
