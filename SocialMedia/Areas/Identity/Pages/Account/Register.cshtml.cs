@@ -21,8 +21,6 @@ namespace SocialMedia.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly IUserStore<ApplicationUser> _userStore;
-        //private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
@@ -166,14 +164,5 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
-
-        //private IUserEmailStore<ApplicationUser> GetEmailStore()
-        //{
-        //    if (!_userManager.SupportsUserEmail)
-        //    {
-        //        throw new NotSupportedException("The default UI requires a user store with email support.");
-        //    }
-        //    return (IUserEmailStore<ApplicationUser>)_userStore;
-        //}
     }
 }
