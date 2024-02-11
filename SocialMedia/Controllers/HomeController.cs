@@ -36,12 +36,17 @@ namespace SocialMedia.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Contact()
         {
             ContactFormModel model = new ContactFormModel();
-            string currentUserEmailAddress = this.User.FindFirst(ClaimTypes.Email)!.Value;
-            model.FromEmail = currentUserEmailAddress;
+            if (this.User.Identity?.IsAuthenticated ?? false)
+            {
+                string currentUserEmailAddress = this.User.FindFirst(ClaimTypes.Email)!.Value;
+                model.FromEmail = currentUserEmailAddress;
+            }
+            
 
             return View(model);
         }
