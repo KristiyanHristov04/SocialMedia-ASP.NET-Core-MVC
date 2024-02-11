@@ -67,6 +67,18 @@ namespace SocialMedia.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, PostFormModel model)
         {
+            if (!await this.postService.ValidateIfPostExistsAsync(id))
+            {
+                return BadRequest();
+            }
+
+            string currentUserId = this.User.GetUserId();
+
+            if (!await postService.ValidatePostUserAsync(currentUserId, id))
+            {
+                return Unauthorized();
+            }
+
             await this.postService.EditPostAsync(id, model);
 
             TempData["SuccessEdit"] = "Post was edited successfully!";
