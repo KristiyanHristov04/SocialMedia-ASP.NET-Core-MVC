@@ -12,13 +12,13 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <form asp-controller="Post" asp-action="Add" method="post" enctype="multipart/form-data">
             <div class="form-floating mb-3">
-                <textarea asp-for="Text" class="form-control" style="resize: none; height: 250px;"></textarea>
+                <textarea asp-for="Text" class="form-control" placeholder="" style="resize: none; height: 250px;"></textarea>
                 <label asp-for="Text" class="form-label"></label>
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="File" class="form-label"></label>
-                <input asp-for="File" class="form-control">
+                <input asp-for="File" class="form-control" placeholder="">
                 <span class="fst-italic fw-light">*Max allowed size is 3 MB.</span>
             </div>
             <button type="submit" class="btn btn-primary">Publish Post</button>

@@ -12,17 +12,17 @@
         <form asp-controller="Home" asp-action="Contact" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
-                <input asp-for="FromEmail" class="form-control" autocomplete="username" aria-required="true" />
+                <input asp-for="FromEmail" placeholder="" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="FromEmail"></label>
                 <span asp-validation-for="FromEmail" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Subject" class="form-control" autocomplete="username" aria-required="true" />
+                <input asp-for="Subject" placeholder="" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Subject"></label>
                 <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <textarea asp-for="Message" class="form-control" style="resize: none; height: 250px;"></textarea>
+                <textarea asp-for="Message" class="form-control" style="resize: none; height: 250px;" placeholder=""></textarea>
                 <label asp-for="Message" class="form-label"></label>
                 <span asp-validation-for="Message" class="text-danger"></span>
             </div>
