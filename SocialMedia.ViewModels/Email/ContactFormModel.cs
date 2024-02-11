@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static SocialMedia.Common.DataConstants.Email;
-namespace SocialMedia.ViewModels.Home
+namespace SocialMedia.ViewModels.Email
 {
     public class ContactFormModel
     {

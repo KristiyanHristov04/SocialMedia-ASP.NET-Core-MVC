@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using SocialMedia.Extensions;
 using SocialMedia.Models;
-using SocialMedia.ViewModels.Home;
+using SocialMedia.Services.Interfaces;
+using SocialMedia.ViewModels.Email;
 using System.Diagnostics;
 using System.Security.Claims;
-using SocialMedia.Services.Interfaces;
 
 namespace SocialMedia.Controllers
 {
