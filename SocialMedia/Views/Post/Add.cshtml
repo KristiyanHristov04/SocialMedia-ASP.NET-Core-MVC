@@ -11,9 +11,9 @@
         <h2>Add Post</h2>
         <div asp-validation-summary="All" class="text-danger"></div>
         <form asp-controller="Post" asp-action="Add" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
+            <div class="form-floating mb-3">
+                <textarea asp-for="Text" class="form-control" style="resize: none; height: 250px;"></textarea>
                 <label asp-for="Text" class="form-label"></label>
-                <textarea asp-for="Text" class="form-control" rows="5" placeholder="Add text to your post" style="resize: none;"></textarea>
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
             <div class="mb-3">

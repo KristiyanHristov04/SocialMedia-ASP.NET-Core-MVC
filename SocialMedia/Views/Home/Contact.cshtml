@@ -21,9 +21,9 @@
                 <label asp-for="Subject"></label>
                 <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
-            <div class="mb-3">
+            <div class="form-floating mb-3">
+                <textarea asp-for="Message" class="form-control" style="resize: none; height: 250px;"></textarea>
                 <label asp-for="Message" class="form-label"></label>
-                <textarea asp-for="Message" class="form-control" rows="5" style="resize: none;"></textarea>
                 <span asp-validation-for="Message" class="text-danger"></span>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Send</button>

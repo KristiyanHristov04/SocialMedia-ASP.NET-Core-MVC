@@ -18,6 +18,7 @@ namespace SocialMedia.ViewModels.Home
         public string Subject { get; set; } = null!;
 
         [Required]
+        [MaxLength(450)]
         public string Message { get; set; } = null!;
     }
 }
