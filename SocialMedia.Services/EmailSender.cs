@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using static SocialMedia.Common.DataConstants.Email;
 
 namespace SocialMedia.Services
 {
@@ -34,7 +35,7 @@ namespace SocialMedia.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("kristiyan_hristov04@abv.bg", "SocialMedia"),
+                From = new EmailAddress(FromEmail, "SocialMedia"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

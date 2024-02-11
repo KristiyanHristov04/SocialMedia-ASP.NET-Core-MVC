@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.ComponentModel.DataAnnotations;
+using static SocialMedia.Common.DataConstants.Email;
 namespace SocialMedia.ViewModels.Home
 {
     public class ContactFormModel
@@ -18,7 +13,7 @@ namespace SocialMedia.ViewModels.Home
         public string Subject { get; set; } = null!;
 
         [Required]
-        [MaxLength(450)]
+        [MaxLength(MessageMaxLength)]
         public string Message { get; set; } = null!;
     }
 }
