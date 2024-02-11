@@ -25,6 +25,7 @@ namespace SocialMedia
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddTransient<ICustomEmailSender, CustomEmailSender>();
             builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 

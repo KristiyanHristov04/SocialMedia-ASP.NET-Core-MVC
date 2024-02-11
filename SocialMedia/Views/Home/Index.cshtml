@@ -46,7 +46,7 @@
                 positionClass: "toast-bottom-right"
             };
 
-            toastr.success('Post added successfully!');
+            toastr.success('@TempData["SuccessAdd"]');
         </script>
     }
 
@@ -57,7 +57,29 @@
                 positionClass: "toast-bottom-right"
             };
 
-            toastr.success('Post edited successfully!');
+            toastr.success('@TempData["SuccessEdit"]');
+        </script>
+    }
+
+    @if (TempData["EmailSent"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('@TempData["EmailSent"]');
+        </script>
+    }
+
+    @if (TempData["EmailNotSent"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.error('@TempData["EmailNotSent"]');
         </script>
     }
 }

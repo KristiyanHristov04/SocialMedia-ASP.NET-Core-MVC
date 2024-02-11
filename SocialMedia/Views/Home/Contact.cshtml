@@ -1,0 +1,36 @@
+﻿@using SocialMedia.ViewModels.Home
+@model ContactFormModel
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<h1 class="offset-md-4">@ViewData["Contact Us"]</h1>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form asp-controller="Home" asp-action="Contact" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="FromEmail" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="FromEmail"></label>
+                <span asp-validation-for="FromEmail" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Subject" class="form-control" autocomplete="username" aria-required="true" placeholder="John" />
+                <label asp-for="Subject"></label>
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Message" class="form-label"></label>
+                <textarea asp-for="Message" class="form-control" rows="5" style="resize: none;"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Send</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
