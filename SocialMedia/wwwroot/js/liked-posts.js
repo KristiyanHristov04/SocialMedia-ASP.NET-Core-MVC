@@ -176,7 +176,7 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
         button.type = 'button';
         button.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
         button.setAttribute('data-bs-toggle', 'modal');
-        button.setAttribute('data-bs-target', '#exampleModal');
+        button.setAttribute('data-bs-target', '#deleteModal');
         button.textContent = 'Delete ';
         button.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
 
@@ -221,7 +221,6 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     checkIfPostIsLikedByUser(id, likeText);
 
     likeText.addEventListener('click', () => {
-
         fetch(`https://localhost:7045/api/posts/like/${id}`, {
             method: 'POST'
         })
