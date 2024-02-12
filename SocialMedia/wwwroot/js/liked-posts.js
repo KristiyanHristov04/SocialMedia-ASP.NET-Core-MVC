@@ -218,13 +218,15 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     likeText.style.cursor = 'pointer';
     likeText.classList.add('text-decoration-none');
 
-    checkIfPostIsLikedByUser(id, likeText);
+    likeText.textContent = 'Liked';
+    likeText.style.color = 'green';
+    likeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
 
     likeText.addEventListener('click', () => {
         fetch(`https://localhost:7045/api/posts/like/${id}`, {
             method: 'POST'
         })
-            .then(() => checkIfPostIsLikedByUser(id, likeText))
+            .then(() => removePostFromDOM(mainContainer))
             .catch(err => console.error(err));
     });
 
@@ -238,23 +240,8 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     posts.appendChild(mainContainer);
 }
 
-function checkIfPostIsLikedByUser(postId, likeText) {
-    console.log('Test');
-    fetch(`https://localhost:7045/api/posts/isliked/${postId}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if (data === false) {
-                likeText.textContent = 'Like';
-                likeText.style.color = 'white';
-                likeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
-            } else {
-                likeText.textContent = 'Liked';
-                likeText.style.color = 'green';
-                likeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
-            }
-        })
-        .catch(err => console.error(err));
+function removePostFromDOM(container) {
+    container.remove();
 }
 
 function noMorePostsMessage() {
