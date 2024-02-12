@@ -178,11 +178,12 @@ namespace SocialMedia.Services
         public async Task<List<PostViewModel>> GetMyLikedPostsAsync(int counter, string userId)
         {
             var allLikedPosts = await this.context.LikedPosts
+                .OrderByDescending(lp => lp.Id)
                 .Where(lp => lp.UserId == userId)
                 .Select(lp => lp.PostId)
                 .ToListAsync();
 
-            return await this.context.Posts
+            List<PostViewModel> posts =  await this.context.Posts
                 .Where(p => allLikedPosts.Contains(p.Id))
                 .Select(p => new PostViewModel
                 {
@@ -200,10 +201,18 @@ namespace SocialMedia.Services
                     DateMonth = p.Date.Month,
                     DateYear = p.Date.Year
                 })
-                .OrderByDescending(p => p.Id)
                 .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
                 .Take(3)
                 .ToListAsync();
+
+            List<PostViewModel> mostRecentlyLikedPosts = new List<PostViewModel>();
+
+            foreach (var post in allLikedPosts)
+            {
+                mostRecentlyLikedPosts.Add(posts.First(p => p.Id == post));
+            }
+
+            return mostRecentlyLikedPosts;
         }
     }
 }
