@@ -1,5 +1,6 @@
 ﻿let counter = 1;
 let scrolled = false;
+let isOnlyOnePostForPage = true;
 const currentUserId = document.getElementById('user-id').textContent;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
@@ -61,13 +62,15 @@ function loadPosts() {
                 }
                 counter++;
                 scrolled = false;
+                isOnlyOnePostForPage = false;
             } else {
                 noMorePostsMessage();
             }
 
             //If only one image is displayed the text is not being shown since
             //it activates on scroll. That's why I use this if statement over here
-            if (data.length == 1) {
+            if (data.length == 1 && isOnlyOnePostForPage) {
+                console.log('If 1 no posts');
                 noMorePostsMessage();
             }
         })

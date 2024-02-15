@@ -181,6 +181,8 @@ namespace SocialMedia.Services
                 .OrderByDescending(lp => lp.Id)
                 .Where(lp => lp.UserId == userId)
                 .Select(lp => lp.PostId)
+                .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+                .Take(3)
                 .ToListAsync();
 
             List<PostViewModel> posts =  await this.context.Posts
@@ -201,8 +203,8 @@ namespace SocialMedia.Services
                     DateMonth = p.Date.Month,
                     DateYear = p.Date.Year
                 })
-                .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
-                .Take(3)
+                //.Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+                //.Take(3)
                 .ToListAsync();
 
             List<PostViewModel> mostRecentlyLikedPosts = new List<PostViewModel>();
