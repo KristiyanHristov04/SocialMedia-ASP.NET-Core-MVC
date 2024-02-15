@@ -128,6 +128,7 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     paragraphNames.textContent = `${firstName} ${lastName}`;
 
     let divEditDeleteContainer = document.createElement('div');
+    divEditDeleteContainer.classList.add('edit-delete-container');
 
     if (userId == currentUserId) {
         let editLink = document.createElement('a');
@@ -255,7 +256,7 @@ function checkIfPostIsLikedByUser(postId, likeText) {
 function noMorePostsMessage() {
     let noMorePostsParagraph = document.createElement('p');
     noMorePostsParagraph.textContent = 'No more posts in the database! Please try again later.';
-    noMorePostsParagraph.classList.add('text-info');
+    noMorePostsParagraph.classList.add('text-info', 'text-center');
     row.appendChild(noMorePostsParagraph);
 }
 
