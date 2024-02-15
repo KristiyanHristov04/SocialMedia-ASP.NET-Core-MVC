@@ -1,0 +1,35 @@
+﻿.row {
+    gap: 20px;
+}
+
+.main-container {
+    max-width: 500px;
+    height: 700px;
+}
+
+span {
+    color: gray;
+}
+
+.text-container {
+    height: 80px;
+    border-top: 1px solid white;
+    padding-top: 5px;
+}
+
+.text {
+    word-wrap: break-word;
+    overflow-y: scroll;
+}
+
+.media-container {
+    height: 65%;
+}
+
+img {
+    object-fit: cover;
+}
+
+a {
+    cursor: pointer;
+}

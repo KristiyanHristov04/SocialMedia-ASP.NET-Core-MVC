@@ -23,18 +23,79 @@
     </div>
 </div>
 <span class="d-none" id="user-id">@currentUserId</span>
+
 <div class="text-center">
     <h1 class="display-4">Social Media</h1>
 </div>
 
-<div class="row">
-    <div class="col-md-4 offset-md-4">
-        <div id="posts"></div>
+
+<div class="row d-flex flex-column justify-content-center w-auto">
+    @* <div class="col-md-4 offset-md-4">
+    <div id="posts"></div>
+    </div> *@
+    <div class="col">
+        <div class="main-container mx-auto bg-dark rounded-3 p-2 d-flex flex-column justify-content-evenly">
+            <div class="user-info-container h-25">
+                <span>3 hours ago</span>
+                <div class="mb-2">
+                    <div class="flex-container d-flex justify-content-between align-items-center">
+                        <p class="text-white mb-0">First + Last</p>
+                        <div>
+                            <a href="https://localhost:7045/Post/Edit/33" class="btn btn-primary btn-sm">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                            <button type="button" class="btn btn-danger btn-sm ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete <i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <span>Username</span>
+                </div>
+                <div class="text-container">
+                    <p class="text h-100 text-white">Somethings never can be changed you know? Somethings never can be changed you know? Somethings never can be changed you know? Somethings never can be changed you know? Somethings never can be changed you know?</p>
+                </div>
+            </div>
+            <div class="media-container">
+                <a href="#">
+                    <img src="https://localhost:7045/files/a3673242-be17-454a-bff6-9b431f47f172_portrait.jpg" alt="image" class="w-100 h-100 rounded-3" />
+                </a>
+            </div>
+            <div class="interaction-container p-2 text-center">
+                <a class="text-decoration-none">Like <i class="fa-solid fa-thumbs-up"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="main-container mx-auto bg-dark rounded-3 p-2 d-flex flex-column justify-content-evenly">
+            <div class="user-info-container h-25">
+                <span>3 hours ago</span>
+                <div class="mb-2">
+                    <div class="flex-container d-flex justify-content-between align-items-center">
+                        <p class="text-white mb-0">First + Last</p>
+                        <div>
+                            <a href="https://localhost:7045/Post/Edit/33" class="btn btn-primary btn-sm">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                            <button type="button" class="btn btn-danger btn-sm ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete <i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <span>Username</span>
+                </div>
+                <div class="text-container">
+                    <p class="text h-100 text-white">Somethings never can be changed you know? Somethings never can be changed you know? Somethings never can be changed you know? Somethings never can be changed you know? Somethings never can be changed you know?</p>
+                </div>
+            </div>
+            <div class="media-container">
+                <video controls class="w-100 h-100 rounded-3">
+                    <source src="https://localhost:7045/files/1bb176eb-ffea-4ee6-879d-5e859cbe3c32_video.mp4">
+                </video>
+            </div>
+            <div class="interaction-container p-2 text-center">
+                <a class="text-decoration-none">Like <i class="fa-solid fa-thumbs-up"></i></a>
+            </div>
+        </div>
     </div>
 </div>
 
+
 @section Styles {
     <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/post.css" />
 }
 
 @section Scripts {
