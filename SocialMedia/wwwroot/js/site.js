@@ -137,19 +137,18 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
         editLink.classList.add('btn', 'btn-primary', 'btn-sm');
         divEditDeleteContainer.appendChild(editLink);
 
-        let button = document.createElement('button');
-        button.type = 'button';
-        button.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
-        button.setAttribute('data-bs-toggle', 'modal');
-        button.setAttribute('data-bs-target', '#deleteModal');
-        button.textContent = 'Delete ';
-        button.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
+        let deleteButton = document.createElement('a');
+        deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+        deleteButton.setAttribute('data-bs-toggle', 'modal');
+        deleteButton.setAttribute('data-bs-target', '#deleteModal');
+        deleteButton.textContent = 'Delete ';
+        deleteButton.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
 
-        button.addEventListener('click', (e) => {
+        deleteButton.addEventListener('click', (e) => {
             prepareForDelete(id, e);
         });
 
-        divEditDeleteContainer.appendChild(button);
+        divEditDeleteContainer.appendChild(deleteButton);
     }
 
     let spanUsername = document.createElement('span');
