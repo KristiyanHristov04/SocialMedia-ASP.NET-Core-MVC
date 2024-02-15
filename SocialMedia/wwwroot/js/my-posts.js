@@ -1,6 +1,6 @@
 ﻿let counter = 1;
 let scrolled = false;
-let isOnlyOnePostForPage = true;
+let isFirstLoad = true;
 const currentUserId = document.getElementById('user-id').textContent;
 const posts = document.getElementById('posts');
 const loadPostsButton = document.getElementById('load-posts-button');
@@ -20,6 +20,10 @@ function loadPosts() {
     fetch(`https://localhost:7045/api/posts/mine?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
+            if (counter !== 1) {
+                isFirstLoad = false;
+            }
+
             if (data.length > 0) {
                 for (let post of data) {
                     let postId = post.id;
@@ -62,15 +66,11 @@ function loadPosts() {
                 }
                 counter++;
                 scrolled = false;
-                isOnlyOnePostForPage = false;
             } else {
                 noMorePostsMessage();
             }
 
-            //If only one image is displayed the text is not being shown since
-            //it activates on scroll. That's why I use this if statement over here
-            if (data.length == 1 && isOnlyOnePostForPage) {
-                console.log('If 1 no posts');
+            if (data.length == 1 && isFirstLoad) {
                 noMorePostsMessage();
             }
         })
