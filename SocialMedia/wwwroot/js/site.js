@@ -2,7 +2,8 @@
 let scrolled = false;
 let isFirstLoad = true;
 const currentUserId = document.getElementById('user-id').textContent;
-const posts = document.getElementById('posts');
+/*const posts = document.getElementById('posts');*/
+const row = document.getElementsByClassName('row')[0];
 const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
 const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
@@ -104,73 +105,36 @@ function differenceBetweenDates(date1, date2) {
 }
 
 function createPost(id, path, text, userId, date, firstName, lastName, username) {
-    let mainContainer = document.createElement('div');
-    mainContainer.classList.add('border', 'border-dark', 'border-1', 'mb-2', 'd-flex', 'flex-column', 'rounded-3', 'bg-dark', 'text-white');
-    mainContainer.style.width = '500px';
-    mainContainer.style.height = '600px';
+    let divColumn = document.createElement('div');
+    divColumn.classList.add('col');
 
-    let textContainer = document.createElement('div');
-    textContainer.classList.add('h-25');
-    textContainer.classList.add('p-2');
+    let divMainContainer = document.createElement('div');
+    divMainContainer.classList.add('main-container', 'mx-auto', 'bg-dark', 'rounded-3', 'p-2', 'd-flex', 'flex-column', 'justify-content-evenly');
 
-    let postPublishDate = document.createElement('span');
-    postPublishDate.style.color = 'gray';
-    postPublishDate.textContent = date;
+    let divUserInfoContainer = document.createElement('div');
+    divUserInfoContainer.classList.add('user-info-container', 'h-25');
 
-    textContainer.appendChild(postPublishDate);
+    let spanPostedDate = document.createElement('span');
+    spanPostedDate.textContent = date;
 
-    let mediaContainer = document.createElement('div');
-    mediaContainer.classList.add('p-2');
-    mediaContainer.style.height = '67%';
+    let divContainer = document.createElement('div');
+    divContainer.classList.add('mb-2');
 
-    let index = path.indexOf('.');
-    let pathExtension = path.substr(index);
-
-    let media = '';
-
-    let isImage = false;
-    if (imageFormats.includes(pathExtension)) {
-        isImage = true;
-        media = document.createElement('img');
-        media.src = window.location.origin + `/${path}`;
-        media.classList.add('w-100', 'h-100', 'rounded-3');
-        media.style.objectFit = 'cover';
-
-        let anchorMedia = document.createElement('a');
-        anchorMedia.href = window.location.origin + `/${path}`;
-        anchorMedia.target = '_blank';
-        anchorMedia.appendChild(media);
-
-        mediaContainer.appendChild(anchorMedia);
-    } else {
-        media = document.createElement('video');
-        media.setAttribute('controls', '');
-        media.classList.add('w-100', 'h-100', 'rounded-3');
-
-        let source = document.createElement('source');
-        source.src = window.location.origin + `/${path}`;
-
-        media.appendChild(source);
-    }
-
-    let divUserInfo = document.createElement('div');
-    divUserInfo.classList.add('user-info', 'mb-2');
-
-    let divNamesAndOperationsFlex = document.createElement('div');
-    divNamesAndOperationsFlex.classList.add('flex-container', 'd-flex', 'justify-content-between', 'align-items-center');
-
-    let divOperations = document.createElement('div');
+    let divFlexContainer = document.createElement('div');
+    divFlexContainer.classList.add('flex-container', 'd-flex', 'justify-content-between', 'align-items-center');
 
     let paragraphNames = document.createElement('p');
+    paragraphNames.classList.add('text-white', 'mb-0');
     paragraphNames.textContent = `${firstName} ${lastName}`;
-    paragraphNames.style.marginBottom = '0';
+
+    let divEditDeleteContainer = document.createElement('div');
 
     if (userId == currentUserId) {
         let editLink = document.createElement('a');
         editLink.innerHTML = 'Edit <i class="fa-regular fa-pen-to-square"></i>';
         editLink.href = window.location.origin + `/Post/Edit/${id}`;
         editLink.classList.add('btn', 'btn-primary', 'btn-sm');
-        divOperations.appendChild(editLink);
+        divEditDeleteContainer.appendChild(editLink);
 
         let button = document.createElement('button');
         button.type = 'button';
@@ -184,67 +148,97 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
             prepareForDelete(id, e);
         });
 
-        divOperations.appendChild(button);
-
+        divEditDeleteContainer.appendChild(button);
     }
-
-    divNamesAndOperationsFlex.appendChild(paragraphNames);
-    divNamesAndOperationsFlex.appendChild(divOperations);
 
     let spanUsername = document.createElement('span');
     spanUsername.textContent = '@' + username;
-    spanUsername.style.color = 'gray';
+
+    let textContainer = document.createElement('div');
+    textContainer.classList.add('text-container');
 
     let paragraphText = document.createElement('p');
+    paragraphText.classList.add('text', 'h-100');
     paragraphText.textContent = text;
 
-    divUserInfo.appendChild(divNamesAndOperationsFlex);
-
-    divUserInfo.appendChild(spanUsername);
-
-    textContainer.appendChild(divUserInfo);
     textContainer.appendChild(paragraphText);
 
-    if (!isImage) {
-        mediaContainer.appendChild(media);
+    divFlexContainer.appendChild(paragraphNames);
+    divFlexContainer.appendChild(divEditDeleteContainer);
+
+    divContainer.appendChild(divFlexContainer);
+    divContainer.appendChild(spanUsername);
+
+    divUserInfoContainer.appendChild(spanPostedDate);
+    divUserInfoContainer.appendChild(divContainer);
+    divUserInfoContainer.appendChild(textContainer);
+
+    divMainContainer.appendChild(divUserInfoContainer);
+
+    let divMediaContainer = document.createElement('div');
+    divMediaContainer.classList.add('media-container');
+
+    let index = path.indexOf('.');
+    let pathExtension = path.substr(index);
+
+    let media = '';
+    if (imageFormats.includes(pathExtension)) {
+        isImage = true;
+        media = document.createElement('img');
+        media.src = window.location.origin + `/${path}`;
+        media.classList.add('w-100', 'h-100', 'rounded-3');
+
+        let anchorMedia = document.createElement('a');
+        anchorMedia.href = window.location.origin + `/${path}`;
+        anchorMedia.target = '_blank';
+        anchorMedia.appendChild(media);
+
+        divMediaContainer.appendChild(anchorMedia);
+    } else {
+        media = document.createElement('video');
+        media.setAttribute('controls', '');
+        media.classList.add('w-100', 'h-100', 'rounded-3');
+
+        let source = document.createElement('source');
+        source.src = window.location.origin + `/${path}`;
+
+        media.appendChild(source);
+
+        divMediaContainer.appendChild(media);
     }
 
-    //Like posts implementation
+    let divInteractionContainer = document.createElement('div');
+    divInteractionContainer.classList.add('interaction-container', 'p-2', 'text-center');
 
-    let likeContainer = document.createElement('div');
-    likeContainer.classList.add('p-2', 'text-center');
+    let anchorLikeText = document.createElement('a');
+    anchorLikeText.classList.add('text-decoration-none');
 
-    let likeText = document.createElement('a');
-    likeText.style.cursor = 'pointer';
-    likeText.classList.add('text-decoration-none');
+    checkIfPostIsLikedByUser(id, anchorLikeText);
 
-    checkIfPostIsLikedByUser(id, likeText);
-
-    likeText.addEventListener('click', () => {
+    anchorLikeText.addEventListener('click', () => {
 
         fetch(`https://localhost:7045/api/posts/like/${id}`, {
             method: 'POST'
         })
-            .then(() => checkIfPostIsLikedByUser(id, likeText))
+            .then(() => checkIfPostIsLikedByUser(id, anchorLikeText))
             .catch(err => console.error(err));
     });
 
-    likeContainer.appendChild(likeText);
-    //
+    divInteractionContainer.appendChild(anchorLikeText);
 
-    mainContainer.appendChild(textContainer);
-    mainContainer.appendChild(mediaContainer);
-    mainContainer.appendChild(likeContainer);
+    divMainContainer.appendChild(divUserInfoContainer);
+    divMainContainer.appendChild(divMediaContainer);
+    divMainContainer.appendChild(divInteractionContainer);
 
-    posts.appendChild(mainContainer);
+    divColumn.appendChild(divMainContainer);
+
+    row.appendChild(divColumn);
 }
 
 function checkIfPostIsLikedByUser(postId, likeText) {
-    console.log('Test');
     fetch(`https://localhost:7045/api/posts/isliked/${postId}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             if (data === false) {
                 likeText.textContent = 'Like';
                 likeText.style.color = 'white';
@@ -262,7 +256,7 @@ function noMorePostsMessage() {
     let noMorePostsParagraph = document.createElement('p');
     noMorePostsParagraph.textContent = 'No more posts in the database! Please try again later.';
     noMorePostsParagraph.classList.add('text-info');
-    posts.appendChild(noMorePostsParagraph);
+    row.appendChild(noMorePostsParagraph);
 }
 
 function prepareForDelete(postId, event) {
