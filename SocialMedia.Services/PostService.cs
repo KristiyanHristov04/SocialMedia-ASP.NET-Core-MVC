@@ -53,7 +53,7 @@ namespace SocialMedia.Services
 
             if (isLiked)
             {
-                LikedPost likedPostToRemove = await this.context.LikedPosts.Where(lp => lp.PostId == id && lp.UserId == userId).FirstOrDefaultAsync();
+                LikedPost likedPostToRemove = await this.context.LikedPosts.Where(lp => lp.PostId == id && lp.UserId == userId).FirstAsync();
                 this.context.LikedPosts.Remove(likedPostToRemove);
                 await this.context.SaveChangesAsync();
             }
