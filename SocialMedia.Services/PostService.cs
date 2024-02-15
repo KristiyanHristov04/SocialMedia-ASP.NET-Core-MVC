@@ -207,9 +207,12 @@ namespace SocialMedia.Services
 
             List<PostViewModel> mostRecentlyLikedPosts = new List<PostViewModel>();
 
-            foreach (var post in allLikedPosts)
+            if (posts.Count != 0)
             {
-                mostRecentlyLikedPosts.Add(posts.First(p => p.Id == post));
+                foreach (var post in allLikedPosts)
+                {
+                    mostRecentlyLikedPosts.Add(posts.First(p => p.Id == post));
+                }
             }
 
             return mostRecentlyLikedPosts;
