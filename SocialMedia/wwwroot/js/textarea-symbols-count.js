@@ -2,7 +2,10 @@
 const textarea = document.getElementById('textarea-symbols');
 const textareaCounter = document.getElementById('textarea-counter');
 
+let currentLength = textarea.value.length;
+textareaCounter.textContent = `${currentLength} / ${maxSymbols}`;
+
 textarea.addEventListener('input', () => {
-    let currentLength = textarea.value.length;
+    currentLength = textarea.value.length;
     textareaCounter.textContent = `${currentLength} / ${maxSymbols}`;
 });
