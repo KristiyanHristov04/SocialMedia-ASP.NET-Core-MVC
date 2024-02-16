@@ -34,3 +34,21 @@ img {
 a {
     cursor: pointer;
 }
+
+.edit-button {
+    font-size: 20px;
+    color: #6362fb;
+}
+
+    .edit-button:hover {
+        color: #8180f3;
+    }
+
+.delete-button {
+    font-size: 20px;
+    color: #d15454;
+}
+
+    .delete-button:hover {
+        color: #f36060;
+    }

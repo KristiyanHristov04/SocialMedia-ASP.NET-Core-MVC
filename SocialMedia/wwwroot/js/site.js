@@ -145,19 +145,16 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
         //deleteButton.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
 
         let editLink = document.createElement('a');
+        editLink.classList.add('edit-button');
         editLink.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
         editLink.href = window.location.origin + `/Post/Edit/${id}`;
-        editLink.style.fontSize = '20px';
-        editLink.style.color = '#6362fb';
         divEditDeleteContainer.appendChild(editLink);
 
         let deleteButton = document.createElement('a');
-        deleteButton.classList.add('ms-2');
+        deleteButton.classList.add('delete-button', 'ms-2');
         deleteButton.setAttribute('data-bs-toggle', 'modal');
         deleteButton.setAttribute('data-bs-target', '#deleteModal');
         deleteButton.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
-        deleteButton.style.fontSize = '20px';
-        deleteButton.style.color = '#d15454';
 
         deleteButton.addEventListener('click', (e) => {
             prepareForDelete(id, e);
