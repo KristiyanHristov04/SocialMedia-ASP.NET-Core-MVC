@@ -1,6 +1,7 @@
 ﻿let counter = 1;
 let scrolled = false;
 let isFirstLoad = true;
+let noMorePostsMessageShowed = false;
 const currentUserId = document.getElementById('user-id').textContent;
 const row = document.getElementsByClassName('row')[0];
 const loadPostsButton = document.getElementById('load-posts-button');
@@ -67,11 +68,15 @@ function loadPosts() {
                 counter++;
                 scrolled = false;
             } else {
-                noMorePostsMessage();
+                if (!noMorePostsMessageShowed) {
+                    noMorePostsMessage();
+                    noMorePostsMessageShowed = true;
+                }
             }
 
             if (data.length == 1 && isFirstLoad) {
                 noMorePostsMessage();
+                noMorePostsMessage = true;
             }
         })
         .catch(err => console.error(err));
