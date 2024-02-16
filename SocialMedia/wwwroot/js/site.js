@@ -220,10 +220,10 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     }
 
     let divInteractionContainer = document.createElement('div');
-    divInteractionContainer.classList.add('interaction-container', 'p-2', 'text-center');
+    divInteractionContainer.classList.add('interaction-container', 'p-2', 'pb-0', 'text-center');
 
     let anchorLikeText = document.createElement('a');
-    anchorLikeText.classList.add('text-decoration-none');
+    anchorLikeText.classList.add('like-text', 'text-decoration-none');
 
     checkIfPostIsLikedByUser(id, anchorLikeText);
 

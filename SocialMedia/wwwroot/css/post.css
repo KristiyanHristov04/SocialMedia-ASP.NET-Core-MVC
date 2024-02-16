@@ -52,3 +52,7 @@ a {
     .delete-button:hover {
         color: #f36060;
     }
+
+.like-text {
+    user-select: none;
+}
