@@ -131,18 +131,33 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     divEditDeleteContainer.classList.add('edit-delete-container');
 
     if (userId == currentUserId) {
+        //let editLink = document.createElement('a');
+        //editLink.innerHTML = 'Edit <i class="fa-regular fa-pen-to-square"></i>';
+        //editLink.href = window.location.origin + `/Post/Edit/${id}`;
+        //editLink.classList.add('btn', 'btn-primary', 'btn-sm');
+        //divEditDeleteContainer.appendChild(editLink);
+
+        //let deleteButton = document.createElement('a');
+        //deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+        //deleteButton.setAttribute('data-bs-toggle', 'modal');
+        //deleteButton.setAttribute('data-bs-target', '#deleteModal');
+        //deleteButton.textContent = 'Delete ';
+        //deleteButton.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
+
         let editLink = document.createElement('a');
-        editLink.innerHTML = 'Edit <i class="fa-regular fa-pen-to-square"></i>';
+        editLink.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
         editLink.href = window.location.origin + `/Post/Edit/${id}`;
-        editLink.classList.add('btn', 'btn-primary', 'btn-sm');
+        editLink.style.fontSize = '20px';
+        editLink.style.color = '#6362fb';
         divEditDeleteContainer.appendChild(editLink);
 
         let deleteButton = document.createElement('a');
-        deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
+        deleteButton.classList.add('ms-2');
         deleteButton.setAttribute('data-bs-toggle', 'modal');
         deleteButton.setAttribute('data-bs-target', '#deleteModal');
-        deleteButton.textContent = 'Delete ';
         deleteButton.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
+        deleteButton.style.fontSize = '20px';
+        deleteButton.style.color = '#d15454';
 
         deleteButton.addEventListener('click', (e) => {
             prepareForDelete(id, e);
