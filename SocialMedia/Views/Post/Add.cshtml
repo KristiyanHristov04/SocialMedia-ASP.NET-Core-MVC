@@ -11,9 +11,12 @@
         <h1 class="text-white display-4 text-center">Add Post</h1>
         <div asp-validation-summary="All" class="text-danger"></div>
         <form asp-controller="Post" asp-action="Add" method="post" enctype="multipart/form-data">
-            <div class="form-floating mb-3">
-                <textarea asp-for="Text" class="form-control" placeholder="" style="resize: none; height: 250px;"></textarea>
-                <label asp-for="Text" class="form-label"></label>
+            <div class="mb-3">
+                <div class="textarea-container form-floating">
+                    <textarea asp-for="Text" id="textarea-symbols" class="form-control" placeholder="" style="resize: none; height: 250px;"></textarea>
+                    <label asp-for="Text" class="form-label"></label>
+                    <span id="textarea-counter">0 / 450</span>
+                </div>
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
             <div class="mb-3">
@@ -26,6 +29,11 @@
     </div>
 </div>
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/textarea-symbols-count.css" />
+}
+
 @section Scripts {
+    <script src="~/js/textarea-symbols-count.js"></script>
     <partial name="_ValidationScriptsPartial.cshtml" />
 }

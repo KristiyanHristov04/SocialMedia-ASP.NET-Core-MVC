@@ -1,0 +1,16 @@
+﻿.textarea-container {
+    position: relative;
+}
+
+#textarea-counter {
+    color: white;
+    background-color: #00000080;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    padding: 0 5px;
+    width: 80px;
+    text-align: center;
+    border-radius: 5px;
+}
