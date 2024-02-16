@@ -2,7 +2,6 @@
 let scrolled = false;
 let isFirstLoad = true;
 const currentUserId = document.getElementById('user-id').textContent;
-/*const posts = document.getElementById('posts');*/
 const row = document.getElementsByClassName('row')[0];
 const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
@@ -131,19 +130,6 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     divEditDeleteContainer.classList.add('edit-delete-container');
 
     if (userId == currentUserId) {
-        //let editLink = document.createElement('a');
-        //editLink.innerHTML = 'Edit <i class="fa-regular fa-pen-to-square"></i>';
-        //editLink.href = window.location.origin + `/Post/Edit/${id}`;
-        //editLink.classList.add('btn', 'btn-primary', 'btn-sm');
-        //divEditDeleteContainer.appendChild(editLink);
-
-        //let deleteButton = document.createElement('a');
-        //deleteButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
-        //deleteButton.setAttribute('data-bs-toggle', 'modal');
-        //deleteButton.setAttribute('data-bs-target', '#deleteModal');
-        //deleteButton.textContent = 'Delete ';
-        //deleteButton.innerHTML += '<i class="fa-regular fa-trash-can"></i>';
-
         let editLink = document.createElement('a');
         editLink.classList.add('edit-button');
         editLink.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
