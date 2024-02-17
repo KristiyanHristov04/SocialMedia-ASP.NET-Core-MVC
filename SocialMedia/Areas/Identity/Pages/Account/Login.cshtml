@@ -5,12 +5,12 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1 class="offset-md-4">@ViewData["Title"]</h1>
+<h1 class="text-center text-white">@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4 offset-md-4">
         <section>
             <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
+                <h2 class="text-center text-white">Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
@@ -24,7 +24,7 @@
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
+                    <label asp-for="Input.RememberMe" class="form-label text-white">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
