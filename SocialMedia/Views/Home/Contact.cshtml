@@ -22,12 +22,9 @@
                 <label asp-for="Subject"></label>
                 <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <div class="textarea-container form-floating">
-                    <textarea asp-for="Message" id="textarea-symbols" class="form-control" style="resize: none; height: 250px;" placeholder=""></textarea>
-                    <label asp-for="Message" class="form-label"></label>
-                    <span id="textarea-counter">0 / 450</span>
-                </div>
+            <div class="form-floating mb-3">
+                <textarea asp-for="Message" id="textarea-symbols" class="form-control" style="resize: none; height: 250px;" placeholder=""></textarea>
+                <label asp-for="Message" class="form-label"></label>
                 <span asp-validation-for="Message" class="text-danger"></span>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">Send</button>
@@ -35,11 +32,6 @@
     </div>
 </div>
 
-@section Styles {
-    <link rel="stylesheet" href="~/css/textarea-symbols-count.css" />
-}
-
 @section Scripts {
-    <script src="~/js/textarea-symbols-count.js"></script>
     <partial name="_ValidationScriptsPartial" />
 }
