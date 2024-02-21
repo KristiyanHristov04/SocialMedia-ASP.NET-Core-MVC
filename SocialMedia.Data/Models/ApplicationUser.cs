@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static SocialMedia.Common.DataConstants.ApplicationUser;
 
 namespace SocialMedia.Data.Models
@@ -13,6 +14,11 @@ namespace SocialMedia.Data.Models
         [Required]
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; } = null!;
+
+        [Required]
+        [ForeignKey(nameof(Country))]
+        public int CountryId { get; set; }
+        public Country Country { get; set; } = null!;
 
         public ICollection<LikedPost> LikedPosts { get; set; } 
             = new List<LikedPost>();

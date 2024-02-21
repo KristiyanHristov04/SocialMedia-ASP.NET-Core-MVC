@@ -12,6 +12,16 @@
             <h2 class="text-center text-white">Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="mb-3">
+                <select asp-for="Input.CountryId" class="form-select">
+                    <option value="" selected>Choose a country</option>
+                    @foreach (var country in Model.Countries)
+                    {
+                        <option value="@country.Id">@country.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Input.CountryId" class="text-danger"></span>
+            </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" placeholder="" />
                 <label asp-for="Input.FirstName"></label>

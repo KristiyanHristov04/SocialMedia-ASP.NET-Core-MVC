@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using SocialMedia.Data.Models;
+using SocialMedia.Services.Interfaces;
+using SocialMedia.ViewModels.Country;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
@@ -23,21 +25,27 @@ namespace SocialMedia.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ICountryService _countryService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ICountryService countryService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _countryService = countryService;
         }
+
 
         [BindProperty]
         public InputModel Input { get; set; }
+
+        public List<CountryViewModel> Countries { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -45,6 +53,10 @@ namespace SocialMedia.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required(ErrorMessage = "Please select a country.")]
+            [Display(Name = "Country")]
+            public int CountryId { get; set; }
+
             [Required]
             [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength)]
             [Display(Name = "First Name")]
@@ -77,9 +89,14 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
+        private async Task<List<CountryViewModel>> GetCountriesAsync()
+        {
+            return await this._countryService.GetAllCountriesAsync();
+        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            this.Countries = await GetCountriesAsync();
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -94,6 +111,7 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                 ApplicationUser user = CreateUser();
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.CountryId = Input.CountryId;
 
                 user.UserName = Input.Username;
                 user.NormalizedUserName = Input.Username.ToUpper();
@@ -148,6 +166,7 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
+            this.Countries = await GetCountriesAsync();
             return Page();
         }
 

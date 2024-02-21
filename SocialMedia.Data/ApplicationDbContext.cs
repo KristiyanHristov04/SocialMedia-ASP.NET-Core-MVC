@@ -25,6 +25,11 @@ namespace SocialMedia.Data
                 .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.CountryId)
+                .IsRequired(true)
+                .HasDefaultValue(26); //Bulgaria Id
+
             builder.ApplyConfiguration(new CountryConfiguration());
 
             base.OnModelCreating(builder);
