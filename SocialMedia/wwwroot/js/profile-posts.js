@@ -7,6 +7,11 @@ const row = document.getElementsByClassName('row')[0];
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
 const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 
+let protocol = window.location.protocol;
+let hostname = window.location.hostname;
+let port = window.location.port;
+let fullPath = `${protocol}//${hostname}:${port}`;
+
 loadProfiles();
 
 window.addEventListener('scroll', () => {
@@ -17,7 +22,7 @@ window.addEventListener('scroll', () => {
 });
 
 function loadProfiles() {
-    fetch(`https://localhost:7045/api/posts/profile?counter=${counter}&username=${username}`)
+    fetch(`${fullPath}/api/posts/profile?counter=${counter}&username=${username}`)
         .then(res => res.json())
         .then(data => {
             if (counter !== 1) {
@@ -199,7 +204,7 @@ function createProfile(id, path, text, userId, date, firstName, lastName, userna
 
     anchorLikeText.addEventListener('click', () => {
 
-        fetch(`https://localhost:7045/api/posts/like/${id}`, {
+        fetch(`${fullPath}/api/posts/like/${id}`, {
             method: 'POST'
         })
             .then(() => checkIfPostIsLikedByUser(id, anchorLikeText))
@@ -218,7 +223,7 @@ function createProfile(id, path, text, userId, date, firstName, lastName, userna
 }
 
 function checkIfPostIsLikedByUser(postId, likeText) {
-    fetch(`https://localhost:7045/api/posts/isliked/${postId}`)
+    fetch(`${fullPath}/api/posts/isliked/${postId}`)
         .then(res => res.json())
         .then(data => {
             if (data === false) {
@@ -236,7 +241,7 @@ function checkIfPostIsLikedByUser(postId, likeText) {
 
 function noMorePostsMessage() {
     let noMorePostsParagraph = document.createElement('p');
-    noMorePostsParagraph.textContent = 'No more posts in the database! Please try again later.';
+    noMorePostsParagraph.textContent = `No more posts by ${username} in the database! Please try again later.`;
     noMorePostsParagraph.classList.add('text-info', 'text-center');
     row.appendChild(noMorePostsParagraph);
 }

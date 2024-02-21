@@ -7,6 +7,11 @@ const row = document.getElementsByClassName('row')[0];
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
 const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 
+let protocol = window.location.protocol;
+let hostname = window.location.hostname;
+let port = window.location.port;
+let fullPath = `${protocol}//${hostname}:${port}`;
+
 loadPosts();
 
 window.addEventListener('scroll', () => {
@@ -17,7 +22,7 @@ window.addEventListener('scroll', () => {
 });
 
 function loadPosts() {
-    fetch(`https://localhost:7045/api/posts/liked?counter=${counter}`)
+    fetch(`${fullPath}/api/posts/liked?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
             if (counter !== 1) {
@@ -222,7 +227,7 @@ function createPost(id, path, text, userId, date, firstName, lastName, username)
     anchorLikeText.innerHTML += ' <i class="fa-solid fa-thumbs-up"></i>';
 
     anchorLikeText.addEventListener('click', () => {
-        fetch(`https://localhost:7045/api/posts/like/${id}`, {
+        fetch(`${fullPath}/api/posts/like/${id}`, {
             method: 'POST'
         })
             .then(() => removePostFromDOM(divMainContainer))
@@ -257,7 +262,7 @@ function prepareForDelete(postId, event) {
     let isAlertShowed = false;
 
     deleteButton.addEventListener('click', () => {
-        fetch(`https://localhost:7045/api/posts/${postId}`, {
+        fetch(`${fullPath}/api/posts/${postId}`, {
             method: 'DELETE'
         })
             .then(res => console.log(res))
