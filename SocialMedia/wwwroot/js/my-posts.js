@@ -4,7 +4,6 @@ let isFirstLoad = true;
 let noMorePostsMessageShowed = false;
 const currentUserId = document.getElementById('user-id').textContent;
 const row = document.getElementsByClassName('row')[0];
-const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
 const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 
