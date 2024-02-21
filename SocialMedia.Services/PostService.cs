@@ -234,8 +234,8 @@ namespace SocialMedia.Services
                             FullName = $"{u.FirstName} {u.LastName}",
                             TotalPosts = u.Posts.Count
                         })
-                    .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
-                    .Take(3)
+                    .Skip(8 * (counter - 1 == -1 ? 0 : counter - 1))
+                    .Take(8)
                     .ToListAsync();
             }
             else
@@ -250,8 +250,8 @@ namespace SocialMedia.Services
                             FullName = $"{u.FirstName} {u.LastName}",
                             TotalPosts = u.Posts.Count
                         })
-                    .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
-                    .Take(3)
+                    .Skip(8 * (counter - 1 == -1 ? 0 : counter - 1))
+                    .Take(8)
                     .ToListAsync();
             }
 

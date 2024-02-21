@@ -5,6 +5,12 @@ let noMoreProfilesMessageShowed = false;
 const searchTermValue = document.getElementById('search-term').textContent;
 const row = document.getElementsByClassName('row')[0];
 
+let protocol = window.location.protocol;
+let hostname = window.location.hostname;
+let port = window.location.port;
+let fullPath = `${protocol}//${hostname}:${port}`;
+console.log(fullPath);
+
 loadProfiles();
 
 window.addEventListener('scroll', () => {
@@ -15,7 +21,7 @@ window.addEventListener('scroll', () => {
 });
 
 function loadProfiles() {
-    fetch(`https://localhost:7045/api/posts/profiles?search=${searchTermValue}&counter=${counter}`)
+    fetch(`${fullPath}/api/posts/profiles?search=${searchTermValue}&counter=${counter}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -46,7 +52,7 @@ function loadProfiles() {
                 }
             }
             
-            if (data.length == 1 && isFirstLoad) {
+            if (data.length < 8 && isFirstLoad) {
                 noProfilesMessage('No more profiles matched!');
                 noMorePostsMessage = true;
             }
