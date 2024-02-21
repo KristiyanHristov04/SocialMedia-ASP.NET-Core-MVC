@@ -96,5 +96,12 @@ namespace SocialMedia.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Profiles(string search)
+        {
+            ViewData["Search"] = search;
+            return View();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SocialMedia.ViewModels.Post;
+﻿using Microsoft.Data.SqlClient.DataClassification;
+using SocialMedia.ViewModels.Post;
 
 namespace SocialMedia.Services.Interfaces
 {
@@ -15,5 +16,6 @@ namespace SocialMedia.Services.Interfaces
         Task<bool> CheckIfPostByUserIsLikedAsync(int postId, string userId);
         Task LikeDislikePostAsync(int postId, string userId);
         Task<List<PostViewModel>> GetMyLikedPostsAsync(int counter, string userId);
+        Task<List<ProfileViewModel>> GetProfilesAsync(string search, int counter);
     }
 }

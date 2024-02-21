@@ -185,7 +185,7 @@ namespace SocialMedia.Services
                 .Take(3)
                 .ToListAsync();
 
-            List<PostViewModel> posts =  await this.context.Posts
+            List<PostViewModel> posts = await this.context.Posts
                 .Where(p => allLikedPosts.Contains(p.Id))
                 .Select(p => new PostViewModel
                 {
@@ -218,6 +218,44 @@ namespace SocialMedia.Services
             }
 
             return mostRecentlyLikedPosts;
+        }
+
+        public async Task<List<ProfileViewModel>> GetProfilesAsync(string search, int counter)
+        {
+            List<ProfileViewModel> profiles = new List<ProfileViewModel>();
+
+            if (string.IsNullOrEmpty(search))
+            {
+                profiles = await this.context.Users
+                        .Select(u => new ProfileViewModel()
+                        {
+                            Id = u.Id,
+                            Username = u.UserName!,
+                            FullName = $"{u.FirstName} {u.LastName}",
+                            TotalPosts = u.Posts.Count
+                        })
+                    .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+                    .Take(3)
+                    .ToListAsync();
+            }
+            else
+            {
+                profiles = await this.context.Users
+                    .Where(u => u.UserName!.Contains(search) ||
+                        (u.FirstName + " " + u.LastName).Contains(search))
+                        .Select(u => new ProfileViewModel()
+                        {
+                            Id = u.Id,
+                            Username = u.UserName!,
+                            FullName = $"{u.FirstName} {u.LastName}",
+                            TotalPosts = u.Posts.Count
+                        })
+                    .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+                    .Take(3)
+                    .ToListAsync();
+            }
+
+            return profiles;
         }
     }
 }

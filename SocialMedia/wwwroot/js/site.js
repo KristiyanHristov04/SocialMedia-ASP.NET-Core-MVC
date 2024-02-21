@@ -8,16 +8,16 @@ const loadPostsButton = document.getElementById('load-posts-button');
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
 const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
 
-loadPosts();
+loadProfiles();
 
 window.addEventListener('scroll', () => {
     if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight && !scrolled) {
         scrolled = true;
-        loadPosts();
+        loadProfiles();
     }
 });
 
-function loadPosts() {
+function loadProfiles() {
     fetch(`https://localhost:7045/api/posts?counter=${counter}`)
         .then(res => res.json())
         .then(data => {
@@ -63,7 +63,7 @@ function loadPosts() {
                         result = `A second ago`;
                     }
 
-                    createPost(postId, postPath, postText, postUserId, result, postFirstName, postLastName, postUsername);
+                    createProfile(postId, postPath, postText, postUserId, result, postFirstName, postLastName, postUsername);
                 }
                 counter++;
                 scrolled = false;
@@ -108,7 +108,7 @@ function differenceBetweenDates(date1, date2) {
     return result;
 }
 
-function createPost(id, path, text, userId, date, firstName, lastName, username) {
+function createProfile(id, path, text, userId, date, firstName, lastName, username) {
     let divColumn = document.createElement('div');
     divColumn.classList.add('col');
 

@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Profiles Page";
+    string search = ViewData["Search"]?.ToString() ?? "";
+}
+
+<span class="d-none" id="search-term">@search</span>
+<div class="row d-flex flex-column justify-content-center w-auto">
+    <h1 class="text-white display-4 text-center">Profiles</h1>
+</div>
+
+@section Scripts {
+    <script src="~/js/profiles.js"></script>
+}

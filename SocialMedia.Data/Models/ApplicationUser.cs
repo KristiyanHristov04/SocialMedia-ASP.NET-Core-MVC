@@ -15,6 +15,9 @@ namespace SocialMedia.Data.Models
         public string LastName { get; set; } = null!;
 
         public ICollection<LikedPost> LikedPosts { get; set; } 
-            = new List<LikedPost>();    
+            = new List<LikedPost>();
+
+        public ICollection<Post> Posts { get; set; }
+      = new List<Post>();
     }
 }

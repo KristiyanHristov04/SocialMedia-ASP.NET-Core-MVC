@@ -74,5 +74,12 @@ namespace SocialMedia.Controllers.API
 
             await this.postService.LikeDislikePostAsync(id, currentUserId);
         }
+
+        [HttpGet]
+        [Route("profiles")]
+        public async Task<List<ProfileViewModel>> Profiles(string? search, int counter)
+        {
+            return await this.postService.GetProfilesAsync(search, counter);
+        }
     }
 }
