@@ -103,5 +103,17 @@ namespace SocialMedia.Controllers
             ViewData["Search"] = search;
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Profile(string username)
+        {
+            if (this.User.Identity?.Name == username)
+            {
+                return RedirectToAction(nameof(Mine));
+            }
+
+            ViewData["Username"] = username;
+            return View();
+        }
     }
 }

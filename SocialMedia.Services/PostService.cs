@@ -257,5 +257,31 @@ namespace SocialMedia.Services
 
             return profiles;
         }
+
+        public async Task<List<PostViewModel>> GetPostsByProfileAsync(int counter, string username)
+        {
+            return await this.context.Posts
+                .Where(p => p.User.UserName == username)
+                .Select(p => new PostViewModel
+                {
+                    Id = p.Id,
+                    Text = p.Text,
+                    Path = p.Path,
+                    UserId = p.UserId,
+                    FirstName = p.User.FirstName,
+                    LastName = p.User.LastName,
+                    Username = p.User.UserName!,
+                    DateSeconds = p.Date.Second,
+                    DateMinutes = p.Date.Minute,
+                    DateHours = p.Date.Hour,
+                    DateDay = p.Date.Day,
+                    DateMonth = p.Date.Month,
+                    DateYear = p.Date.Year
+                })
+                .OrderByDescending(p => p.Id)
+                .Skip(3 * (counter - 1 == -1 ? 0 : counter - 1))
+                .Take(3)
+                .ToListAsync();
+        }
     }
 }

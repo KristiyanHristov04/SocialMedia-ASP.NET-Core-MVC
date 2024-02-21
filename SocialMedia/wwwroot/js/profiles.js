@@ -82,6 +82,8 @@ function createProfile(id, fullName, totalPosts, username) {
     let anchorViewProfile = document.createElement('a');
     anchorViewProfile.classList.add('btn', 'btn-success');
     anchorViewProfile.textContent = 'View';
+    anchorViewProfile.href = `${fullPath}/Post/Profile/${username}`
+
 
     divViewProfile.appendChild(anchorViewProfile);
 

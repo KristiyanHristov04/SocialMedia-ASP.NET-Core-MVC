@@ -57,8 +57,14 @@ namespace SocialMedia
             app.UseAuthorization();
 
             app.MapControllerRoute(
+               name: "post",
+               pattern: "{controller=Post}/{action=Profile}/{username}");
+
+            app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            
             app.MapRazorPages();
 
             app.Run();

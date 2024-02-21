@@ -81,5 +81,12 @@ namespace SocialMedia.Controllers.API
         {
             return await this.postService.GetProfilesAsync(search, counter);
         }
+
+        [Route("profile")]
+        [HttpGet]
+        public async Task<List<PostViewModel>> Profile(int counter, string username)
+        {
+            return await postService.GetPostsByProfileAsync(counter, username);
+        }
     }
 }

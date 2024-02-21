@@ -1,0 +1,22 @@
+﻿@{
+    string? username = ViewData["Username"]?.ToString();
+    ViewData["Title"] = username;
+}
+
+<span class="d-none" id="current-username">@username</span>
+<div class="text-center">
+    <h1 class="display-4 text-white">Posts By @username</h1>
+</div>
+
+<div class="row d-flex flex-column justify-content-center w-auto">
+</div>
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/post.css" />
+}
+
+@section Scripts {
+    <script src="~/js/profile-posts.js"></script>
+}
