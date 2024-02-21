@@ -54,7 +54,7 @@ function loadProfiles() {
             
             if (data.length < 8 && isFirstLoad) {
                 noProfilesMessage('No more profiles matched!');
-                noMorePostsMessage = true;
+                noMoreProfilesMessageShowed = true;
             }
         })
         .catch(err => console.error(err));

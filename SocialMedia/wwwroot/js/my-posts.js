@@ -75,7 +75,7 @@ function loadPosts() {
 
             if (data.length == 1 && isFirstLoad) {
                 noMorePostsMessage();
-                noMorePostsMessage = true;
+                noMorePostsMessageShowed = true;
             }
         })
         .catch(err => console.error(err));
