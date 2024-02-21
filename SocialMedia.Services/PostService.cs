@@ -220,7 +220,7 @@ namespace SocialMedia.Services
             return mostRecentlyLikedPosts;
         }
 
-        public async Task<List<ProfileViewModel>> GetProfilesAsync(string search, int counter)
+        public async Task<List<ProfileViewModel>> GetProfilesAsync(string? search, int counter)
         {
             List<ProfileViewModel> profiles = new List<ProfileViewModel>();
 

@@ -16,6 +16,6 @@ namespace SocialMedia.Services.Interfaces
         Task<bool> CheckIfPostByUserIsLikedAsync(int postId, string userId);
         Task LikeDislikePostAsync(int postId, string userId);
         Task<List<PostViewModel>> GetMyLikedPostsAsync(int counter, string userId);
-        Task<List<ProfileViewModel>> GetProfilesAsync(string search, int counter);
+        Task<List<ProfileViewModel>> GetProfilesAsync(string? search, int counter);
     }
 }
