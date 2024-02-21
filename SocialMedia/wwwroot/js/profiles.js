@@ -9,7 +9,6 @@ let protocol = window.location.protocol;
 let hostname = window.location.hostname;
 let port = window.location.port;
 let fullPath = `${protocol}//${hostname}:${port}`;
-console.log(fullPath);
 
 loadProfiles();
 
@@ -26,13 +25,13 @@ function loadProfiles() {
         .then(data => {
             console.log(data);
 
+            if (counter !== 1) {
+                isFirstLoad = false;
+            }
+
             if (isFirstLoad && data.length === 0) {
                 noProfilesMessage('No profiles matched!');
                 noMoreProfilesMessageShowed = true;
-            }
-
-            if (counter !== 1) {
-                isFirstLoad = false;
             }
 
             if (data.length > 0) {
@@ -51,8 +50,8 @@ function loadProfiles() {
                     noMoreProfilesMessageShowed = true;
                 }
             }
-            
-            if (data.length < 8 && isFirstLoad) {
+
+            if (data.length < 8 && isFirstLoad && !noMoreProfilesMessageShowed) {
                 noProfilesMessage('No more profiles matched!');
                 noMoreProfilesMessageShowed = true;
             }
@@ -66,7 +65,6 @@ function createProfile(id, fullName, totalPosts, username) {
 
     let divMainContainer = document.createElement('div');
     divMainContainer.classList.add('main-container', 'mx-auto', 'bg-dark', 'rounded-3', 'p-2', 'd-flex', 'justify-content-between', 'align-items-center');
-    divMainContainer.style.maxWidth = '500px';
 
     let divUserInformation = document.createElement('div');
     divUserInformation.classList.add('user-information');
@@ -76,8 +74,7 @@ function createProfile(id, fullName, totalPosts, username) {
     paragraphInfo.textContent = `${fullName} - ${totalPosts} posts`
 
     let spanUsername = document.createElement('span');
-    spanUsername.style.color = 'grey';
-    spanUsername.textContent = username;
+    spanUsername.textContent = '@' + username;
 
     let divViewProfile = document.createElement('div');
     divViewProfile.classList.add('view-profile');
