@@ -232,7 +232,8 @@ namespace SocialMedia.Services
                             Id = u.Id,
                             Username = u.UserName!,
                             FullName = $"{u.FirstName} {u.LastName}",
-                            TotalPosts = u.Posts.Count
+                            TotalPosts = u.Posts.Count,
+                            CountryName = u.Country.Name
                         })
                     .Skip(8 * (counter - 1 == -1 ? 0 : counter - 1))
                     .Take(8)
@@ -248,7 +249,8 @@ namespace SocialMedia.Services
                             Id = u.Id,
                             Username = u.UserName!,
                             FullName = $"{u.FirstName} {u.LastName}",
-                            TotalPosts = u.Posts.Count
+                            TotalPosts = u.Posts.Count,
+                            CountryName = u.Country.Name
                         })
                     .Skip(8 * (counter - 1 == -1 ? 0 : counter - 1))
                     .Take(8)

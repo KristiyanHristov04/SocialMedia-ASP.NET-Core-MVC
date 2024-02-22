@@ -40,7 +40,8 @@ function loadProfiles() {
                     let fullName = profile.fullName;
                     let totalPosts = profile.totalPosts;
                     let username = profile.username;
-                    createProfile(id, fullName, totalPosts, username);
+                    let country = profile.countryName;
+                    createProfile(id, fullName, totalPosts, username, country);
                 }
                 scrolled = false;
                 counter++;
@@ -59,7 +60,7 @@ function loadProfiles() {
         .catch(err => console.error(err));
 }
 
-function createProfile(id, fullName, totalPosts, username) {
+function createProfile(id, fullName, totalPosts, username, country) {
     let divColumn = document.createElement('div');
     divColumn.classList.add('col', 'mb-2');
 
@@ -76,6 +77,10 @@ function createProfile(id, fullName, totalPosts, username) {
     let spanUsername = document.createElement('span');
     spanUsername.textContent = '@' + username;
 
+    let spanCountry = document.createElement('span');
+    spanCountry.classList.add('d-block');
+    spanCountry.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${country}`;
+
     let divViewProfile = document.createElement('div');
     divViewProfile.classList.add('view-profile');
 
@@ -89,6 +94,7 @@ function createProfile(id, fullName, totalPosts, username) {
 
     divUserInformation.appendChild(paragraphInfo);
     divUserInformation.appendChild(spanUsername);
+    divUserInformation.appendChild(spanCountry);
 
     divMainContainer.appendChild(divUserInformation);
     divMainContainer.appendChild(divViewProfile);

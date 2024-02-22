@@ -12,5 +12,6 @@ namespace SocialMedia.ViewModels.Post
         public string Username { get; set; } = null!;
         public string FullName { get; set; } = null!;
         public int TotalPosts { get; set; }
+        public string CountryName { get; set; } = null!;
     }
 }
