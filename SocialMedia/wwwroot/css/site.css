@@ -56,5 +56,5 @@ main {
 }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #b30000;
+        background: darkgrey;
     }
