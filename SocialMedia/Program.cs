@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
@@ -59,13 +60,13 @@ namespace SocialMedia
 
             app.MapControllerRoute(
                name: "post",
-               pattern: "{controller=Post}/{action=Profile}/{username}");
-
+               pattern: "Post/Profile/{username}",
+               defaults: new { controller = "Post", action = "Profile" });
+             
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+               name: "default",
+               pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            
             app.MapRazorPages();
 
             app.Run();
