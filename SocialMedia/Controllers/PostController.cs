@@ -25,6 +25,23 @@ namespace SocialMedia.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(PostFormModel model)
         {
+            HashSet<string> allowedFilesExtensions = new HashSet<string>()
+            {
+                "jpeg",
+                "jpg",
+                "png",
+                "gif",
+                "mp4"
+            };
+
+            string currentFileExtension
+                = model.File.FileName.Substring(model.File.FileName.LastIndexOf('.') + 1);
+
+            if (!allowedFilesExtensions.Contains(currentFileExtension))
+            {
+                ModelState.AddModelError(string.Empty, $"Extension .{currentFileExtension} is not supported!");
+            }
+
             if (model.File.Length > 3000000)
             {
                 ModelState.AddModelError(string.Empty, "Max file size is 3 MB.");
