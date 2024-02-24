@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using SocialMedia.Common.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 using static SocialMedia.Common.DataConstants.Post;
 
@@ -11,6 +12,7 @@ namespace SocialMedia.ViewModels.Post
         public string Text { get; set; } = null!;
 
         [Required]
+        [FileExtensionValidation]
         public IFormFile File { get; set; } = null!;
     }
 }
