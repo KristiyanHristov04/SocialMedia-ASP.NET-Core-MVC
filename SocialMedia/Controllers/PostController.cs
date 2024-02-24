@@ -25,11 +25,6 @@ namespace SocialMedia.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(PostFormModel model)
         {
-            if (model.File.Length > 3000000)
-            {
-                ModelState.AddModelError(string.Empty, "Max file size is 3 MB.");
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(model);

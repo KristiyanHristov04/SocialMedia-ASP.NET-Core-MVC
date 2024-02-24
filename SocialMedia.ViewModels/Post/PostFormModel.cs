@@ -13,6 +13,7 @@ namespace SocialMedia.ViewModels.Post
 
         [Required]
         [FileExtensionValidation]
+        [FileMaxSizeValidation]
         public IFormFile File { get; set; } = null!;
     }
 }
