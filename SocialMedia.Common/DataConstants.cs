@@ -27,5 +27,19 @@ namespace SocialMedia.Common
             //public const int MessageMaxLength = 450;
             public const string FromEmail = "kristiyan_hristov04@abv.bg";
         }
+
+        public static class FileConfiguration
+        {
+            public const int MaxAllowedFileSize = 3000000;
+            public static HashSet<string> allowedFilesExtensions
+                = new HashSet<string>()
+            {
+                "jpeg",
+                "jpg",
+                "png",
+                "gif",
+                "mp4"
+            };
+        }
     }
 }

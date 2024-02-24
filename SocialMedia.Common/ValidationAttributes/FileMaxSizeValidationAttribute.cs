@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static SocialMedia.Common.DataConstants.FileConfiguration;
 
 namespace SocialMedia.Common.ValidationAttributes
 {
@@ -14,9 +10,9 @@ namespace SocialMedia.Common.ValidationAttributes
         {
             IFormFile file = (IFormFile)value!;
 
-            if (file.Length > 3000000)
+            if (file.Length > MaxAllowedFileSize)
             {
-                return new ValidationResult($"Max file size is 3 MB.");
+                return new ValidationResult($"Max file size is {MaxAllowedFileSize / 1000000} MB.");
             }
 
             return ValidationResult.Success;
