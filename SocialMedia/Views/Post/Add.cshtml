@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3">
                 <label asp-for="File" class="form-label text-white"></label>
-                <input asp-for="File" class="form-control" placeholder="">
+                <input asp-for="File" class="form-control" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Supported extensions: jpg, jpeg, png, mp4" placeholder="">
                 <span class="fst-italic fw-light text-white">*Max allowed size is 3 MB.</span>
             </div>
             <button type="submit" class="btn btn-primary w-100">Publish Post</button>
