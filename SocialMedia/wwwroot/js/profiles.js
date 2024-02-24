@@ -52,9 +52,16 @@ function loadProfiles() {
                 }
             }
 
-            if (data.length < 8 && isFirstLoad && !noMoreProfilesMessageShowed) {
-                noProfilesMessage('No more profiles matched!');
-                noMoreProfilesMessageShowed = true;
+            if (isFirstLoad && !noMoreProfilesMessageShowed) {
+                console.log(window.innerHeight);
+                console.log(document.documentElement.scrollHeight);
+
+                if (window.innerHeight < document.documentElement.scrollHeight) {
+                    console.log("Page has a vertical scroll bar");
+                } else {
+                    noProfilesMessage('No more profiles matched!');
+                    noMoreProfilesMessageShowed = true;
+                }
             }
         })
         .catch(err => console.error(err));

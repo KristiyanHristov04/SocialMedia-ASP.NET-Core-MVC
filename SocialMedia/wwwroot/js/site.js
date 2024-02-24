@@ -78,9 +78,16 @@ function loadProfiles() {
                 }
             }
 
-            if (data.length == 1 && isFirstLoad) {
-                noMorePostsMessage();
-                noMorePostsMessageShowed = true;
+            if (isFirstLoad && !noMorePostsMessageShowed) {
+                console.log(window.innerHeight);
+                console.log(document.documentElement.scrollHeight);
+
+                if (window.innerHeight < document.documentElement.scrollHeight) {
+                    console.log("Page has a vertical scroll bar");
+                } else {
+                    noMorePostsMessage();
+                    noMorePostsMessageShowed = true;
+                }
             }
         })
         .catch(err => console.error(err));
