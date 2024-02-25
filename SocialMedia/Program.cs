@@ -21,8 +21,15 @@ namespace SocialMedia
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            builder.Services
+                .AddDefaultIdentity<ApplicationUser>
+                (options =>
+                    {
+                        options.SignIn.RequireConfirmedAccount = false;
+                    })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
@@ -66,7 +73,7 @@ namespace SocialMedia
                name: "post",
                pattern: "Post/Profile/{username}",
                defaults: new { controller = "Post", action = "Profile" });
-             
+
             app.MapControllerRoute(
                name: "default",
                pattern: "{controller=Home}/{action=Index}/{id?}");
