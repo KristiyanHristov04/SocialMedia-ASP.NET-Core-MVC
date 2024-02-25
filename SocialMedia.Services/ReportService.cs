@@ -33,7 +33,7 @@ namespace SocialMedia.Services
                 {
                     reportsQuery = reportsQuery.OrderBy(r => r.ReportsCount);
                 }
-                else
+                else if (filter == "descending")
                 {
                     reportsQuery = reportsQuery.OrderByDescending(r => r.ReportsCount);
                 }
