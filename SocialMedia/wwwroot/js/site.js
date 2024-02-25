@@ -294,7 +294,6 @@ function prepareForDelete(postId, event) {
         fetch(`${fullPath}/api/posts/${postId}`, {
             method: 'DELETE'
         })
-            .then(res => console.log(res))
             .then(() => {
                 element.remove();
                 if (!isAlertShowed) {
@@ -319,7 +318,6 @@ function prepareForReport(postId, event) {
         fetch(`${fullPath}/api/posts/report/${postId}`, {
             method: 'POST'
         })
-            .then(res => console.log(res))
             .then(() => {
                 if (!isAlertShowed) {
                     toastr.options = {
