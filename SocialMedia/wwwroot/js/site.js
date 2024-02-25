@@ -316,14 +316,21 @@ function prepareForReport(postId, event) {
     let isAlertShowed = false;
 
     reportButton.addEventListener('click', () => {
-        if (!isAlertShowed) {
-            toastr.options = {
-                positionClass: "toast-bottom-right"
-            };
+        fetch(`${fullPath}/api/posts/report/${postId}`, {
+            method: 'POST'
+        })
+            .then(res => console.log(res))
+            .then(() => {
+                if (!isAlertShowed) {
+                    toastr.options = {
+                        positionClass: "toast-bottom-right"
+                    };
 
-            toastr.success('Post reported successfully!');
+                    toastr.success('Post reported successfully!');
 
-            isAlertShowed = true;
-        }
+                    isAlertShowed = true;
+                }
+            })
+            .catch(err => console.error(err))
     });
 }

@@ -285,5 +285,29 @@ namespace SocialMedia.Services
                 .Take(3)
                 .ToListAsync();
         }
+
+        public async Task ReportPostAsync(int id)
+        {
+            ReportPost? reportPost = await this.context.ReportPosts
+                .Where(rp => rp.PostId == id)
+                .FirstOrDefaultAsync();
+
+            if (reportPost == null)
+            {
+                reportPost = new ReportPost()
+                {
+                    PostId = id,
+                    ReportsCount = 1
+                };
+
+                await this.context.ReportPosts.AddAsync(reportPost);
+            }
+            else
+            {
+                reportPost.ReportsCount++;
+            }
+
+            await this.context.SaveChangesAsync();
+        }
     }
 }

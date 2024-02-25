@@ -18,5 +18,6 @@ namespace SocialMedia.Services.Interfaces
         Task<List<PostViewModel>> GetMyLikedPostsAsync(int counter, string userId);
         Task<List<ProfileViewModel>> GetProfilesAsync(string? search, int counter);
         Task<List<PostViewModel>> GetPostsByProfileAsync(int counter, string username);
+        Task ReportPostAsync(int id);
     }
 }

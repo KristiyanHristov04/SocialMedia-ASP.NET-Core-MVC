@@ -88,5 +88,13 @@ namespace SocialMedia.Controllers.API
         {
             return await postService.GetPostsByProfileAsync(counter, username);
         }
+
+        [HttpPost("report/{id}")]
+        public async Task<IActionResult> Report(int id)
+        {
+            await this.postService.ReportPostAsync(id);
+
+            return Ok();
+        }
     }
 }
