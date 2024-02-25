@@ -14,12 +14,18 @@ namespace SocialMedia.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> All(string? filter)
+        public async Task<IActionResult> All(AllViewModel allModel)
         {
-            List<ReportViewModel> reports
-                = await this.reportService.GetReportsAsync(filter);
+            AllViewModel model
+                = await this.reportService.GetReportsAsync
+                (allModel.Filter,
+                allModel.CurrentPage,
+                AllViewModel.ReportsPerPage);
 
-            return View(reports);
+            allModel.TotalReports = model.TotalReports;
+            allModel.Reports = model.Reports;
+
+            return View(allModel);
         }
     }
 }

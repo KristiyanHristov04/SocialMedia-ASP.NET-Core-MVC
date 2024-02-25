@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SocialMedia.Data;
+using SocialMedia.Data.Models;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.ViewModels.AdminArea.Report;
 using System;
@@ -18,31 +19,46 @@ namespace SocialMedia.Services
             this.context = context;
         }
 
-        public async Task<List<ReportViewModel>> GetReportsAsync(string filter = "none")
+        public async Task<AllViewModel> GetReportsAsync(
+            string filter,
+            int currentPage = 1,
+            int reportsPerPage = 2
+            )
         {
-            List<ReportViewModel> reports = await this.context.ReportPosts.Select(rp => new ReportViewModel()
-            {
-                UserFullName = rp.Post.User.FirstName + " " + rp.Post.User.LastName,
-                UserUsername = rp.Post.User.UserName!,
-                TotalReports = rp.ReportsCount,
-                PostId = rp.PostId,
-                PostPath = rp.Post.Path
-            })
-                .ToListAsync();
+            IQueryable<ReportPost> reportsQuery = this.context.ReportPosts.AsQueryable();
 
             if (filter != null)
             {
                 if (filter == "ascending")
                 {
-                    reports = reports.OrderBy(r => r.TotalReports).ToList();
+                    reportsQuery = reportsQuery.OrderBy(r => r.ReportsCount);
                 }
                 else
                 {
-                    reports = reports.OrderByDescending(r => r.TotalReports).ToList();
+                    reportsQuery = reportsQuery.OrderByDescending(r => r.ReportsCount);
                 }
             }
 
-            return reports;
+            List<ReportViewModel> reports = await reportsQuery
+                .Skip((currentPage - 1) * reportsPerPage)
+                .Take(reportsPerPage)
+                .Select(r => new ReportViewModel()
+                {
+                    UserFullName = r.Post.User.FirstName + " " + r.Post.User.LastName,
+                    UserUsername = r.Post.User.UserName!,
+                    TotalReports = r.ReportsCount,
+                    PostId = r.PostId,
+                    PostPath = r.Post.Path
+                })
+                .ToListAsync();
+
+            int totalReports = reportsQuery.Count();
+
+            return new AllViewModel()
+            {
+                Reports = reports,
+                TotalReports = totalReports
+            };
         }
     }
 }
