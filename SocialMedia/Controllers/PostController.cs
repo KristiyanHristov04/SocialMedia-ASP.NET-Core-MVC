@@ -6,7 +6,7 @@ using SocialMedia.ViewModels.Post;
 
 namespace SocialMedia.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class PostController : Controller
     {
         private readonly IPostService postService;

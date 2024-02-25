@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SocialMedia.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
     }

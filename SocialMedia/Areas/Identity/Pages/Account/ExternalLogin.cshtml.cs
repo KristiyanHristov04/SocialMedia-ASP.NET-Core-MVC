@@ -104,6 +104,14 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
+            ApplicationUser user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+
+            if (!await _userManager.IsInRoleAsync(user, "Administrator")
+                    && !await _userManager.IsInRoleAsync(user, "User"))
+            {
+                await _userManager.AddToRoleAsync(user, "User");
+            }
+
             // Sign in the user with this external login provider if the user already has a login.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)

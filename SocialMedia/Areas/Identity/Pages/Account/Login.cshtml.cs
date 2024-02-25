@@ -79,6 +79,20 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 ApplicationUser user = await _userManager.FindByEmailAsync(Input.Email);
+
+                if (user.Email == "admin@socialmedia.com")
+                {
+                    if (!await _userManager.IsInRoleAsync(user, "Administrator"))
+                    {
+                        await _userManager.AddToRoleAsync(user, "Administrator");
+                    }
+                }
+                else if (!await _userManager.IsInRoleAsync(user, "Administrator")
+                    && !await _userManager.IsInRoleAsync(user, "User"))
+                {
+                    await _userManager.AddToRoleAsync(user, "User");
+                }
+
                 if (user == null)
                 {
                     ModelState.AddModelError (string.Empty, "Invalid login credentials.");
