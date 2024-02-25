@@ -28,5 +28,8 @@ namespace SocialMedia.Data.Models
 
         public ICollection<LikedPost> LikedPosts { get; set; }
               = new List<LikedPost>();
+
+        public ICollection<ReportPost> ReportPosts { get; set; }
+             = new List<ReportPost>();
     }
 }
