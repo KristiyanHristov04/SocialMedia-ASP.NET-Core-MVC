@@ -163,6 +163,18 @@ function createProfile(id, path, text, userId, date, firstName, lastName, userna
         });
 
         divEditDeleteContainer.appendChild(deleteButton);
+    } else {
+        let reportButton = document.createElement('a');
+        reportButton.classList.add('report-button', 'ms-2');
+        reportButton.setAttribute('data-bs-toggle', 'modal');
+        reportButton.setAttribute('data-bs-target', '#reportModal');
+        reportButton.innerHTML += '<i class="fa-solid fa-flag"></i>';
+
+        reportButton.addEventListener('click', (e) => {
+            prepareForReport(id, e);
+        });
+
+        divEditDeleteContainer.appendChild(reportButton);
     }
 
     let spanUsername = document.createElement('span');
@@ -296,5 +308,22 @@ function prepareForDelete(postId, event) {
                 }
             })
             .catch(err => console.error(err));
+    });
+}
+
+function prepareForReport(postId, event) {
+    const reportButton = document.getElementById('report-button');
+    let isAlertShowed = false;
+
+    reportButton.addEventListener('click', () => {
+        if (!isAlertShowed) {
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('Post reported successfully!');
+
+            isAlertShowed = true;
+        }
     });
 }

@@ -45,7 +45,6 @@ namespace SocialMedia.Controllers
                 model.FromEmail = currentUserEmailAddress;
             }
             
-
             return View(model);
         }
 

@@ -53,6 +53,15 @@ a {
         color: #f36060;
     }
 
+.report-button {
+    font-size: 20px;
+    color: #80c19a;
+}
+
+    .report-button:hover {
+        color: #90e3b1;
+    }
+
 .like-text {
     user-select: none;
 }
