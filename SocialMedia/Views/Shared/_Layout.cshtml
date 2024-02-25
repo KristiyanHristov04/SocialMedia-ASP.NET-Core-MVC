@@ -51,7 +51,14 @@
 
         <nav class="fixed-top navbar navbar-expand-xxl navbar-dark" style="background-color: #141414;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SocialMedia</a>
+                @if (!this.User.IsInRole("Administrator"))
+                {
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">SocialMedia</a>
+                }
+                else
+                {
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Dashboard">SocialMedia</a>
+                }
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -82,7 +89,7 @@
                         @if (this.User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark p-2" asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a>
+                                <a class="nav-link text-dark p-2" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
                             </li>
                         }
 
@@ -93,10 +100,14 @@
                             </li>
                         }
                     </ul>
-                    <form asp-controller="Post" asp-action="Profiles" method="get" class="d-flex mx-xxl-4 my-3 my-xxl-0 ps-2">
-                        <input name="search" class="form-control me-2" type="search" placeholder="Search for a profile" aria-label="Search">
-                        <button class="btn btn-outline-success" style="width: 130px;" type="submit">Search <i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
+                    @if (!this.User.IsInRole("Administrator"))
+                    {
+                        <form asp-controller="Post" asp-action="Profiles" method="get" class="d-flex mx-xxl-4 my-3 my-xxl-0 ps-2">
+                            <input name="search" class="form-control me-2" type="search" placeholder="Search for a profile" aria-label="Search">
+                            <button class="btn btn-outline-success" style="width: 130px;" type="submit">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    }
+                    
                     <partial name="_LoginPartial" />
                 </div>
             </div>
