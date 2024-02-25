@@ -47,7 +47,7 @@ namespace SocialMedia.Controllers.API
 
             string currentUserId = this.User.GetUserId();
 
-            if (!await postService.ValidatePostUserAsync(currentUserId, id))
+            if (!this.User.IsInRole("Administrator") && !await postService.ValidatePostUserAsync(currentUserId, id))
             {
                 return Unauthorized();
             }
@@ -95,6 +95,12 @@ namespace SocialMedia.Controllers.API
             await this.postService.ReportPostAsync(id);
 
             return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<PostViewModel> Post(int id)
+        {
+            return await this.postService.GetReportPostAsync(id);
         }
     }
 }

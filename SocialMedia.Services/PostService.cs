@@ -309,5 +309,30 @@ namespace SocialMedia.Services
 
             await this.context.SaveChangesAsync();
         }
+
+        public async Task<PostViewModel> GetReportPostAsync(int id)
+        {
+            PostViewModel post = await this.context.Posts
+                .Where(p => p.Id == id)
+                .Select(p => new PostViewModel()
+                {
+                    Id = p.Id,
+                    Text = p.Text,
+                    Path = p.Path,
+                    UserId = p.UserId,
+                    FirstName = p.User.FirstName,
+                    LastName = p.User.LastName,
+                    Username = p.User.UserName!,
+                    DateSeconds = p.Date.Second,
+                    DateMinutes = p.Date.Minute,
+                    DateHours = p.Date.Hour,
+                    DateDay = p.Date.Day,
+                    DateMonth = p.Date.Month,
+                    DateYear = p.Date.Year
+                })
+                .FirstAsync();
+
+            return post;
+        }
     }
 }

@@ -25,7 +25,15 @@
                 <td>@report.UserFullName</td>
                 <td>@report.UserUsername</td>
                 <td>@report.TotalReports</td>
-                <td><a class="btn btn-success" asp-controller="Post" asp-action="Index">View</a></td>
+                <td>
+                    <a class="btn btn-success"
+                       asp-area="Admin"
+                       asp-controller="Post"
+                       asp-action="Preview"
+                       asp-route-id="@report.PostId">
+                        View
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
