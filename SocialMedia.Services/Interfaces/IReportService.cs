@@ -9,6 +9,6 @@ namespace SocialMedia.Services.Interfaces
 {
     public interface IReportService
     {
-        Task<List<ReportViewModel>> GetReportsAsync();
+        Task<List<ReportViewModel>> GetReportsAsync(string? filter);
     }
 }

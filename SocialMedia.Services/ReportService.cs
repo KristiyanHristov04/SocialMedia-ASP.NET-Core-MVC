@@ -18,9 +18,9 @@ namespace SocialMedia.Services
             this.context = context;
         }
 
-        public async Task<List<ReportViewModel>> GetReportsAsync()
+        public async Task<List<ReportViewModel>> GetReportsAsync(string filter = "none")
         {
-            return await this.context.ReportPosts.Select(rp => new ReportViewModel()
+            List<ReportViewModel> reports = await this.context.ReportPosts.Select(rp => new ReportViewModel()
             {
                 UserFullName = rp.Post.User.FirstName + " " + rp.Post.User.LastName,
                 UserUsername = rp.Post.User.UserName!,
@@ -29,6 +29,20 @@ namespace SocialMedia.Services
                 PostPath = rp.Post.Path
             })
                 .ToListAsync();
+
+            if (filter != null)
+            {
+                if (filter == "ascending")
+                {
+                    reports = reports.OrderBy(r => r.TotalReports).ToList();
+                }
+                else
+                {
+                    reports = reports.OrderByDescending(r => r.TotalReports).ToList();
+                }
+            }
+
+            return reports;
         }
     }
 }

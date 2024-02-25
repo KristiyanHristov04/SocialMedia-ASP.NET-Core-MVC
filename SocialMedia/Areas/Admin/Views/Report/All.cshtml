@@ -6,6 +6,23 @@
     int rowCount = 1;
 }
 
+<form method="get">
+    <div class="d-flex gap-3 mb-3">
+        <div class="w-100">
+            <label class="text-white">Filter:</label>
+            <select class="form-select" name="filter">
+                <option disabled selected> -- select an option -- </option>
+                <option value="ascending">Sort By Reports Count Ascending</option>
+                <option value="descending">Sort By Reports Count Descending</option>
+            </select>
+        </div>
+        <div class="align-self-end d-flex gap-3">
+            <button class="btn btn-outline-primary" type="submit">Apply</button>
+            <a class="btn btn-outline-info" asp-controller="Report" asp-action="All">Clear</a>
+        </div>
+    </div>
+    
+</form>
 
 <table class="table table-dark table-striped align-middle">
     <thead>
