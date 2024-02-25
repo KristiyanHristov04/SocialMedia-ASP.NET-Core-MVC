@@ -36,6 +36,7 @@ namespace SocialMedia
             builder.Services.AddTransient<ICustomEmailSender, CustomEmailSender>();
             builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.AddScoped<ICountryService, CountryService>();
+            builder.Services.AddScoped<IReportService, ReportService>();
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
             builder.Services.AddAuthentication().AddGoogle(googleOptions =>

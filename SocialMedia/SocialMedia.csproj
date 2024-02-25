@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\ViewModels\" />
     <Folder Include="wwwroot\files\" />
   </ItemGroup>
 

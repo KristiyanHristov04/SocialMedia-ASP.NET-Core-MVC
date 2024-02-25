@@ -1,0 +1,32 @@
+﻿@using SocialMedia.ViewModels.AdminArea.Report
+@model IEnumerable<ReportViewModel>
+
+@{
+    ViewData["Title"] = "Reports";
+    int rowCount = 1;
+}
+
+
+<table class="table table-dark table-striped align-middle">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Reports</th>
+            <th scope="col">Post</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in @Model)
+        {
+            <tr>
+                <th scope="row">@(rowCount++)</th>
+                <td>@report.UserFullName</td>
+                <td>@report.UserUsername</td>
+                <td>@report.TotalReports</td>
+                <td><a class="btn btn-success" asp-controller="Post" asp-action="Index">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
