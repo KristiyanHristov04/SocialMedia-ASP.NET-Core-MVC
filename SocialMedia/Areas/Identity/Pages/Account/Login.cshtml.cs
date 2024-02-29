@@ -104,6 +104,12 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                     var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
+                        if (await this._userManager.IsInRoleAsync(user, "Administrator"))
+                        {
+                            _logger.LogInformation("Admin logged in.");
+                            return RedirectToAction("Dashboard", "Home", new { area = "Admin" });
+                        }
+
                         _logger.LogInformation("User logged in.");
                         return LocalRedirect(returnUrl);
                     }
