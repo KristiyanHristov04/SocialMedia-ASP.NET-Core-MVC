@@ -214,6 +214,39 @@ function prepareForDelete(postId, event) {
 
                     toastr.success('Post deleted successfully!');
 
+
+                    let div = document.createElement('div');
+                    div.classList.add('w-100');
+                    div.style.textAlign = 'center';
+
+                    let paragraphText = document.createElement('p');
+                    paragraphText.textContent = `You'll be redirected in:`
+                    paragraphText.style.color = 'white';
+
+                    let h1LeftTime = document.createElement('h1');
+                    h1LeftTime.textContent = '10s';
+                    h1LeftTime.style.color = 'white';
+
+                    div.appendChild(paragraphText);
+                    div.appendChild(h1LeftTime);
+
+                    row.appendChild(div);
+
+                    setInterval(() => {
+                        let timeLeft = Number(h1LeftTime.textContent.substring(0, h1LeftTime.textContent.length - 1)) - 1;
+                        h1LeftTime.textContent = timeLeft + 's';
+                    }, 1000);
+
+                    setTimeout(() => {
+                        let protocol = window.location.protocol;
+                        let hostname = window.location.hostname;
+                        let port = window.location.port;
+                        let fullPath = `${protocol}//${hostname}:${port}`;
+                        window.location.href = `${fullPath}/Admin/Report/All`;
+                    }, 10000);
+
+                    
+
                     isAlertShowed = true;
                 }
             })
