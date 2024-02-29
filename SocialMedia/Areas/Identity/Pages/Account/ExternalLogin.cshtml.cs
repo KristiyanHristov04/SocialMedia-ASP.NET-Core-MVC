@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using static SocialMedia.Common.DataConstants.ApplicationUser;
 using SocialMedia.Data.Models;
+using SocialMedia.ViewModels.Country;
+using SocialMedia.Services.Interfaces;
 
 namespace SocialMedia.Areas.Identity.Pages.Account
 {
@@ -31,13 +33,15 @@ namespace SocialMedia.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly ICountryService _countryService;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ICountryService countryService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -45,12 +49,15 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _logger = logger;
             _emailSender = emailSender;
+            _countryService = countryService;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ProviderDisplayName { get; set; }
+
+        public List<CountryViewModel> Countries { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -59,6 +66,11 @@ namespace SocialMedia.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required(ErrorMessage = "Please select a country.")]
+            [Display(Name = "Country")]
+            public int CountryId { get; set; }
+
             [Required]
             [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength)]
             [Display(Name = "First Name")]
@@ -78,8 +90,16 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; }
         }
-        
-        public IActionResult OnGet() => RedirectToPage("./Login");
+
+        private async Task<List<CountryViewModel>> GetCountriesAsync()
+        {
+            return await this._countryService.GetAllCountriesAsync();
+        }
+
+        public IActionResult OnGet()
+        {
+            return RedirectToPage("./Login");
+        } 
 
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
@@ -92,6 +112,9 @@ namespace SocialMedia.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+            this.Countries = await this.GetCountriesAsync();
+            _logger.LogCritical("OnGetCallBack External");
+
             if (remoteError != null)
             {
                 ErrorMessage = $"Error from external provider: {remoteError}";
@@ -105,12 +128,6 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             }
 
             ApplicationUser user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
-
-            if (!await _userManager.IsInRoleAsync(user, "Administrator")
-                    && !await _userManager.IsInRoleAsync(user, "User"))
-            {
-                await _userManager.AddToRoleAsync(user, "User");
-            }
 
             // Sign in the user with this external login provider if the user already has a login.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
@@ -156,16 +173,17 @@ namespace SocialMedia.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.CountryId = Input.CountryId;
 
                 user.UserName = Input.Username;
                 user.NormalizedUserName = Input.Username.ToUpper();
                 user.Email = Input.Email;
                 user.NormalizedEmail = Input.Email.ToUpper();
 
-                //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-
                 var result = await _userManager.CreateAsync(user);
+
+                //Add Role "User" On Registering using External Provider
+                await _userManager.AddToRoleAsync(user, "User");
 
                 if (result.Succeeded)
                 {

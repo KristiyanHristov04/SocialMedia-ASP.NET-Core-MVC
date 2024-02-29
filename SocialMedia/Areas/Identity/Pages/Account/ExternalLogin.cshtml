@@ -4,20 +4,30 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
+<h1 class="text-white text-center">@ViewData["Title"]</h1>
+<h2 class="text-white text-center" id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
 <hr />
 
-<p id="external-login-description" class="text-info">
+<p id="external-login-description" class="text-info text-center">
     You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
     Please enter an email address for this site below and click the Register button to finish
     logging in.
 </p>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-md-4">
         <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="mb-3">
+                <select asp-for="Input.CountryId" class="form-select">
+                    <option value="" selected>Choose a country</option>
+                    @foreach (var country in Model.Countries)
+                    {
+                        <option value="@country.Id">@country.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Input.CountryId" class="text-danger"></span>
+            </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.FirstName" class="form-control" autocomplete="on" placeholder="Please enter your first name." />
                 <label asp-for="Input.FirstName" class="form-label"></label>

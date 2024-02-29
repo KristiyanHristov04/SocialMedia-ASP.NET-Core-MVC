@@ -93,11 +93,14 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                             await _userManager.AddToRoleAsync(user, "Administrator");
                         }
                     }
+                    //For some reason if on register role was not assigned
+                    //assign "User" Role here. This logic might be modified later on!
                     else if (!await _userManager.IsInRoleAsync(user, "Administrator")
                         && !await _userManager.IsInRoleAsync(user, "User"))
                     {
                         await _userManager.AddToRoleAsync(user, "User");
                     }
+
                     var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {

@@ -134,6 +134,9 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                         _logger.LogWarning("Creating new user(Register). Add new claims here!");
                         await _userManager.AddClaimAsync(user, new Claim("names", user.FirstName + " " + user.LastName));
 
+                        //Add Role "User" On Registering
+                        await _userManager.AddToRoleAsync(user, "User");
+
                         _logger.LogInformation("User created a new account with password.");
 
                         var userId = await _userManager.GetUserIdAsync(user);
