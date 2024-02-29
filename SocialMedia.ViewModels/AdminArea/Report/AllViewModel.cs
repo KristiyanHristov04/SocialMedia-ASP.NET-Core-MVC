@@ -10,7 +10,7 @@ namespace SocialMedia.ViewModels.AdminArea.Report
     {
         public List<ReportViewModel> Reports { get; set; } = null!;
         public int TotalReports { get; set; }
-        public const int ReportsPerPage = 2;
+        public const int ReportsPerPage = 4;
         public int CurrentPage { get; set; } = 1;
         public string Filter { get; set; } = null!;
 

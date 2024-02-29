@@ -21,8 +21,8 @@ namespace SocialMedia.Services
 
         public async Task<AllViewModel> GetReportsAsync(
             string filter,
-            int currentPage = 1,
-            int reportsPerPage = 2
+            int reportsPerPage,
+            int currentPage
             )
         {
             IQueryable<ReportPost> reportsQuery = this.context.ReportPosts.AsQueryable();

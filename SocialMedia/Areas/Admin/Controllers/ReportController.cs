@@ -19,8 +19,9 @@ namespace SocialMedia.Areas.Admin.Controllers
             AllViewModel model
                 = await this.reportService.GetReportsAsync
                 (allModel.Filter,
-                allModel.CurrentPage,
-                AllViewModel.ReportsPerPage);
+                AllViewModel.ReportsPerPage,
+                allModel.CurrentPage
+                );
 
             allModel.TotalReports = model.TotalReports;
             allModel.Reports = model.Reports;

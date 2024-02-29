@@ -10,6 +10,6 @@ namespace SocialMedia.Services.Interfaces
     public interface IReportService
     {
         Task<AllViewModel> GetReportsAsync
-            (string filter, int currentPage = 1, int reportsPerPage = 2);
+            (string filter, int reportsPerPage, int currentPage);
     }
 }
