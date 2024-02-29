@@ -16,6 +16,11 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> All(AllViewModel allModel)
         {
+            if (allModel.CurrentPage <= 0)
+            {
+                allModel.CurrentPage = 1;
+            }
+
             AllViewModel model
                 = await this.reportService.GetReportsAsync
                 (allModel.Filter,
