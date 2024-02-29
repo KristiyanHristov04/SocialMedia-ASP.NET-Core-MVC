@@ -1,14 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SocialMedia.Data;
+using SocialMedia.ViewModels.AdminArea.Post;
 
 namespace SocialMedia.Areas.Admin.Controllers
 {
     public class PostController : AdminController
     {
-        [HttpGet]
-        public IActionResult Preview(int id)
+        private readonly ApplicationDbContext context;
+        public PostController(ApplicationDbContext context)
         {
-            ViewData["PostId"] = id;
-            return View();
+            this.context = context;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Preview(int id)
+        {
+            bool doesExist = await this.context.ReportPosts.AnyAsync(rp => rp.PostId == id);
+            if (!doesExist)
+            {
+                return BadRequest();
+            }
+
+            string username = await this.context.Posts
+                .Where(p => p.Id == id)
+                .Select(p => p.User.UserName!)
+                .FirstAsync();
+
+            PreviewViewModel model = new PreviewViewModel
+            {
+                PostId = id,
+                Username = username
+            };
+
+            return View(model);
         }
     }
 }

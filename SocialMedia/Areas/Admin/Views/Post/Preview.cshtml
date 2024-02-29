@@ -1,8 +1,11 @@
-﻿@{
-    int postId = int.Parse(ViewData["PostId"].ToString());
+﻿@using SocialMedia.ViewModels.AdminArea.Post
+@model PreviewViewModel
+
+@{
+    ViewData["Title"] = $"{Model.Username} Reported Post";
 }
 
-<span class="d-none" id="post-id">@postId</span>
+<span class="d-none" id="post-id">@Model.PostId</span>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
