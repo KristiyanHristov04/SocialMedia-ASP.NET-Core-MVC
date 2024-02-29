@@ -133,6 +133,12 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
+                if (await this._userManager.IsInRoleAsync(user, "Administrator"))
+                {
+                    _logger.LogInformation("Admin logged in.");
+                    return RedirectToAction("Dashboard", "Home", new { area = "Admin" });
+                }
+
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
                 return LocalRedirect(returnUrl);
             }
