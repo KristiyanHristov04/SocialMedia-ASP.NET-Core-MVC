@@ -3,7 +3,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav align-items-center">
+<ul class="navbar-nav align-items-xxl-center gap-0 gap-xxl-2">
     @if (SignInManager.IsSignedIn(User))
     {
         string name = this.User.FindFirst(ClaimTypes.Name)!.Value;
