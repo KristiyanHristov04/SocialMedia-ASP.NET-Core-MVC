@@ -21,6 +21,8 @@ using static SocialMedia.Common.DataConstants.ApplicationUser;
 using SocialMedia.Data.Models;
 using SocialMedia.ViewModels.Country;
 using SocialMedia.Services.Interfaces;
+using SocialMedia.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SocialMedia.Areas.Identity.Pages.Account
 {
@@ -34,6 +36,7 @@ namespace SocialMedia.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
         private readonly ICountryService _countryService;
+        private readonly ApplicationDbContext _context;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
@@ -41,7 +44,8 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             IUserStore<ApplicationUser> userStore,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender,
-            ICountryService countryService)
+            ICountryService countryService,
+            ApplicationDbContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -50,6 +54,7 @@ namespace SocialMedia.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _countryService = countryService;
+            _context = context;
         }
 
         [BindProperty]
@@ -199,6 +204,11 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
+                        //Increase All Time Users Count In The Database
+                        var statistic = await this._context.Statistics.FirstAsync();
+                        statistic.AllTimeUsersCount++;
+                        await this._context.SaveChangesAsync();
+
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
 
                         var userId = await _userManager.GetUserIdAsync(user);

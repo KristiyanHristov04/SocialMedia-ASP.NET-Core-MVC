@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
+using SocialMedia.Data;
 using SocialMedia.Data.Models;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.ViewModels.Country;
@@ -26,19 +28,22 @@ namespace SocialMedia.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly ICountryService _countryService;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ICountryService countryService)
+            ICountryService countryService,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             _countryService = countryService;
+            _context = context;
         }
 
 
@@ -136,6 +141,11 @@ namespace SocialMedia.Areas.Identity.Pages.Account
 
                         //Add Role "User" On Registering
                         await _userManager.AddToRoleAsync(user, "User");
+
+                        //Increase All Time Users Count In The Database
+                        var statistic = await this._context.Statistics.FirstAsync();
+                        statistic.AllTimeUsersCount++;
+                        await this._context.SaveChangesAsync();
 
                         _logger.LogInformation("User created a new account with password.");
 
