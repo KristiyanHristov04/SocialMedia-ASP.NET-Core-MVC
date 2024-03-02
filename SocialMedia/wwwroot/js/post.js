@@ -214,7 +214,6 @@ function prepareForDelete(postId, event) {
 
                     toastr.success('Post deleted successfully!');
 
-
                     let div = document.createElement('div');
                     div.classList.add('w-100');
                     div.style.textAlign = 'center';

@@ -310,11 +310,12 @@ function prepareForDelete(postId, event) {
     });
 }
 
-function prepareForReport(postId, event) {
+function prepareForReport(postId) {
     const reportButton = document.getElementById('report-button');
     let isAlertShowed = false;
 
-    reportButton.addEventListener('click', () => {
+    reportButton.addEventListener('click', reportButtonClickHandler);
+    function reportButtonClickHandler(e) {
         fetch(`${fullPath}/api/posts/report/${postId}`, {
             method: 'POST'
         })
@@ -323,12 +324,11 @@ function prepareForReport(postId, event) {
                     toastr.options = {
                         positionClass: "toast-bottom-right"
                     };
-
                     toastr.success('Post reported successfully!');
-
                     isAlertShowed = true;
                 }
+                reportButton.removeEventListener('click', reportButtonClickHandler);
             })
             .catch(err => console.error(err))
-    });
+    }
 }
