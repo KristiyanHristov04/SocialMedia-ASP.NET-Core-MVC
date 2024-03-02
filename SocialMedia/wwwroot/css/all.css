@@ -1,0 +1,9 @@
+﻿.btn-dismiss {
+    color: white;
+    background-color: #6772c5;
+}
+
+    .btn-dismiss:hover {
+        color: white;
+        background-color: #5a64ad;
+    }

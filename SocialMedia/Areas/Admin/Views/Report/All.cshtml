@@ -68,7 +68,7 @@
                        asp-route-id="@report.PostId">
                         View
                     </a>
-                    <a class="btn-dismiss btn btn-warning" id="@report.PostId">
+                    <a class="btn-dismiss btn" id="@report.PostId">
                         Dismiss
                     </a>
                 </td>
@@ -108,4 +108,8 @@
 
 @section Scripts {
     <script src="~/js/dismiss-button.js"></script> 
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/all.css" />
 }
