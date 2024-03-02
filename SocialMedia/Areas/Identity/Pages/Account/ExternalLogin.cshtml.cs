@@ -185,6 +185,7 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.CountryId = Input.CountryId;
+                user.RegistrationDate = DateTime.Now;
 
                 user.UserName = Input.Username;
                 user.NormalizedUserName = Input.Username.ToUpper();
