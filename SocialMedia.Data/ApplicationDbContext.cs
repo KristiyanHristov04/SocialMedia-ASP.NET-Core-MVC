@@ -19,6 +19,7 @@ namespace SocialMedia.Data
         public DbSet<LikedPost> LikedPosts { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<ReportPost> ReportPosts { get; set; }
+        public DbSet<Statistic> Statistics { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
