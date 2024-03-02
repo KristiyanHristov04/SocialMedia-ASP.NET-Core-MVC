@@ -1,5 +1,10 @@
-﻿@{
+﻿@model StatisticsViewModel
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
 <h2 class="display-4 text-white text-center">Welcome to the dashboard, Admin!</h2>
+<p>@Model.AllTimeUsersCount</p>
+<p>@Model.ReportedPostsDeletedCount</p>
+<p>@Model.TotalAdminsCount</p>

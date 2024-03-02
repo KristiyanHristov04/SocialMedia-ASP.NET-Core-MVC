@@ -41,6 +41,7 @@ namespace SocialMedia
             //Admin Area
             builder.Services.AddScoped<IReportedPostService, ReportedPostService>();
             builder.Services.AddScoped<IReportService, ReportService>();
+            builder.Services.AddScoped<IStatisticService, StatisticService>();
 
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
