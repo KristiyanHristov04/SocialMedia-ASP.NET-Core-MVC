@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Areas.Admin.Services;
 using SocialMedia.Areas.Admin.Services.Interfaces;
@@ -38,7 +37,11 @@ namespace SocialMedia
             builder.Services.AddTransient<ICustomEmailSender, CustomEmailSender>();
             builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.AddScoped<ICountryService, CountryService>();
+
+            //Admin Area
+            builder.Services.AddScoped<IReportedPostService, ReportedPostService>();
             builder.Services.AddScoped<IReportService, ReportService>();
+
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
             builder.Services.AddAuthentication().AddGoogle(googleOptions =>
