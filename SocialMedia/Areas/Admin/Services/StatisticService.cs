@@ -23,13 +23,18 @@ namespace SocialMedia.Areas.Admin.Services
             var role = await this.roleManager.FindByNameAsync("Administrator");
             int totalAdmins = this.context.UserRoles.Where(ur => ur.RoleId == role!.Id).Count();
 
+            int registeredUserslast7Days = await this.context.Users
+                .Where(u => u.RegistrationDate.AddDays(7) >= DateTime.Now)
+                .CountAsync();
+
             return new StatisticsViewModel()
             {
                 ReportedPostsDeletedCount = await this.context.Statistics
                 .Select(s => s.ReportedPostsDeletedCount).FirstAsync(),
                 AllTimeUsersCount = await this.context.Statistics
                 .Select(s => s.AllTimeUsersCount).FirstAsync(),
-                TotalAdminsCount = totalAdmins
+                TotalAdminsCount = totalAdmins,
+                RegisteredUsersLast7DaysCount = registeredUserslast7Days
             };
         }
     }

@@ -34,6 +34,10 @@ namespace SocialMedia.Data
                 .IsRequired(true)
                 .HasDefaultValue(26); //Bulgaria Id
 
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.RegistrationDate)
+                .HasDefaultValue(DateTime.Now);
+
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());

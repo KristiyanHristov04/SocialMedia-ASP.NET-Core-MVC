@@ -20,6 +20,9 @@ namespace SocialMedia.Data.Models
         public int CountryId { get; set; }
         public Country Country { get; set; } = null!;
 
+        [Required]
+        public DateTime RegistrationDate { get; set; }
+
         public ICollection<LikedPost> LikedPosts { get; set; } 
             = new List<LikedPost>();
 
