@@ -105,6 +105,14 @@ namespace SocialMedia.Controllers.API
             return Ok();
         }
 
+        [HttpPost("statistics/reports/increase")]
+        public async Task<IActionResult> DeletedReportedPostsCount()
+        {
+            await this.postService.IncreaseDeletedReportedPostsCountAsync();
+
+            return Ok();
+        }
+
         [HttpGet("{id}")]
         public async Task<PostViewModel> Post(int id)
         {

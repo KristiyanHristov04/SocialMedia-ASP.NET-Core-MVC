@@ -206,6 +206,11 @@ function prepareForDelete(postId, event) {
             method: 'DELETE'
         })
             .then(() => {
+                return fetch(`${fullPath}/api/posts/statistics/reports/increase`, {
+                    method: 'POST'
+                })
+            })
+            .then(() => {
                 element.remove();
                 if (!isAlertShowed) {
                     toastr.options = {
@@ -244,7 +249,7 @@ function prepareForDelete(postId, event) {
                         window.location.href = `${fullPath}/Admin/Report/All`;
                     }, 10000);
 
-                    
+
 
                     isAlertShowed = true;
                 }

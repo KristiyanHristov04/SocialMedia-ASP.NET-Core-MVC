@@ -344,5 +344,15 @@ namespace SocialMedia.Services
             this.context.ReportPosts.Remove(postToDismiss);
             await this.context.SaveChangesAsync();
         }
+
+        public async Task IncreaseDeletedReportedPostsCountAsync()
+        {
+            var statistic = await this.context.Statistics
+                .FirstAsync();
+
+            statistic.ReportedPostsDeletedCount++;
+
+            await this.context.SaveChangesAsync();
+        }
     }
 }
