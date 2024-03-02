@@ -1,15 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SocialMedia.Areas.Admin.Services.Interfaces;
+using SocialMedia.Areas.Admin.ViewModels.Report;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
-using SocialMedia.Services.Interfaces;
-using SocialMedia.ViewModels.AdminArea.Report;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SocialMedia.Services
+namespace SocialMedia.Areas.Admin.Services
 {
     public class ReportService : IReportService
     {

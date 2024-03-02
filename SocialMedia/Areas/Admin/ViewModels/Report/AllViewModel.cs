@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SocialMedia.ViewModels.AdminArea.Report
+﻿namespace SocialMedia.Areas.Admin.ViewModels.Report
 {
     public class AllViewModel
     {

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SocialMedia.Services;
-using SocialMedia.Services.Interfaces;
-using SocialMedia.ViewModels.AdminArea.Report;
+using SocialMedia.Areas.Admin.Services.Interfaces;
+using SocialMedia.Areas.Admin.ViewModels.Report;
 
 namespace SocialMedia.Areas.Admin.Controllers
 {

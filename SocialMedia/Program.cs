@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using SocialMedia.Areas.Admin.Services;
+using SocialMedia.Areas.Admin.Services.Interfaces;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
 using SocialMedia.Services;

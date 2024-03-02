@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SocialMedia.Areas.Admin.ViewModels.Post;
 using SocialMedia.Data;
-using SocialMedia.ViewModels.AdminArea.Post;
 
 namespace SocialMedia.Areas.Admin.Controllers
 {
