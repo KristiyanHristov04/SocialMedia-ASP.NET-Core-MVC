@@ -1,0 +1,20 @@
+﻿.box-container {
+    font-size: 20px;
+    background-color: #8ba763;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.box-container span {
+    font-style: italic;
+    font-size: 18px;
+}
+
+.box-container i {
+    font-size: 24px;
+}
+
+.box-container p {
+    margin: 0;
+}

@@ -5,9 +5,29 @@
 }
 
 <h2 class="display-4 text-white text-center">Welcome to the dashboard, Admin!</h2>
-<div class="text-white d-flex gap-3 justify-content-center">
-    <p>Total Users: @Model.AllTimeUsersCount</p>
-    <p>Total Deleted Reports: @Model.ReportedPostsDeletedCount</p>
-    <p>Total Admins: @Model.TotalAdminsCount</p>
-    <p>Registered Users Last 7 Days: @Model.RegisteredUsersLast7DaysCount</p>
+<div class="row text-white w-75 mx-auto gap-3 mt-5">
+    <div class="offset-xl-2 col-xl-4 box-container">
+        <i class="fa-solid fa-users"></i>
+        <p>Users: @Model.AllTimeUsersCount</p>
+        <span>*All users that have used the application</span>
+    </div>
+    <div class="col-xl-4 box-container">
+        <i class="fa-solid fa-user-gear"></i>
+        <p>Admins: @Model.TotalAdminsCount</p>
+        <span>*All superadmins/admins in the application.</span>
+    </div>
+    <div class="offset-xl-2 col-xl-4 box-container">
+        <i class="fa-solid fa-ban"></i>
+        <p>Removed Posts: @Model.ReportedPostsDeletedCount</p>
+        <span>*Deleted posts reported for inappropriate content.</span>
+    </div>
+    <div class="col-xl-4 box-container">
+        <i class="fa-solid fa-chart-simple"></i>
+        <p>New Users: @Model.RegisteredUsersLast7DaysCount</p>
+        <span>*New users registered in the last seven days.</span>
+    </div>
 </div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+}
