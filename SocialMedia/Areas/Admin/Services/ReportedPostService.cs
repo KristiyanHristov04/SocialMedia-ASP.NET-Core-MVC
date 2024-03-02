@@ -2,6 +2,7 @@
 using SocialMedia.Areas.Admin.Services.Interfaces;
 using SocialMedia.Areas.Admin.ViewModels.Post;
 using SocialMedia.Data;
+using SocialMedia.Data.Models;
 
 namespace SocialMedia.Areas.Admin.Services
 {

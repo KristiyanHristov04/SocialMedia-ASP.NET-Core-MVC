@@ -20,5 +20,6 @@ namespace SocialMedia.Services.Interfaces
         Task<List<PostViewModel>> GetPostsByProfileAsync(int counter, string username);
         Task ReportPostAsync(int id);
         Task<PostViewModel> GetReportPostAsync(int id);
+        Task DismissReportedPostAsync(int postId);
     }
 }

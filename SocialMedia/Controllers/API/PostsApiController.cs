@@ -97,6 +97,14 @@ namespace SocialMedia.Controllers.API
             return Ok();
         }
 
+        [HttpPost("report/dismiss/{id}")]
+        public async Task<IActionResult> ReportDismiss(int id)
+        {
+            await this.postService.DismissReportedPostAsync(id);
+
+            return Ok();
+        }
+
         [HttpGet("{id}")]
         public async Task<PostViewModel> Post(int id)
         {

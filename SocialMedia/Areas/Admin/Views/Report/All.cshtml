@@ -42,7 +42,7 @@
 
 </form>
 
-<table class="table table-dark table-striped align-middle">
+<table class="table table-dark table-striped align-middle text-center">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -67,6 +67,9 @@
                        asp-action="Preview"
                        asp-route-id="@report.PostId">
                         View
+                    </a>
+                    <a class="btn-dismiss btn btn-warning" id="@report.PostId">
+                        Dismiss
                     </a>
                 </td>
             </tr>
@@ -102,3 +105,7 @@
         </a>
     }
 </div>
+
+@section Scripts {
+    <script src="~/js/dismiss-button.js"></script> 
+}

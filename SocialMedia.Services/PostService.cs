@@ -334,5 +334,15 @@ namespace SocialMedia.Services
 
             return post;
         }
+
+        public async Task DismissReportedPostAsync(int postId)
+        {
+            ReportPost postToDismiss = await this.context.ReportPosts
+                .Where(p => p.PostId == postId)
+                .FirstAsync();
+
+            this.context.ReportPosts.Remove(postToDismiss);
+            await this.context.SaveChangesAsync();
+        }
     }
 }
