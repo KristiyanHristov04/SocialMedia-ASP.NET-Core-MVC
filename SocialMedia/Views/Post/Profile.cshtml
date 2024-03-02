@@ -4,6 +4,25 @@
 }
 
 <span class="d-none" id="current-username">@username</span>
+
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reportModalLabel">Report this post?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Report only if you think the following post contains inappropriate content.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="report-button">Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="text-center">
     <h1 class="display-4 text-white">Posts By @username</h1>
 </div>

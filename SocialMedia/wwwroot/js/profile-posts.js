@@ -145,6 +145,18 @@ function createProfile(id, path, text, userId, date, firstName, lastName, userna
     let divEditDeleteContainer = document.createElement('div');
     divEditDeleteContainer.classList.add('edit-delete-container');
 
+    let reportButton = document.createElement('a');
+    reportButton.classList.add('report-button', 'ms-2');
+    reportButton.setAttribute('data-bs-toggle', 'modal');
+    reportButton.setAttribute('data-bs-target', '#reportModal');
+    reportButton.innerHTML += '<i class="fa-solid fa-flag"></i>';
+
+    reportButton.addEventListener('click', () => {
+        prepareForReport(id);
+    });
+
+    divEditDeleteContainer.appendChild(reportButton);
+
     let spanUsername = document.createElement('span');
     spanUsername.textContent = '@' + username;
 
@@ -253,3 +265,25 @@ function noMorePostsMessage() {
     row.appendChild(noMorePostsParagraph);
 }
 
+function prepareForReport(postId) {
+    const reportButton = document.getElementById('report-button');
+    let isAlertShowed = false;
+
+    reportButton.addEventListener('click', reportButtonClickHandler);
+    function reportButtonClickHandler(e) {
+        fetch(`${fullPath}/api/posts/report/${postId}`, {
+            method: 'POST'
+        })
+            .then(() => {
+                if (!isAlertShowed) {
+                    toastr.options = {
+                        positionClass: "toast-bottom-right"
+                    };
+                    toastr.success('Post reported successfully!');
+                    isAlertShowed = true;
+                }
+                reportButton.removeEventListener('click', reportButtonClickHandler);
+            })
+            .catch(err => console.error(err))
+    }
+}

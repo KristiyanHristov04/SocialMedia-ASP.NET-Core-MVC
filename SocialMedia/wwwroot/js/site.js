@@ -170,8 +170,8 @@ function createProfile(id, path, text, userId, date, firstName, lastName, userna
         reportButton.setAttribute('data-bs-target', '#reportModal');
         reportButton.innerHTML += '<i class="fa-solid fa-flag"></i>';
 
-        reportButton.addEventListener('click', (e) => {
-            prepareForReport(id, e);
+        reportButton.addEventListener('click', () => {
+            prepareForReport(id);
         });
 
         divEditDeleteContainer.appendChild(reportButton);
