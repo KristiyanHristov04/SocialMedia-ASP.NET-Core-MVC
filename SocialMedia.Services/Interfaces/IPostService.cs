@@ -5,10 +5,10 @@ namespace SocialMedia.Services.Interfaces
 {
     public interface IPostService
     {
-        Task AddPostAsync(PostFormModel model, string userId);
+        Task AddPostAsync(PostAddFormModel model, string userId);
         Task DeletePostAsync(int id);
-        Task EditPostAsync(int id, PostFormModel model);
-        Task<PostFormModel> GetPostByIdAsync(int id);
+        Task EditPostAsync(int id, PostEditFormModel model);
+        Task<PostEditFormModel> GetPostByIdAsync(int id);
         Task<bool> ValidatePostUserAsync(string userId, int postId);
         Task<bool> ValidateIfPostExistsAsync(int postId);
         Task<List<PostViewModel>> GetPostsAsync(int counter);

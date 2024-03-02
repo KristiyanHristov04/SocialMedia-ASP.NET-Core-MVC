@@ -19,7 +19,7 @@ namespace SocialMedia.Services
             this.webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task AddPostAsync(PostFormModel model, string userId)
+        public async Task AddPostAsync(PostAddFormModel model, string userId)
         {
             string generatedGuid = Guid.NewGuid().ToString();
             string filesFolderPath = "files/" + generatedGuid + "_" + model.File.FileName;
@@ -82,7 +82,7 @@ namespace SocialMedia.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task EditPostAsync(int id, PostFormModel model)
+        public async Task EditPostAsync(int id, PostEditFormModel model)
         {
             Post post = await this.context.Posts.FindAsync(id);
 
@@ -117,11 +117,11 @@ namespace SocialMedia.Services
                 .ToListAsync();
         }
 
-        public async Task<PostFormModel> GetPostByIdAsync(int id)
+        public async Task<PostEditFormModel> GetPostByIdAsync(int id)
         {
             Post post = await this.context.Posts.FindAsync(id);
 
-            return new PostFormModel()
+            return new PostEditFormModel()
             {
                 Text = post!.Text
             };

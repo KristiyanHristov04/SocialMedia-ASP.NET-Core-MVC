@@ -18,12 +18,12 @@ namespace SocialMedia.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            PostFormModel model = new PostFormModel();
+            PostAddFormModel model = new PostAddFormModel();
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(PostFormModel model)
+        public async Task<IActionResult> Add(PostAddFormModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -53,13 +53,13 @@ namespace SocialMedia.Controllers
                 return Unauthorized();
             }
 
-            PostFormModel post = await this.postService.GetPostByIdAsync(id);
+            PostEditFormModel post = await this.postService.GetPostByIdAsync(id);
 
             return View(post);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, PostFormModel model)
+        public async Task<IActionResult> Edit(int id, PostEditFormModel model)
         {
             if (!await this.postService.ValidateIfPostExistsAsync(id))
             {

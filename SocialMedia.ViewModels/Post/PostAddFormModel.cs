@@ -5,7 +5,7 @@ using static SocialMedia.Common.DataConstants.Post;
 
 namespace SocialMedia.ViewModels.Post
 {
-    public class PostFormModel
+    public class PostAddFormModel
     {
         [Required]
         [MaxLength(TextMaxLength)]
