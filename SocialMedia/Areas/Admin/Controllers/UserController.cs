@@ -39,6 +39,12 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Promote(string id)
         {
+            ApplicationUser? user = await this.userManager.FindByIdAsync(id);
+            if (await this.userManager.IsInRoleAsync(user!, "Administrator"))
+            {
+                return Forbid();
+            }
+
             UserViewModel userToPromote
                 = await this.userService.GetUserAsync(id);
 
@@ -79,6 +85,12 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Demote(string id)
         {
+            ApplicationUser? user = await this.userManager.FindByIdAsync(id);
+            if (await this.userManager.IsInRoleAsync(user!, "User"))
+            {
+                return Forbid();
+            }
+
             UserViewModel userToDemote
                 = await this.userService.GetUserAsync(id);
 
@@ -88,6 +100,11 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Demote(string id, UserViewModel model)
         {
+            if (!this.User.IsInRole("SuperAdministrator"))
+            {
+                return Forbid();
+            }
+
             ApplicationUser? user = await this.userManager.FindByIdAsync(id);
 
             if (await this.userManager.IsInRoleAsync(user!, "Administrator"))
