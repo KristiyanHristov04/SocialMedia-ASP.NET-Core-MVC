@@ -92,10 +92,16 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                         {
                             await _userManager.AddToRoleAsync(user, "Administrator");
                         }
+
+                        if (!await _userManager.IsInRoleAsync(user, "SuperAdministrator"))
+                        {
+                            await _userManager.AddToRoleAsync(user, "SuperAdministrator");
+                        }
                     }
                     //For some reason if on register role was not assigned
                     //assign "User" Role here. This logic might be modified later on!
                     else if (!await _userManager.IsInRoleAsync(user, "Administrator")
+                        && !await _userManager.IsInRoleAsync(user, "SuperAdministrator")
                         && !await _userManager.IsInRoleAsync(user, "User"))
                     {
                         await _userManager.AddToRoleAsync(user, "User");
