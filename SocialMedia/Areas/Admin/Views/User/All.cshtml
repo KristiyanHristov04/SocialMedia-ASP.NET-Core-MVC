@@ -42,50 +42,52 @@
     </div>
 </form>
 
-<table class="table table-dark table-striped align-middle text-center">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Full Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Joined Date</th>
-            <th scope="col">Roles</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model.Users)
-        {
+<div class="table-responsive-md">
+    <table class="table table-dark table-striped align-middle text-center">
+        <thead>
             <tr>
-                <th scope="row">@(rowCount++)</th>
-                <td>@user.UserFullName</td>
-                <td>@user.UserUsername</td>
-                <td>@user.UserEmail</td>
-                <td>@user.JoinedDate</td>
-                <td>
-                    @string.Join("/", user.UserRoles)
-                </td>
-                <td>
-                    <a class="btn btn-success"
-                       asp-area="Admin"
-                       asp-controller="User"
-                       asp-action="Demote"
-                       asp-route-id="@user.UserId">
-                        Demote
-                    </a>
-                    <a class="btn btn-success"
-                       asp-area="Admin"
-                       asp-controller="User"
-                       asp-action="Promote"
-                       asp-route-id="@user.UserId">
-                        Promote
-                    </a>
-                </td>
+                <th scope="col">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Joined Date</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Action</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <th scope="row">@(rowCount++)</th>
+                    <td>@user.UserFullName</td>
+                    <td>@user.UserUsername</td>
+                    <td>@user.UserEmail</td>
+                    <td>@user.JoinedDate</td>
+                    <td>
+                        @string.Join("/", user.UserRoles)
+                    </td>
+                    <td>
+                        <a class="btn btn-success"
+                           asp-area="Admin"
+                           asp-controller="User"
+                           asp-action="Demote"
+                           asp-route-id="@user.UserId">
+                            Demote
+                        </a>
+                        <a class="btn btn-success"
+                           asp-area="Admin"
+                           asp-controller="User"
+                           asp-action="Promote"
+                           asp-route-id="@user.UserId">
+                            Promote
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <div class="d-flex justify-content-between">
 

@@ -43,40 +43,43 @@
 
 </form>
 
-<table class="table table-dark table-striped align-middle text-center">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Full Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">Reports</th>
-            <th scope="col">Post</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var report in @Model.Reports)
-        {
+<div class="table-responsive-md">
+    <table class="table table-dark table-striped align-middle text-center">
+        <thead>
             <tr>
-                <th scope="row">@(rowCount++)</th>
-                <td>@report.UserFullName</td>
-                <td>@report.UserUsername</td>
-                <td>@report.TotalReports</td>
-                <td>
-                    <a class="btn btn-success"
-                       asp-area="Admin"
-                       asp-controller="ReportedPost"
-                       asp-action="Preview"
-                       asp-route-id="@report.PostId">
-                        View
-                    </a>
-                    <a class="btn-dismiss btn" id="@report.PostId">
-                        Dismiss
-                    </a>
-                </td>
+                <th scope="col">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Reports</th>
+                <th scope="col">Post</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var report in @Model.Reports)
+            {
+                <tr>
+                    <th scope="row">@(rowCount++)</th>
+                    <td>@report.UserFullName</td>
+                    <td>@report.UserUsername</td>
+                    <td>@report.TotalReports</td>
+                    <td>
+                        <a class="btn btn-success"
+                           asp-area="Admin"
+                           asp-controller="ReportedPost"
+                           asp-action="Preview"
+                           asp-route-id="@report.PostId">
+                            View
+                        </a>
+                        <a class="btn-dismiss btn" id="@report.PostId">
+                            Dismiss
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 
 <div class="d-flex justify-content-between">
 
@@ -108,7 +111,7 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/dismiss-button.js"></script> 
+    <script src="~/js/dismiss-button.js"></script>
 }
 
 @section Styles {
