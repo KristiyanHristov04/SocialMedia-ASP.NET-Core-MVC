@@ -1,0 +1,10 @@
+﻿@using SocialMedia.Areas.Admin.ViewModels.User
+@model UserViewModel
+
+<div class="text-white">
+    <p>Full Name: @Model.UserFullName</p>
+    <p>Username: @Model.UserUsername</p>
+    <p>Email: @Model.UserEmail</p>
+    <p>JoinedDate: @Model.JoinedDate</p>
+    <p>Roles: @string.Join("/", Model.UserRoles)</p>
+</div>

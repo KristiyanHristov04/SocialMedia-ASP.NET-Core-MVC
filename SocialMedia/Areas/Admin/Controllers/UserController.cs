@@ -29,5 +29,14 @@ namespace SocialMedia.Areas.Admin.Controllers
 
             return View(allModel);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Promote(string id)
+        {
+            UserViewModel userToPromote
+                = await this.userService.GetUserAsync(id);
+
+            return View(userToPromote);
+        }
     }
 }

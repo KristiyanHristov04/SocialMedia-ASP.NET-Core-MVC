@@ -6,5 +6,6 @@ namespace SocialMedia.Areas.Admin.Services.Interfaces
     {
         Task<AllViewModel> GetUsersAsync(string filter, int currentPage);
         Task<List<string>> GetRolesByUserByIdAsync(string userId);
+        Task<UserViewModel> GetUserAsync(string userId);
     }
 }

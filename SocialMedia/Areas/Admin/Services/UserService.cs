@@ -29,6 +29,24 @@ namespace SocialMedia.Areas.Admin.Services
             return roles!;
         }
 
+        public async Task<UserViewModel> GetUserAsync(string userId)
+        { 
+            UserViewModel user = await this.context.Users.Where(u => u.Id == userId)
+                .Select(u => new UserViewModel()
+                {
+                    UserId = u.Id,
+                    UserUsername = u.UserName!,
+                    UserEmail = u.Email!,
+                    UserFullName = u.FirstName + " " + u.LastName,
+                    JoinedDate = u.RegistrationDate.ToString("dd.MM.yyyy")
+                })
+                .FirstAsync();
+
+            user.UserRoles = await GetRolesByUserByIdAsync(userId);
+
+            return user;
+        }
+
         public async Task<AllViewModel> GetUsersAsync(string filter, int currentPage)
         {
             IQueryable<ApplicationUser> usersQuery = this.context.Users.AsQueryable();
