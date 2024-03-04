@@ -54,6 +54,7 @@ namespace SocialMedia.Areas.Admin.Services
                     UserUsername = u.UserName!,
                     UserEmail = u.Email!,
                     UserFullName = u.FirstName + " " + u.LastName,
+                    JoinedDate = u.RegistrationDate.ToString("dd.MM.yyyy")
                 })
                 .ToListAsync();
 
