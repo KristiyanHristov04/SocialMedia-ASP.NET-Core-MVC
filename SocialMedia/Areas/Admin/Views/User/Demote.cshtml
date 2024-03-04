@@ -1,0 +1,21 @@
+﻿@using SocialMedia.Areas.Admin.ViewModels.User
+@model UserViewModel
+
+@{
+    ViewData["Title"] = "Demote To User";
+}
+
+<h2 class="display-4 text-white text-center">Demote to User</h2>
+<div class="text-white p-2" style="background-color: #a0715f; border-radius: 5px;">
+    <p>Full Name: @Model.UserFullName</p>
+    <p>Username: @Model.UserUsername</p>
+    <p>Email: @Model.UserEmail</p>
+    <p>JoinedDate: @Model.JoinedDate</p>
+    <p>Role: @(Model.UserRole)</p>
+
+    <form asp-area="Admin" asp-controller="User" asp-action="Demote" asp-route-id="@Model.UserId" method="post">
+        <input hidden asp-for="@Model.UserEmail" />
+        <input value="Demote" type="submit" />
+    </form>
+
+</div>

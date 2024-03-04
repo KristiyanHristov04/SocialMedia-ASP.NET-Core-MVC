@@ -71,7 +71,33 @@ namespace SocialMedia.Areas.Admin.Controllers
 
             await this.userManager.AddToRoleAsync(user!, "Administrator");
 
-            TempData["Promoted"] = $"You promoted {user!.UserName} to an admin!";
+            TempData["Promoted"] = $"You promoted @{user!.UserName} to an admin!";
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Demote(string id)
+        {
+            UserViewModel userToDemote
+                = await this.userService.GetUserAsync(id);
+
+            return View(userToDemote);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Demote(string id, UserViewModel model)
+        {
+            ApplicationUser? user = await this.userManager.FindByIdAsync(id);
+
+            if (await this.userManager.IsInRoleAsync(user!, "Administrator"))
+            {
+                await this.userManager.RemoveFromRoleAsync(user!, "Administrator");
+            }
+
+            await this.userManager.AddToRoleAsync(user!, "User");
+
+            TempData["Promoted"] = $"You demoted @{user!.UserName} to an user!";
 
             return RedirectToAction(nameof(All));
         }
