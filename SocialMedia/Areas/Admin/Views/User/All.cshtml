@@ -79,7 +79,7 @@
                         @(user.UserRole ?? "User")
                     </td>
                     <td>
-                        @if (currentUserRole == "Administator")
+                        @if (currentUserRole == "Administrator")
                         {
                             if (string.IsNullOrEmpty(user.UserRole) || user.UserRole == "User")
                             {

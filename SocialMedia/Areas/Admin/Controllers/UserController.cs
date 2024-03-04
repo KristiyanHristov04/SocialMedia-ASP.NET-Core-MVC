@@ -57,6 +57,11 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Promote(string id, UserViewModel model)
         {
+            if (!await this.userService.CheckIfUserEligibleForPromoteAsync(id))
+            {
+                return Forbid();
+            }
+
             ApplicationUser? user = await this.userManager.FindByIdAsync(id);
 
             if (await this.userManager.IsInRoleAsync(user!, "User"))
