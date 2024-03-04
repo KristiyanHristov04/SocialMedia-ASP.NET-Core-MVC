@@ -5,7 +5,9 @@ namespace SocialMedia.Areas.Admin.Services.Interfaces
     public interface IUserService
     {
         Task<AllViewModel> GetUsersAsync(string filter, int currentPage);
-        Task<List<string>> GetRolesByUserByIdAsync(string userId);
+        Task<string?> GetRoleByUserId(string userId);
         Task<UserViewModel> GetUserAsync(string userId);
+        Task<bool> CheckIfUserEligibleForPromoteAsync(string id);
+
     }
 }

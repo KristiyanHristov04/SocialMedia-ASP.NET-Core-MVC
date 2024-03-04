@@ -88,11 +88,6 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                 {
                     if (user.Email == "admin@socialmedia.com")
                     {
-                        if (!await _userManager.IsInRoleAsync(user, "Administrator"))
-                        {
-                            await _userManager.AddToRoleAsync(user, "Administrator");
-                        }
-
                         if (!await _userManager.IsInRoleAsync(user, "SuperAdministrator"))
                         {
                             await _userManager.AddToRoleAsync(user, "SuperAdministrator");
@@ -110,7 +105,8 @@ namespace SocialMedia.Areas.Identity.Pages.Account
                     var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
-                        if (await this._userManager.IsInRoleAsync(user, "Administrator"))
+                        if (await this._userManager.IsInRoleAsync(user, "Administrator")
+                            || await this._userManager.IsInRoleAsync(user, "SuperAdministrator"))
                         {
                             _logger.LogInformation("Admin logged in.");
                             return RedirectToAction("Dashboard", "Home", new { area = "Admin" });

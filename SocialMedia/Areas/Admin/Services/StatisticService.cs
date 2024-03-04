@@ -20,8 +20,10 @@ namespace SocialMedia.Areas.Admin.Services
 
         public async Task<StatisticsViewModel> GetStatisticsAsync()
         {
-            var role = await this.roleManager.FindByNameAsync("Administrator");
-            int totalAdmins = this.context.UserRoles.Where(ur => ur.RoleId == role!.Id).Count();
+            var adminRole = await this.roleManager.FindByNameAsync("Administrator");
+            var superAdminRole = await this.roleManager.FindByNameAsync("SuperAdministrator");
+            int totalAdmins = this.context.UserRoles.Where(ur => ur.RoleId == adminRole!.Id).Count();
+            totalAdmins += this.context.UserRoles.Where(ur => ur.RoleId == superAdminRole!.Id).Count();
 
             int registeredUserslast7Days = await this.context.Users
                 .Where(u => u.RegistrationDate.AddDays(7) >= DateTime.Now)

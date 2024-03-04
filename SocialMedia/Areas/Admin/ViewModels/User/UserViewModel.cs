@@ -7,6 +7,6 @@
         public string UserEmail { get; set; } = null!;
         public string UserFullName { get; set; } = null!;
         public string JoinedDate { get; set; } = null!;
-        public List<string> UserRoles { get; set; } = null!;
+        public string? UserRole { get; set; }
     }
 }

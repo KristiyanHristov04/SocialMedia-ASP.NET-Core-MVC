@@ -15,7 +15,7 @@
     <header>
         <nav class="fixed-top navbar navbar-expand-xxl navbar-dark" style="background-color: #141414;">
             <div class="container-fluid">
-                @if (!this.User.IsInRole("Administrator"))
+                @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
                 {
                     <a class="navbar-brand" asp-controller="Home" asp-action="Index">SocialMedia</a>
                 }
@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        @if (this.User.IsInRole("Administrator") == false)
+                        @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
                         {
                             <li class="nav-item my-xxl-0" style="margin-top: 10px;">
                                 <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -38,7 +38,7 @@
                             </li>
                         }
                         
-                        @if (this.User.IsInRole("Administrator") == false && this.User.Identity.IsAuthenticated)
+                        @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator") && this.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Post" asp-action="Add">Add Post</a>
@@ -50,7 +50,7 @@
                                 <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Post" asp-action="Liked">Liked Posts</a>
                             </li>
                         }
-                        @if (this.User.IsInRole("Administrator"))
+                        @if (this.User.IsInRole("Administrator") || this.User.IsInRole("SuperAdministrator"))
                         {
                             <li class="nav-item my-xxl-0" style="margin-top: 10px;">
                                 <a class="link-item nav-link text-dark p-2" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
@@ -63,14 +63,14 @@
                             </li>
                         }
 
-                        @if (this.User.IsInRole("Administrator") == false)
+                        @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
                         {
                             <li class="nav-item">
                                 <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
                             </li>
                         }
                     </ul>
-                    @if (!this.User.IsInRole("Administrator"))
+                    @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
                     {
                         <form asp-controller="Post" asp-action="Profiles" method="get" class="d-flex mx-xxl-4 my-3 my-xxl-0 ps-2">
                             <input name="search" class="form-control me-2" type="search" placeholder="Search for a profile" aria-label="Search">

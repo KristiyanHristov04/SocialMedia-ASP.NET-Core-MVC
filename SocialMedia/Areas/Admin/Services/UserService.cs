@@ -14,19 +14,34 @@ namespace SocialMedia.Areas.Admin.Services
             this.context = context;
         }
 
-        public async Task<List<string>> GetRolesByUserByIdAsync(string id)
+        public async Task<bool> CheckIfUserEligibleForPromoteAsync(string id)
         {
-            List<string> rolesIds = await this.context.UserRoles
+            if (await this.context.Posts.AnyAsync(p => p.UserId == id))
+            {
+                return false;
+            }
+
+            if (await this.context.LikedPosts.AnyAsync(lp => lp.UserId == id))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public async Task<string?> GetRoleByUserId(string id)
+        {
+            string? roleId = await this.context.UserRoles
                 .Where(ur => ur.UserId == id)
                 .Select(ur => ur.RoleId)
-                .ToListAsync();
+                .FirstOrDefaultAsync();
 
-            List<string?> roles = await this.context.Roles
-                .Where(r => rolesIds.Contains(r.Id))
+            string? role = await this.context.Roles
+                .Where(r => r.Id == roleId)
                 .Select(r => r.Name)
-                .ToListAsync();
+                .FirstOrDefaultAsync();
 
-            return roles!;
+            return role;
         }
 
         public async Task<UserViewModel> GetUserAsync(string userId)
@@ -42,7 +57,7 @@ namespace SocialMedia.Areas.Admin.Services
                 })
                 .FirstAsync();
 
-            user.UserRoles = await GetRolesByUserByIdAsync(userId);
+            user.UserRole = await GetRoleByUserId(userId);
 
             return user;
         }
@@ -78,7 +93,7 @@ namespace SocialMedia.Areas.Admin.Services
 
             foreach (var user in users)
             {
-                user.UserRoles = await GetRolesByUserByIdAsync(user.UserId);
+                user.UserRole = await GetRoleByUserId(user.UserId);
             }
 
             int totalUsers = usersQuery.Count();

@@ -62,7 +62,7 @@
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Joined Date</th>
-                <th scope="col">Roles</th>
+                <th scope="col">Role</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -76,12 +76,12 @@
                     <td>@user.UserEmail</td>
                     <td>@user.JoinedDate</td>
                     <td>
-                        @string.Join("/", user.UserRoles)
+                        @(user.UserRole ?? "User")
                     </td>
                     <td>
-                        @if (currentUserRole == "Administator" || currentUserRole == "SuperAdministrator")
+                        @if (currentUserRole == "Administator")
                         {
-                            if (user.UserRoles.Count == 0 || user.UserRoles[0] == "User")
+                            if (string.IsNullOrEmpty(user.UserRole) || user.UserRole == "User")
                             {
                                 <a class="btn btn-success"
                                    asp-area="Admin"
@@ -94,7 +94,18 @@
                         }
                         else if (currentUserRole == "SuperAdministrator")
                         {
-                            if (user.UserRoles.Count == 1)
+                            if (string.IsNullOrEmpty(user.UserRole) || user.UserRole == "User")
+                            {
+                                <a class="btn btn-success"
+                                   asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="Promote"
+                                   asp-route-id="@user.UserId">
+                                    Promote
+                                </a>
+                            }
+
+                            if (user.UserRole == "Administrator")
                             {
                                 <a class="btn btn-success"
                                    asp-area="Admin"
