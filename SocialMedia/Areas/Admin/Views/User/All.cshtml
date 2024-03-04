@@ -23,6 +23,17 @@
 
     int totalPages
         = (int)Math.Ceiling(Model.TotalUsers * 1.0m / AllViewModel.UsersPerPage);
+
+    string currentUserRole = string.Empty;
+
+    if (this.User.IsInRole("SuperAdministrator"))
+    {
+        currentUserRole = "SuperAdministrator";
+    }
+    else
+    {
+        currentUserRole = "Administrator";
+    }
 }
 
 <form method="get">
@@ -68,20 +79,32 @@
                         @string.Join("/", user.UserRoles)
                     </td>
                     <td>
-                        <a class="btn btn-success"
-                           asp-area="Admin"
-                           asp-controller="User"
-                           asp-action="Demote"
-                           asp-route-id="@user.UserId">
-                            Demote
-                        </a>
-                        <a class="btn btn-success"
-                           asp-area="Admin"
-                           asp-controller="User"
-                           asp-action="Promote"
-                           asp-route-id="@user.UserId">
-                            Promote
-                        </a>
+                        @if (currentUserRole == "Administator" || currentUserRole == "SuperAdministrator")
+                        {
+                            if (user.UserRoles.Count == 0 || user.UserRoles[0] == "User")
+                            {
+                                <a class="btn btn-success"
+                                   asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="Promote"
+                                   asp-route-id="@user.UserId">
+                                    Promote
+                                </a>
+                            }
+                        }
+                        else if (currentUserRole == "SuperAdministrator")
+                        {
+                            if (user.UserRoles.Count == 1)
+                            {
+                                <a class="btn btn-success"
+                                   asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="Demote"
+                                   asp-route-id="@user.UserId">
+                                    Demote
+                                </a>
+                            }
+                        }
                     </td>
                 </tr>
             }
