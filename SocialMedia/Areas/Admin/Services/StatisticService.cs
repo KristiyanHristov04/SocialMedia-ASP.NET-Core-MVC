@@ -26,7 +26,8 @@ namespace SocialMedia.Areas.Admin.Services
             totalAdmins += this.context.UserRoles.Where(ur => ur.RoleId == superAdminRole!.Id).Count();
 
             int registeredUserslast7Days = await this.context.Users
-                .Where(u => u.RegistrationDate.AddDays(7) >= DateTime.Now)
+                .Where(u => u.RegistrationDate.AddDays(7) >= DateTime.Now
+                && u.Email != "admin@socialmedia.com")
                 .CountAsync();
 
             return new StatisticsViewModel()
