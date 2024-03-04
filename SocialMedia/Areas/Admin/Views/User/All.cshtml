@@ -1,4 +1,4 @@
-﻿@using SocialMedia.Areas.Admin.ViewModels.Report
+﻿@using SocialMedia.Areas.Admin.ViewModels.User
 @model AllViewModel
 
 @{
@@ -11,7 +11,7 @@
     }
     else
     {
-        rowCount = (Model.CurrentPage - 1) * AllViewModel.ReportsPerPage + 1;
+        rowCount = (Model.CurrentPage - 1) * AllViewModel.UsersPerPage + 1;
     }
 
 
@@ -22,7 +22,7 @@
     }
 
     int totalPages
-        = (int)Math.Ceiling(Model.TotalReports * 1.0m / AllViewModel.ReportsPerPage);
+        = (int)Math.Ceiling(Model.TotalUsers * 1.0m / AllViewModel.UsersPerPage);
 }
 
 <form method="get">
@@ -31,16 +31,15 @@
             <label asp-for="Filter" class="text-white">Filter:</label>
             <select class="form-select" asp-for="Filter">
                 <option disabled selected> -- select an option -- </option>
-                <option value="ascending">Sort By Reports Count Ascending</option>
-                <option value="descending">Sort By Reports Count Descending</option>
+                <option value="newest">Sort By Newest Users</option>
+                <option value="oldest">Sort By Oldest Users</option>
             </select>
         </div>
         <div class="align-self-end d-flex gap-1">
             <button class="btn btn-outline-primary" type="submit">Apply</button>
-            <a class="btn btn-outline-info" asp-controller="Report" asp-action="All">Clear</a>
+            <a class="btn btn-outline-info" asp-controller="User" asp-action="All">Clear</a>
         </div>
     </div>
-
 </form>
 
 <table class="table table-dark table-striped align-middle text-center">
@@ -49,28 +48,36 @@
             <th scope="col">#</th>
             <th scope="col">Full Name</th>
             <th scope="col">Username</th>
-            <th scope="col">Reports</th>
-            <th scope="col">Post</th>
+            <th scope="col">Email</th>
+            <th scope="col">Roles</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var report in @Model.Reports)
+        @foreach (var user in Model.Users)
         {
             <tr>
                 <th scope="row">@(rowCount++)</th>
-                <td>@report.UserFullName</td>
-                <td>@report.UserUsername</td>
-                <td>@report.TotalReports</td>
+                <td>@user.UserFullName</td>
+                <td>@user.UserUsername</td>
+                <td>@user.UserEmail</td>
+                <td>
+                    @string.Join("/", user.UserRoles)
+                </td>
                 <td>
                     <a class="btn btn-success"
                        asp-area="Admin"
-                       asp-controller="ReportedPost"
-                       asp-action="Preview"
-                       asp-route-id="@report.PostId">
-                        View
+                       asp-controller="User"
+                       asp-action="Demote"
+                       asp-route-id="@user.UserId">
+                        Demote
                     </a>
-                    <a class="btn-dismiss btn" id="@report.PostId">
-                        Dismiss
+                    <a class="btn btn-success"
+                       asp-area="Admin"
+                       asp-controller="User"
+                       asp-action="Promote"
+                       asp-route-id="@user.UserId">
+                        Promote
                     </a>
                 </td>
             </tr>
@@ -88,7 +95,7 @@
     }
     else
     {
-        <a asp-controller="Report" asp-action="All" asp-route-currentPage="@previousPage" asp-route-filter="@Model.Filter" class="btn btn-primary">
+        <a asp-controller="User" asp-action="All" asp-route-currentPage="@previousPage" asp-route-filter="@Model.Filter" class="btn btn-primary">
             Previous
         </a>
     }
@@ -101,16 +108,8 @@
     }
     else
     {
-        <a asp-controller="Report" asp-action="All" asp-route-currentPage="@(Model.CurrentPage + 1)" asp-route-filter="@Model.Filter" class="btn btn-primary">
+        <a asp-controller="User" asp-action="All" asp-route-currentPage="@(Model.CurrentPage + 1)" asp-route-filter="@Model.Filter" class="btn btn-primary">
             Next
         </a>
     }
 </div>
-
-@section Scripts {
-    <script src="~/js/dismiss-button.js"></script> 
-}
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/all.css" />
-}
