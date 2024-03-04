@@ -47,7 +47,7 @@ namespace SocialMedia.Controllers.API
 
             string currentUserId = this.User.GetUserId();
 
-            if (!this.User.IsInRole("Administrator") && !await postService.ValidatePostUserAsync(currentUserId, id))
+            if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator") && !await postService.ValidatePostUserAsync(currentUserId, id))
             {
                 return Unauthorized();
             }
