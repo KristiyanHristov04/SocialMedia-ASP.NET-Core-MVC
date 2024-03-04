@@ -25,12 +25,18 @@ namespace SocialMedia.Data.DataSeed
             adminRole.Name = "Administrator";
             adminRole.NormalizedName = "ADMINISTRATOR";
 
+            IdentityRole superAdminRole = new IdentityRole();
+            superAdminRole.Id = "2de99791-ebc7-452d-b2d1-c4ea8a548136";
+            superAdminRole.Name = "SuperAdministrator";
+            superAdminRole.NormalizedName = "SUPERADMINISTRATOR";
+
             IdentityRole userRole = new IdentityRole();
             userRole.Id = "23fd43c7-113f-4b97-8d21-6cd8661b96b1";
             userRole.Name = "User";
             userRole.NormalizedName = "USER";
 
             roles.Add(adminRole);
+            roles.Add(superAdminRole);
             roles.Add(userRole);
 
             return roles;

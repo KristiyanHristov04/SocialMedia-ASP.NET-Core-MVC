@@ -37,6 +37,7 @@ namespace SocialMedia.Data.DataSeed
             admin.FirstName = "Georgi";
             admin.LastName = "Ivanov";
             admin.CountryId = 26;
+            admin.RegistrationDate = DateTime.Now;
 
             return admin;
         }
