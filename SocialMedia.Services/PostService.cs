@@ -25,6 +25,9 @@ namespace SocialMedia.Services
             string filesFolderPath = "files/" + generatedGuid + "_" + model.File.FileName;
             string fullPath = Path.Combine(webHostEnvironment.WebRootPath, filesFolderPath);
 
+            string folderPath = Path.Combine(webHostEnvironment.WebRootPath, "files");
+            Directory.CreateDirectory(folderPath);
+
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
                 await model.File.CopyToAsync(stream);
