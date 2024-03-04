@@ -151,3 +151,16 @@
         </a>
     }
 </div>
+
+@section Scripts {
+    @if (TempData["Promoted"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('@TempData["Promoted"]');
+        </script>
+    }
+}

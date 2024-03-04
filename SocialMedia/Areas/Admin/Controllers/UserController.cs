@@ -71,6 +71,8 @@ namespace SocialMedia.Areas.Admin.Controllers
 
             await this.userManager.AddToRoleAsync(user!, "Administrator");
 
+            TempData["Promoted"] = $"You promoted {user!.UserName} to an admin!";
+
             return RedirectToAction(nameof(All));
         }
     }
