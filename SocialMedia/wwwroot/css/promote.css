@@ -31,7 +31,12 @@
     display: block;
 }
 
-message {
+#message {
     margin-top: 10px;
     text-align: center;
+}
+
+#message i {
+    color: yellow;
+    font-size: 18px;
 }
