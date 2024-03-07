@@ -47,8 +47,8 @@
             </select>
         </div>
         <div class="align-self-end d-flex gap-1">
-            <button class="btn btn-outline-primary" type="submit">Apply</button>
-            <a class="btn btn-outline-info" asp-controller="User" asp-action="All">Clear</a>
+            <button class="btn-apply btn" type="submit">Apply</button>
+            <a class="btn-clear btn" asp-controller="User" asp-action="All">Clear</a>
         </div>
     </div>
 </form>
@@ -96,7 +96,7 @@
                         {
                             if (string.IsNullOrEmpty(user.UserRole) || user.UserRole == "User")
                             {
-                                <a class="btn btn-success"
+                                <a class="btn-promote btn btn-success"
                                    asp-area="Admin"
                                    asp-controller="User"
                                    asp-action="Promote"
@@ -107,7 +107,7 @@
 
                             if (user.UserRole == "Administrator")
                             {
-                                <a class="btn btn-success"
+                                <a class="btn-demote btn"
                                    asp-area="Admin"
                                    asp-controller="User"
                                    asp-action="Demote"
@@ -163,4 +163,8 @@
             toastr.success('@TempData["Promoted"]');
         </script>
     }
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/user-all.css" />
 }

@@ -1,11 +1,13 @@
-﻿.btn-dismiss {
+﻿.btn-demote {
+    background-color: #893c2f;
+    border-color: #893c2f;
     color: white;
-    background-color: #6772c5;
 }
 
-    .btn-dismiss:hover {
+    .btn-demote:hover {
+        background-color: #713126;
+        border-color: #713126;
         color: white;
-        background-color: #5a64ad;
     }
 
 .btn-apply {
