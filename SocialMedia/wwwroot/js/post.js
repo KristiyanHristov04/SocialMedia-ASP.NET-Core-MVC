@@ -1,7 +1,7 @@
 ﻿const postId = document.getElementById('post-id').textContent;
 const row = document.getElementsByClassName('row')[0];
 const imageFormats = ['.gif', '.jpg', '.jpeg', '.png'];
-const videoFormats = ['.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.mp4'];
+const videoFormats = ['.mp4'];
 
 let protocol = window.location.protocol;
 let hostname = window.location.hostname;
