@@ -1,0 +1,46 @@
+﻿.demote-container {
+    border-radius: 5px;
+    background-color: #007080;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.detailed-information-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+    .detailed-information-container p {
+        margin: 0;
+        word-break: break-word;
+    }
+
+.current-email, .current-role, .joined-date {
+    text-align: center;
+    border: 3px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    flex-basis: 200px;
+}
+
+#demote-button {
+    margin: 0 auto;
+    margin-top: 10px;
+    display: block;
+    background-color: #8abf89;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+}
+
+    #demote-button:hover {
+        background-color: #9bd599;
+    }
+
+#message {
+    margin-top: 10px;
+    text-align: center;
+}
