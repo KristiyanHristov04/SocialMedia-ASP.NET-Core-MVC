@@ -29,7 +29,7 @@
         {
             <form asp-area="Admin" asp-controller="User" asp-action="Promote" asp-route-id="@Model.UserId" method="post">
                 <input hidden asp-for="@Model.UserEmail" />
-                <input id="promote-button" value="Promote" type="submit" class="btn" />
+                <input id="promote-button" value="Promote" type="submit" class="btn btn-success" />
             </form>
         }
         else
