@@ -238,8 +238,8 @@ namespace SocialMedia.Services
                             TotalPosts = u.Posts.Count,
                             CountryName = u.Country.Name
                         })
-                    .Skip(8 * (counter - 1 == -1 ? 0 : counter - 1))
-                    .Take(8)
+                    .Skip(10 * (counter - 1 == -1 ? 0 : counter - 1))
+                    .Take(10)
                     .ToListAsync();
             }
             else
