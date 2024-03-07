@@ -7,22 +7,39 @@
 }
 
 <h2 class="display-4 text-white text-center">Promote to Admin</h2>
-<div class="text-white p-2" style="background-color: #a0715f; border-radius: 5px;">
-    <p>Full Name: @Model.UserFullName</p>
-    <p>Username: @Model.UserUsername</p>
-    <p>Email: @Model.UserEmail</p>
-    <p>JoinedDate: @Model.JoinedDate</p>
-    <p>Role: @(Model.UserRole ?? "User")</p>
-
-    @if (isEligibleForPromote)
-    {
-        <form asp-area="Admin" asp-controller="User" asp-action="Promote" asp-route-id="@Model.UserId" method="post">
-            <input hidden asp-for="@Model.UserEmail" />
-            <input value="Promote" type="submit" />
-        </form>
-    }
-    else
-    {
-        <p style="color: darkred;">In order to make an user an admin, user must not have any posts neither liked posts!</p>
-    }
+<div class="promote-container">
+    <div class="text-white p-2">
+        <p class="text-center">Are you sure you want to promote @@@Model.UserUsername (@Model.UserFullName)?</p>
+        <div class="detailed-information-container">
+            <div class="current-email">
+                <span><i class="fa-solid fa-envelope"></i> Email:</span>
+                <p>@Model.UserEmail</p>
+            </div>
+            <div class="current-role">
+                <span><i class="fa-solid fa-calendar"></i> Date:</span>
+                <p>@Model.JoinedDate</p>
+            </div>
+            <div class="joined-date">
+                <span><i class="fa-solid fa-user"></i> Role:</span>
+                <p>@(Model.UserRole ?? "User")</p>
+            </div>
+        </div>
+        
+        @if (isEligibleForPromote)
+        {
+            <form asp-area="Admin" asp-controller="User" asp-action="Promote" asp-route-id="@Model.UserId" method="post">
+                <input hidden asp-for="@Model.UserEmail" />
+                <input id="promote-button" value="Promote" type="submit" class="btn" />
+            </form>
+        }
+        else
+        {
+            <p id="message">In order to make an user an admin, user must not have any posts neither liked posts!</p>
+        }
+    </div>
 </div>
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/promote.css" />
+}
