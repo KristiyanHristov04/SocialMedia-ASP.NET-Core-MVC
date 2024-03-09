@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SocialMedia.Areas.Admin.Services.Interfaces;
 using SocialMedia.Areas.Admin.ViewModels.Home;
 using SocialMedia.Data;
+using SocialMedia.Data.Models;
 
 namespace SocialMedia.Areas.Admin.Services
 {
@@ -30,12 +31,12 @@ namespace SocialMedia.Areas.Admin.Services
                 && u.Email != "admin@socialmedia.com")
                 .CountAsync();
 
+            var stats = await this.context.Statistics.FindAsync(1);
+
             return new StatisticsViewModel()
             {
-                ReportedPostsDeletedCount = await this.context.Statistics
-                .Select(s => s.ReportedPostsDeletedCount).FirstAsync(),
-                AllTimeUsersCount = await this.context.Statistics
-                .Select(s => s.AllTimeUsersCount).FirstAsync(),
+                ReportedPostsDeletedCount = stats!.ReportedPostsDeletedCount,
+                AllTimeUsersCount = stats.AllTimeUsersCount,
                 TotalAdminsCount = totalAdmins,
                 RegisteredUsersLast7DaysCount = registeredUserslast7Days
             };
