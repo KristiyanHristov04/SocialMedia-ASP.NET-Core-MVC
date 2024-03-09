@@ -16,25 +16,25 @@ namespace SocialMedia.Controllers.API
         }
 
         [HttpGet]
-        public async Task<List<PostViewModel>> Posts(int counter)
+        public async Task<ActionResult<List<PostViewModel>>> Posts(int counter)
         {
-            return await postService.GetPostsAsync(counter);
+            return Ok(await postService.GetPostsAsync(counter));
         }
 
         [Route("mine")]
         [HttpGet]
-        public async Task<List<PostViewModel>> MyPosts(int counter)
+        public async Task<ActionResult<List<PostViewModel>>> MyPosts(int counter)
         {
             string currentUserId = this.User.GetUserId();
-            return await postService.GetMyPostsAsync(counter, currentUserId);
+            return Ok(await postService.GetMyPostsAsync(counter, currentUserId));
         }
 
         [Route("liked")]
         [HttpGet]
-        public async Task<List<PostViewModel>> MyLikedPosts(int counter)
+        public async Task<ActionResult<List<PostViewModel>>> MyLikedPosts(int counter)
         {
             string currentUserId = this.User.GetUserId();
-            return await postService.GetMyLikedPostsAsync(counter, currentUserId);
+            return Ok(await postService.GetMyLikedPostsAsync(counter, currentUserId));
         }
 
         [HttpDelete("{id}")]
@@ -59,34 +59,36 @@ namespace SocialMedia.Controllers.API
 
         [HttpGet]
         [Route("isLiked/{id}")]
-        public async Task<bool> IsLiked(int id)
+        public async Task<ActionResult<bool>> IsLiked(int id)
         {
             string currentUserId = this.User.GetUserId();
 
-            return await this.postService.CheckIfPostByUserIsLikedAsync(id, currentUserId);
+            return Ok(await this.postService.CheckIfPostByUserIsLikedAsync(id, currentUserId));
         }
 
         [HttpPost]
         [Route("like/{id}")]
-        public async Task LikeDislikePost(int id)
+        public async Task<IActionResult> LikeDislikePost(int id)
         {
             string currentUserId = this.User.GetUserId();
 
             await this.postService.LikeDislikePostAsync(id, currentUserId);
+
+            return Ok();
         }
 
         [HttpGet]
         [Route("profiles")]
-        public async Task<List<ProfileViewModel>> Profiles(string? search, int counter)
+        public async Task<ActionResult<List<ProfileViewModel>>> Profiles(string? search, int counter)
         {
-            return await this.postService.GetProfilesAsync(search, counter);
+            return Ok(await this.postService.GetProfilesAsync(search, counter));
         }
 
         [Route("profile")]
         [HttpGet]
-        public async Task<List<PostViewModel>> Profile(int counter, string username)
+        public async Task<ActionResult<List<PostViewModel>>> Profile(int counter, string username)
         {
-            return await postService.GetPostsByProfileAsync(counter, username);
+            return Ok(await postService.GetPostsByProfileAsync(counter, username));
         }
 
         [HttpPost("report/{id}")]
@@ -114,9 +116,9 @@ namespace SocialMedia.Controllers.API
         }
 
         [HttpGet("{id}")]
-        public async Task<PostViewModel> Post(int id)
+        public async Task<ActionResult<PostViewModel>> Post(int id)
         {
-            return await this.postService.GetReportPostAsync(id);
+            return Ok(await this.postService.GetReportPostAsync(id));
         }
     }
 }
