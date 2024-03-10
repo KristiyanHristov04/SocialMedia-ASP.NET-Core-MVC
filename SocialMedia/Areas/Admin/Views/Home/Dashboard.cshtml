@@ -1,9 +1,10 @@
-﻿@using System.Security.Claims
-@model StatisticsViewModel
+﻿@model StatisticsViewModel
+@inject IAdminChatService adminChatService
 
 @{
     ViewData["Title"] = "Dashboard";
     string currentAdminUsername = this.User.FindFirst(ClaimTypes.Name)!.Value;
+    List<AdminMessageViewModel> messages = await adminChatService.LoadMessagesFromDatabaseAsync();
 }
 
 <h2 class="display-4 text-white text-center">Welcome to the dashboard, Admin!</h2>
@@ -43,7 +44,12 @@
     </div>
 
     <div class="second-column d-flex flex-column justify-content-between">
-        <ul id="messages-list"></ul>
+        <ul id="messages-list">
+            @foreach (var adminMessage in messages)
+            {
+                <li>@adminMessage.Username: @adminMessage.Message</li>
+            }
+        </ul>
         <div class="admin-input-container d-flex justify-content-between">
             <input type="text" class="w-100 me-1" id="message-input" placeholder="Message"/>
             <button id="send-button" class="btn">Send <i class="fa-solid fa-paper-plane"></i></button>

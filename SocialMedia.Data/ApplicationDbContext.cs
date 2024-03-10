@@ -20,6 +20,7 @@ namespace SocialMedia.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<ReportPost> ReportPosts { get; set; }
         public DbSet<Statistic> Statistics { get; set; }
+        public DbSet<AdminMessage> AdminMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

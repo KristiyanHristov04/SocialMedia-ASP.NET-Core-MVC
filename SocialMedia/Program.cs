@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using SocialMedia.Areas.Admin.Hubs;
 using SocialMedia.Areas.Admin.Services;
 using SocialMedia.Areas.Admin.Services.Interfaces;
-using SocialMedia.Common.Hubs;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
 using SocialMedia.Services;
@@ -45,6 +45,7 @@ namespace SocialMedia
             builder.Services.AddScoped<IReportService, ReportService>();
             builder.Services.AddScoped<IStatisticService, StatisticService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IAdminChatService, AdminChatService>();
 
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
