@@ -1,8 +1,10 @@
 ﻿@using SocialMedia.Areas.Admin.ViewModels.Report
+@using System.Security.Claims
 @model AllViewModel
 
 @{
     ViewData["Title"] = "Reports";
+    string currentAdminUsername = this.User.FindFirst(ClaimTypes.Name)!.Value;
     int rowCount = 0;
 
     if (Model.CurrentPage == 1)
@@ -110,10 +112,82 @@
     }
 </div>
 
-@section Scripts {
-    <script src="~/js/dismiss-button.js"></script>
-}
+<div class="chat-icon">
+    <i class="fa-solid fa-message"></i>
+</div>
+
+<div class="chat-container d-flex flex-column justify-content-between d-none">
+    <div class="first-column d-flex justify-content-between">
+        <p class="m-0">Admin Chat</p>
+        <div class="x-icon">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+
+    <div class="second-column d-flex flex-column justify-content-between">
+        <ul id="messages-list"></ul>
+        <div class="admin-input-container d-flex justify-content-between">
+            <input type="text" class="w-100 me-1" id="message-input" placeholder="Message" />
+            <button id="send-button" class="btn">Send <i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
 
 @section Styles {
     <link rel="stylesheet" href="~/css/report-all.css" />
+    <link rel="stylesheet" href="~/css/admin-chat.css" />
+}
+
+@section Scripts {
+    <script src="~/js/dismiss-button.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script>
+        let chatContainer = document.getElementsByClassName('chat-container')[0];
+        let chatIcon = document.getElementsByClassName('chat-icon')[0];
+        let xMarkButton = document.getElementsByClassName('fa-xmark')[0];
+
+        chatIcon.addEventListener('click', () => {
+            console.log('Clicking on Message');
+            chatContainer.classList.remove('d-none');
+        });
+
+        xMarkButton.addEventListener('click', () => {
+            console.log('Clicking on X');
+            chatContainer.classList.add('d-none');
+        });
+
+        let currentAdminUsername = '@@@currentAdminUsername';
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/adminChatHub").build();
+
+        //Disable the send button until connection is established.
+        document.getElementById("send-button").disabled = true;
+
+        connection.on("ReceiveMessage", function (user, message) {
+            var li = document.createElement("li");
+            document.getElementById("messages-list").appendChild(li);
+            // We can assign user-supplied strings to an element's textContent because it
+            // is not interpreted as markup. If you're assigning in any other way, you
+            // should be aware of possible script injection concerns.
+            li.textContent = `${user}: ${message}`;
+        });
+
+        connection.start().then(function () {
+            document.getElementById("send-button").disabled = false;
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        document.getElementById("send-button").addEventListener("click", function (event) {
+            /*var user = document.getElementById("user-input").value;*/
+            var message = document.getElementById("message-input").value;
+            if (message.length > 0) {
+                document.getElementById("message-input").value = '';
+                connection.invoke("SendMessage", currentAdminUsername, message).catch(function (err) {
+                    return console.error(err.toString());
+                });
+                event.preventDefault();
+            }
+        });
+    </script>
 }

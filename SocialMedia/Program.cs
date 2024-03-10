@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Areas.Admin.Services;
 using SocialMedia.Areas.Admin.Services.Interfaces;
+using SocialMedia.Common.Hubs;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
 using SocialMedia.Services;
@@ -32,6 +33,7 @@ namespace SocialMedia
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSignalR();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.AddTransient<ICustomEmailSender, CustomEmailSender>();
@@ -89,6 +91,7 @@ namespace SocialMedia
                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapRazorPages();
+            app.MapHub<AdminChatHub>("adminChatHub");
 
             app.Run();
         }
