@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Dashboard";
-    string currentAdminUsername = this.User.FindFirst(ClaimTypes.Name)!.Value;
+    string currentAdminUsername = this.User.GetUsername();
     List<AdminMessageViewModel> messages = await adminChatService.LoadMessagesFromDatabaseAsync();
 }
 
