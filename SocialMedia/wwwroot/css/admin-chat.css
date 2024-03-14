@@ -54,6 +54,15 @@
         word-break: break-word;
     }
 
+        #messages-list li span {
+            display: none;
+            font-style: italic;
+        }
+
+#messages-list li:hover span {
+    display: inline;
+}
+
 #send-button {
     width: 100px;
     border: none;

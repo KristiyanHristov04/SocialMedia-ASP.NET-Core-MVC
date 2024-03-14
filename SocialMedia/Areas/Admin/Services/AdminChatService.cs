@@ -21,7 +21,7 @@ namespace SocialMedia.Areas.Admin.Services
                 {
                     Username = am.Username,
                     Message = am.Message,
-                    SentDate = am.SentDate.ToString("dd.MM.yyyy"),
+                    SentDate = am.SentDate.ToString("dd.MM.yyyy HH:mm"),
                 })
             .ToListAsync();
         }
