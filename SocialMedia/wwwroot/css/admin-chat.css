@@ -45,7 +45,8 @@
     overflow-y: scroll;
     list-style: none;
     padding: 0;
-    margin-top: 16px;
+    margin-top: 4px;
+    margin-bottom: 6px;
     scroll-behavior: smooth;
 }
 
@@ -56,12 +57,12 @@
 #send-button {
     width: 100px;
     border: none;
-    background-color: burlywood;
+    background-color: #879bde;
     border-radius: 5px;
 }
 
     #send-button:hover {
-        background-color: #c9a87d;
+        background-color: #788ac5;
     }
 
 .admin-input-container {
@@ -80,7 +81,7 @@
     }
 
 #scroll-down {
-    background-color: gray;
+    background-color: darkgrey;
     border-radius: 50%;
     padding: 10px 15px 10px 15px;
     bottom: 60px;
