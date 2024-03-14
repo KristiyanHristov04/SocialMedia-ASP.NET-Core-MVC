@@ -1,8 +1,11 @@
 ﻿@using SocialMedia.Areas.Admin.ViewModels.User
 @model UserViewModel
+@inject IAdminChatService adminChatService
 
 @{
     ViewData["Title"] = "Demote To User";
+    string currentAdminUsername = this.User.GetUsername();
+    List<AdminMessageViewModel> messages = await adminChatService.LoadMessagesFromDatabaseAsync();
 }
 
 <h2 class="display-4 text-white text-center">Demote to User</h2>
@@ -31,6 +34,50 @@
     </div>
 </div>
 
+<partial name="_ChatPartial" model="@messages" />
+
 @section Styles {
     <link rel="stylesheet" href="~/css/demote.css" />
+    <link rel="stylesheet" href="~/css/admin-chat.css"/>
+}
+
+@section Scripts {
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/admin-chat.js"></script>
+    <script>
+        let currentAdminUsername = '@@@currentAdminUsername';
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/adminChatHub").build();
+
+        document.getElementById("send-button").disabled = true;
+
+        connection.on("ReceiveMessage", function (user, message) {
+            var li = document.createElement("li");
+            document.getElementById("messages-list").appendChild(li);
+
+            let span = document.createElement('span');
+            span.classList.add('new-message');
+            span.textContent = '*NEW';
+
+            li.appendChild(span);
+            li.innerHTML += `${user}: ${message}`;
+        });
+
+        connection.start().then(function () {
+            document.getElementById("send-button").disabled = false;
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        document.getElementById("send-button").addEventListener("click", function (event) {
+            var message = document.getElementById("message-input").value;
+            if (message.length > 0) {
+                document.getElementById("message-input").value = '';
+                connection.invoke("SendMessage", currentAdminUsername, message).catch(function (err) {
+                    return console.error(err.toString());
+                });
+                event.preventDefault();
+            }
+        });
+    </script>
 }

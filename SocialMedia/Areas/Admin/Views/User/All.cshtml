@@ -188,8 +188,13 @@
         connection.on("ReceiveMessage", function (user, message) {
             var li = document.createElement("li");
             document.getElementById("messages-list").appendChild(li);
-            document.getElementById("messages-list").appendChild(li);
-            li.innerHTML = `<span class='new-message'>*NEW</span> ${user}: ${message}`;
+
+            let span = document.createElement('span');
+            span.classList.add('new-message');
+            span.textContent = '*NEW';
+
+            li.appendChild(span);
+            li.innerHTML += `${user}: ${message}`;
         });
 
         connection.start().then(function () {

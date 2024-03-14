@@ -57,6 +57,7 @@
         #messages-list li .date-span {
             display: none;
             font-style: italic;
+            color: black;
         }
 
         #messages-list li:hover .date-span {
@@ -109,6 +110,10 @@
     #scroll-down:hover {
         cursor: pointer;
     }
+
+#scroll-down i {
+    color: black;
+}
 
 @media(max-width: 440px) {
     .chat-container {
