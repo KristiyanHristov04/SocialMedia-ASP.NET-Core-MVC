@@ -39,6 +39,22 @@ namespace SocialMedia.Data
             //    .Property(au => au.RegistrationDate)
             //    .HasDefaultValue(DateTime.Now);
 
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.UserName)
+                .IsRequired(true);
+
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.NormalizedUserName)
+                .IsRequired(true);
+
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.Email)
+                .IsRequired(true);
+
+            builder.Entity<ApplicationUser>()
+                .Property(au => au.NormalizedEmail)
+                .IsRequired(true);
+
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
