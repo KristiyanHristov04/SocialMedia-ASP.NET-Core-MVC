@@ -52,7 +52,7 @@
         connection.on("ReceiveMessage", function (user, message) {
             var li = document.createElement("li");
             document.getElementById("messages-list").appendChild(li);
-            li.textContent = `${user}: ${message}`;
+            li.innerHTML = `<span class='new-message'>*NEW</span> ${user}: ${message}`;
         });
 
         connection.start().then(function () {

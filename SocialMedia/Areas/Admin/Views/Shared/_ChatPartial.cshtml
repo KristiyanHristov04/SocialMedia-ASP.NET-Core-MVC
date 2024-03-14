@@ -17,7 +17,7 @@
         <ul id="messages-list">
             @foreach (var adminMessage in Model)
             {
-                <li>@adminMessage.Username: @adminMessage.Message <span>(Sent on: @adminMessage.SentDate)</span></li>
+                <li>@adminMessage.Username: @adminMessage.Message <span class="date-span">(Sent on: @adminMessage.SentDate)</span></li>
             }
         </ul>
         <div class="admin-input-container d-flex justify-content-between">
