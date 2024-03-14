@@ -156,31 +156,7 @@
     }
 </div>
 
-<div class="chat-icon">
-    <i class="fa-solid fa-message"></i>
-</div>
-
-<div class="chat-container d-flex flex-column justify-content-between d-none">
-    <div class="first-column d-flex justify-content-between">
-        <p class="m-0">Admin Chat</p>
-        <div class="x-icon">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
-    </div>
-
-    <div class="second-column d-flex flex-column justify-content-between">
-        <ul id="messages-list">
-            @foreach (var adminMessage in messages)
-            {
-                <li>@adminMessage.Username: @adminMessage.Message</li>
-            }
-        </ul>
-        <div class="admin-input-container d-flex justify-content-between">
-            <input type="text" class="w-100 me-1" id="message-input" placeholder="Message" />
-            <button id="send-button" class="btn">Send <i class="fa-solid fa-paper-plane"></i></button>
-        </div>
-    </div>
-</div>
+<partial name="_ChatPartial" model="@messages" />
 
 @section Styles {
     <link rel="stylesheet" href="~/css/user-all.css" />
