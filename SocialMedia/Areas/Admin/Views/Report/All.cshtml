@@ -124,34 +124,17 @@
 @section Scripts {
     <script src="~/js/dismiss-button.js"></script>
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/admin-chat.js"></script>
     <script>
-        let chatContainer = document.getElementsByClassName('chat-container')[0];
-        let chatIcon = document.getElementsByClassName('chat-icon')[0];
-        let xMarkButton = document.getElementsByClassName('fa-xmark')[0];
-
-        chatIcon.addEventListener('click', () => {
-            console.log('Clicking on Message');
-            chatContainer.classList.remove('d-none');
-        });
-
-        xMarkButton.addEventListener('click', () => {
-            console.log('Clicking on X');
-            chatContainer.classList.add('d-none');
-        });
-
         let currentAdminUsername = '@@@currentAdminUsername';
 
         var connection = new signalR.HubConnectionBuilder().withUrl("/adminChatHub").build();
 
-        //Disable the send button until connection is established.
         document.getElementById("send-button").disabled = true;
 
         connection.on("ReceiveMessage", function (user, message) {
             var li = document.createElement("li");
             document.getElementById("messages-list").appendChild(li);
-            // We can assign user-supplied strings to an element's textContent because it
-            // is not interpreted as markup. If you're assigning in any other way, you
-            // should be aware of possible script injection concerns.
             li.textContent = `${user}: ${message}`;
         });
 

@@ -46,6 +46,7 @@
     list-style: none;
     padding: 0;
     margin-top: 16px;
+    scroll-behavior: smooth;
 }
 
     #messages-list li {
@@ -77,6 +78,19 @@
     .x-icon i:hover {
         color: #b33636;
     }
+
+#scroll-down {
+    background-color: gray;
+    border-radius: 50%;
+    padding: 10px 15px 10px 15px;
+    bottom: 60px;
+    right: 25px;
+    position: absolute;
+}
+
+#scroll-down:hover {
+    cursor: pointer;
+}
 
 @media(max-width: 440px) {
     .chat-container {
