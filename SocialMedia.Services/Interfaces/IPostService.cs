@@ -22,5 +22,6 @@ namespace SocialMedia.Services.Interfaces
         Task<PostViewModel> GetReportPostAsync(int id);
         Task DismissReportedPostAsync(int postId);
         Task IncreaseDeletedReportedPostsCountAsync();
+        Task<List<string>> AllAdminIdsAsync();
     }
 }

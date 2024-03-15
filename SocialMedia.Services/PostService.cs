@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
@@ -11,12 +12,15 @@ namespace SocialMedia.Services
     {
         private readonly ApplicationDbContext context;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly UserManager<ApplicationUser> userManager;
         public PostService(
             ApplicationDbContext context,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            UserManager<ApplicationUser> userManager)
         {
             this.context = context;
             this.webHostEnvironment = webHostEnvironment;
+            this.userManager = userManager;
         }
 
         public async Task AddPostAsync(PostAddFormModel model, string userId)
@@ -223,13 +227,29 @@ namespace SocialMedia.Services
             return mostRecentlyLikedPosts;
         }
 
+        public async Task<List<string>> AllAdminIdsAsync()
+        {
+            List<ApplicationUser> allAdmins
+                = (List<ApplicationUser>)await this.userManager.GetUsersInRoleAsync("Administrator");
+
+            List<ApplicationUser> allSuperAdmins
+                = (List<ApplicationUser>)await this.userManager.GetUsersInRoleAsync("SuperAdministrator");
+
+            List<string> adminsIds = allAdmins.Select(a => a.Id).ToList();
+            adminsIds.AddRange(allSuperAdmins.Select(sa => sa.Id).ToList());
+
+            return adminsIds;
+        }
+
         public async Task<List<ProfileViewModel>> GetProfilesAsync(string? search, int counter)
         {
             List<ProfileViewModel> profiles = new List<ProfileViewModel>();
+            List<string> adminIds = await AllAdminIdsAsync();
 
             if (string.IsNullOrEmpty(search))
             {
                 profiles = await this.context.Users
+                    .Where(u => !adminIds.Contains(u.Id))
                         .Select(u => new ProfileViewModel()
                         {
                             Id = u.Id,
@@ -245,8 +265,9 @@ namespace SocialMedia.Services
             else
             {
                 profiles = await this.context.Users
-                    .Where(u => u.UserName!.Contains(search) ||
+                    .Where(u => (u.UserName!.Contains(search) ||
                         (u.FirstName + " " + u.LastName).Contains(search))
+                        && !adminIds.Contains(u.Id))
                         .Select(u => new ProfileViewModel()
                         {
                             Id = u.Id,
@@ -255,8 +276,8 @@ namespace SocialMedia.Services
                             TotalPosts = u.Posts.Count,
                             CountryName = u.Country.Name
                         })
-                    .Skip(8 * (counter - 1 == -1 ? 0 : counter - 1))
-                    .Take(8)
+                    .Skip(10 * (counter - 1 == -1 ? 0 : counter - 1))
+                    .Take(10)
                     .ToListAsync();
             }
 
