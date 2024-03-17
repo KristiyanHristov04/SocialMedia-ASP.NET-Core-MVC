@@ -23,13 +23,13 @@ function scrollToBottom() {
 }
 
 function displayButtonToScrollDown() {
-    if (messagesList.scrollTop + messagesList.clientHeight !== messagesList.scrollHeight) {
+    if (Math.ceil(messagesList.scrollTop + messagesList.clientHeight) !== messagesList.scrollHeight) {
         scrollDownButton.style.visibility = 'visible';
     } else {
         scrollDownButton.style.visibility = 'hidden';
     }
 
-    //console.log('client height ' + messagesList.clientHeight);
-    //console.log('scroll height ' + messagesList.scrollHeight);
-    //console.log('scroll top ' + messagesList.scrollTop);
+    console.log('client height ' + messagesList.clientHeight);
+    console.log('scroll height ' + messagesList.scrollHeight);
+    console.log('scroll top ' + messagesList.scrollTop);
 }

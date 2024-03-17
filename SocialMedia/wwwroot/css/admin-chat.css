@@ -105,6 +105,7 @@
     bottom: 60px;
     right: 25px;
     position: absolute;
+    visibility: hidden;
 }
 
     #scroll-down:hover {
