@@ -7,10 +7,10 @@ namespace SocialMedia.Controllers.API
 {
     [Route("api/posts")]
     [ApiController]
-    public class PostsApiController : ControllerBase
+    public class PostApiController : ControllerBase
     {
         private readonly IPostService postService;
-        public PostsApiController(IPostService postService)
+        public PostApiController(IPostService postService)
         {
             this.postService = postService;
         }
