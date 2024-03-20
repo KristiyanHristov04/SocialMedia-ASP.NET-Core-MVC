@@ -55,6 +55,11 @@ namespace SocialMedia
                 googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
             });
 
+            //builder.Services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.AccessDeniedPath = "/Home/AccessDenied";
+            //});
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
