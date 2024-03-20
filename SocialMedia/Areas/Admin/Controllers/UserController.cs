@@ -85,8 +85,7 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Demote(string id)
         {
-            ApplicationUser? user = await this.userManager.FindByIdAsync(id);
-            if (await this.userManager.IsInRoleAsync(user!, "User"))
+            if (!this.User.IsInRole("SuperAdministrator"))
             {
                 return Forbid();
             }
