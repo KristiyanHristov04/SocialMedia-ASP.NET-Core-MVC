@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Areas.Admin.Hubs;
 using SocialMedia.Areas.Admin.Services;
@@ -61,7 +62,6 @@ namespace SocialMedia
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
-                app.UseExceptionHandler("/Home/Error/500");
                 app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
             }
             else
@@ -90,7 +90,7 @@ namespace SocialMedia
             app.MapControllerRoute(
                name: "default",
                pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            
             app.MapRazorPages();
             app.MapHub<AdminChatHub>("adminChatHub");
 
