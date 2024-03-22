@@ -91,7 +91,7 @@ namespace SocialMedia.Services
 
         public async Task EditPostAsync(int id, PostEditFormModel model)
         {
-            Post post = await this.context.Posts.FindAsync(id);
+            Post? post = await this.context.Posts.FindAsync(id);
 
             post!.Text = model.Text;
 
@@ -172,7 +172,7 @@ namespace SocialMedia.Services
 
         public async Task<bool> ValidatePostUserAsync(string userId, int postId)
         {
-            Post post = await this.context.Posts.FindAsync(postId);
+            Post? post = await this.context.Posts.FindAsync(postId);
 
             if (post!.UserId != userId)
             {

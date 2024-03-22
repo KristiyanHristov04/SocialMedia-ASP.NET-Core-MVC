@@ -13,7 +13,7 @@ namespace SocialMedia.Tests.Services
         private ICountryService countryService;
         public CountryServiceTests()
         {
-            this.countryService = new CountryService(this.context);
+            this.countryService = new CountryService(context);
         }
 
         [Fact]
