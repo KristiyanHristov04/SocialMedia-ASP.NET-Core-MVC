@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMedia.Services", "Soc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMedia.Common", "SocialMedia.Common\SocialMedia.Common.csproj", "{54467745-A4A1-47DE-8448-7DBC96BF21EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMedia.ViewModels", "SocialMedia.ViewModels\SocialMedia.ViewModels.csproj", "{D458A5BB-65E8-47D5-ACCD-65305080F473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMedia.ViewModels", "SocialMedia.ViewModels\SocialMedia.ViewModels.csproj", "{D458A5BB-65E8-47D5-ACCD-65305080F473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMedia.Extensions", "SocialMedia.Extensions\SocialMedia.Extensions.csproj", "{FAD3442C-CA01-4581-A467-645120493975}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMedia.Extensions", "SocialMedia.Extensions\SocialMedia.Extensions.csproj", "{FAD3442C-CA01-4581-A467-645120493975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMedia.Tests", "SocialMedia.Tests\SocialMedia.Tests.csproj", "{A6FA9053-62AE-4E72-8058-D402842600D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{FAD3442C-CA01-4581-A467-645120493975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAD3442C-CA01-4581-A467-645120493975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAD3442C-CA01-4581-A467-645120493975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6FA9053-62AE-4E72-8058-D402842600D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6FA9053-62AE-4E72-8058-D402842600D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6FA9053-62AE-4E72-8058-D402842600D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6FA9053-62AE-4E72-8058-D402842600D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
