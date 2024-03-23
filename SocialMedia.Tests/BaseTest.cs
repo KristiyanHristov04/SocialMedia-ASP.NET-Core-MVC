@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
 
@@ -8,7 +9,6 @@ namespace SocialMedia.Tests
     public class BaseTest
     {
         protected readonly ApplicationDbContext context;
-        private readonly UserManager<ApplicationUser> _userManager;
         protected BaseTest()
         {
             DbContextOptions<ApplicationDbContext> options

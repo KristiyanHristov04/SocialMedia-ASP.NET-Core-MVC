@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Moq;
 using SocialMedia.Data.Models;
 using SocialMedia.Services;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.ViewModels.Post;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SocialMedia.Tests.Services
 {
@@ -18,7 +18,29 @@ namespace SocialMedia.Tests.Services
         private readonly IPostService postService;
         public PostServiceTests()
         {
-            this.postService = new PostService(context, null, null);
+            var userManagerMock = new Mock<UserManager<ApplicationUser>>(
+                    Mock.Of<IUserStore<ApplicationUser>>(),
+                    Mock.Of<IOptions<IdentityOptions>>(),
+                    Mock.Of<IPasswordHasher<ApplicationUser>>(),
+                    It.IsAny<IEnumerable<IUserValidator<ApplicationUser>>>(),
+                    It.IsAny<IEnumerable<IPasswordValidator<ApplicationUser>>>(),
+                    Mock.Of<ILookupNormalizer>(),
+                    Mock.Of<IdentityErrorDescriber>(),
+                    Mock.Of<IServiceProvider>(),
+                    Mock.Of<ILogger<UserManager<ApplicationUser>>>());
+
+            userManagerMock
+                .Setup(u => u.GetUsersInRoleAsync("Administrator"))
+                .ReturnsAsync(new List<ApplicationUser>());
+
+            userManagerMock
+                .Setup(u => u.GetUsersInRoleAsync("SuperAdministrator"))
+                .ReturnsAsync(new List<ApplicationUser>());
+
+            var webHostEnvironmentMock = new Mock<IWebHostEnvironment>();
+            webHostEnvironmentMock.Setup(wh => wh.WebRootPath).Returns("Fake");
+
+            this.postService = new PostService(context, webHostEnvironmentMock.Object, userManagerMock.Object);
         }
 
         [Fact]
@@ -117,9 +139,9 @@ namespace SocialMedia.Tests.Services
 
             var firstPost = myPosts.First();
 
-            Assert.Equal(1, totalPosts);    
-            Assert.Equal(Post01.Id, firstPost.Id);    
-            Assert.Equal(Post01.Text, firstPost.Text);    
+            Assert.Equal(1, totalPosts);
+            Assert.Equal(Post01.Id, firstPost.Id);
+            Assert.Equal(Post01.Text, firstPost.Text);
         }
 
         [Theory]
@@ -161,7 +183,7 @@ namespace SocialMedia.Tests.Services
         {
             await this.postService.ReportPostAsync(Post01.Id);
 
-            var newlyReportedPost = 
+            var newlyReportedPost =
                 await this.context.ReportPosts
                 .Where(rp => rp.PostId == Post01.Id)
                 .FirstAsync();
@@ -218,6 +240,61 @@ namespace SocialMedia.Tests.Services
                 .FirstAsync();
 
             Assert.Equal(1, count);
+        }
+
+        [Fact]
+        public async void AllAdminIdsAsync_ShouldReturnNoAdminIdsEmptyCollection()
+        {
+            var result = await this.postService.AllAdminIdsAsync();
+
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public async Task DeletePostAsync_ShouldRemovePostFromDatabase()
+        {
+            await this.postService.DeletePostAsync(Post01.Id);
+
+            int totalPosts = await this.context.Posts.CountAsync();
+
+            Assert.Equal(1, totalPosts);
+        }
+
+        [Fact]
+        public async Task GetProfilesAsync_WithoutFilterShouldReturnTwoProfiles()
+        {
+            var profiles = await this.postService.GetProfilesAsync(null, 1);
+
+            Assert.Equal(2, profiles.Count());
+        }
+
+        [Fact]
+        public async Task GetProfilesAsync_WithFilterShouldReturnOneProfile()
+        {
+            var profiles = await this.postService.GetProfilesAsync("a", 1);
+
+            Assert.Single(profiles);
+        }
+
+        [Fact]
+        public async Task AddPostAsync_ShouldAddNewPostToDatabase()
+        {
+            var formFileMock = new Mock<IFormFile>();
+
+            formFileMock.Setup(f => f.FileName).Returns("example.png");
+            formFileMock.Setup(f => f.Length).Returns(1024);
+
+            var postToAdd = new PostAddFormModel()
+            {
+                File = formFileMock.Object,
+                Text = "Text"
+            };
+
+            await this.postService.AddPostAsync(postToAdd, User01.Id);
+
+            int totalPostsCount = await this.context.Posts.CountAsync();
+
+            Assert.Equal(3, totalPostsCount);
         }
     }
 }

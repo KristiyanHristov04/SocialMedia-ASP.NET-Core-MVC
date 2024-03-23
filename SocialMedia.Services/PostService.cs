@@ -84,7 +84,11 @@ namespace SocialMedia.Services
             this.context.Posts.Remove(postToDelete!);
 
             string pathToDelete = Path.Combine(webHostEnvironment.WebRootPath, postToDelete!.Path);
-            File.Delete(pathToDelete);
+
+            if (Directory.Exists(pathToDelete))
+            {
+                File.Delete(pathToDelete);
+            }
 
             await context.SaveChangesAsync();
         }
