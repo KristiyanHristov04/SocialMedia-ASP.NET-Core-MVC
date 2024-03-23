@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
 

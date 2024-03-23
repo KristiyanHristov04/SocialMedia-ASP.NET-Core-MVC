@@ -56,7 +56,7 @@ namespace SocialMedia.Controllers
                 string currentUserEmailAddress = this.User.FindFirst(ClaimTypes.Email)!.Value;
                 model.FromEmail = currentUserEmailAddress;
 
-                return View(currentUserEmailAddress);
+                return View(model);
             }
 
             bool isSent = await this.customEmailSender.SendEmailAsync(model.FromEmail, model.Subject, model.Message);
