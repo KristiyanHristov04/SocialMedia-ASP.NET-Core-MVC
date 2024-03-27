@@ -90,10 +90,23 @@ namespace SocialMedia.Areas.Admin.Controllers
                 return Forbid();
             }
 
-            UserViewModel userToDemote
-                = await this.userService.GetUserAsync(id);
+            try
+            {
+                UserViewModel userToDemote
+                    = await this.userService.GetUserAsync(id);
 
-            return View(userToDemote);
+                if (userToDemote.UserRole == "User")
+                {
+                    return BadRequest();
+                }
+
+                return View(userToDemote);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = $"Something went wrong!";
+                return RedirectToAction(nameof(All));
+            }
         }
 
         [HttpPost]
@@ -104,18 +117,31 @@ namespace SocialMedia.Areas.Admin.Controllers
                 return Forbid();
             }
 
-            ApplicationUser? user = await this.userManager.FindByIdAsync(id);
-
-            if (await this.userManager.IsInRoleAsync(user!, "Administrator"))
+            if (model.UserRole == "User")
             {
-                await this.userManager.RemoveFromRoleAsync(user!, "Administrator");
+                return BadRequest();
             }
 
-            await this.userManager.AddToRoleAsync(user!, "User");
+            try
+            {
+                ApplicationUser user = await this.userManager.FindByIdAsync(id);
 
-            TempData["Promoted"] = $"You demoted @{user!.UserName} to an user!";
+                if (await this.userManager.IsInRoleAsync(user!, "Administrator"))
+                {
+                    await this.userManager.RemoveFromRoleAsync(user!, "Administrator");
+                }
 
-            return RedirectToAction(nameof(All));
+                await this.userManager.AddToRoleAsync(user!, "User");
+
+                TempData["Promoted"] = $"You demoted @{user!.UserName} to an user!";
+
+                return RedirectToAction(nameof(All));
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = $"Something went wrong!";
+                return RedirectToAction(nameof(All));
+            }
         }
     }
 }
