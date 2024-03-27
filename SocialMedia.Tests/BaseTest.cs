@@ -57,7 +57,7 @@ namespace SocialMedia.Tests
             User01 = new ApplicationUser()
             {
                 Id = "User1",
-                UserName = "john",
+                UserName = "John",
                 NormalizedUserName = "John",
                 Email = "john@yahoo.com",
                 NormalizedEmail = "John@YAHOO.COM",
