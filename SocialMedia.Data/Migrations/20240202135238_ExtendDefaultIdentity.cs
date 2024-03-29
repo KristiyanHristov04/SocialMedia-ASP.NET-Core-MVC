@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable disable
 
 namespace SocialMedia.Data.Data.Migrations
 {
     /// <inheritdoc />
+    /// 
+
+    [ExcludeFromCodeCoverage]
     public partial class ExtendDefaultIdentity : Migration
     {
         /// <inheritdoc />
