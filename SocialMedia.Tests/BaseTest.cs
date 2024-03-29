@@ -4,7 +4,7 @@ using SocialMedia.Data.Models;
 
 namespace SocialMedia.Tests
 {
-    public class BaseTest
+    public abstract class BaseTest
     {
         protected readonly ApplicationDbContext context;
         protected BaseTest()
