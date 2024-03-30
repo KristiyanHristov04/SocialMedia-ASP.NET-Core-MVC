@@ -85,8 +85,9 @@ function loadPosts() {
                 if (window.innerHeight < document.documentElement.scrollHeight) {
                     console.log("Page has a vertical scroll bar");
                 } else {
-                    noMorePostsMessage();
-                    noMorePostsMessageShowed = true;
+                    //noMorePostsMessage();
+                    //noMorePostsMessageShowed = true;
+                    loadPosts();
                 }
             }
         })

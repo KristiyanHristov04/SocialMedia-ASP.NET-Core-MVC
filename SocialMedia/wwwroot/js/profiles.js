@@ -52,15 +52,16 @@ function loadProfiles() {
                 }
             }
 
-            if (isFirstLoad && !noMoreProfilesMessageShowed) {
+            if (!noMoreProfilesMessageShowed) {
                 console.log(window.innerHeight);
                 console.log(document.documentElement.scrollHeight);
 
                 if (window.innerHeight < document.documentElement.scrollHeight) {
                     console.log("Page has a vertical scroll bar");
                 } else {
-                    noProfilesMessage('No more profiles matched!');
-                    noMoreProfilesMessageShowed = true;
+                    /*noProfilesMessage('No more profiles matched!');*/
+                    /*noMoreProfilesMessageShowed = true;*/
+                    loadProfiles();
                 }
             }
         })

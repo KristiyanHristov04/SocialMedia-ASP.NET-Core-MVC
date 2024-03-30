@@ -12,16 +12,16 @@ let hostname = window.location.hostname;
 let port = window.location.port;
 let fullPath = `${protocol}//${hostname}:${port}`;
 
-loadProfiles();
+loadPosts();
 
 window.addEventListener('scroll', () => {
     if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight && !scrolled) {
         scrolled = true;
-        loadProfiles();
+        loadPosts();
     }
 });
 
-function loadProfiles() {
+function loadPosts() {
     fetch(`${fullPath}/api/posts/profile?counter=${counter}&username=${username}`)
         .then(res => res.json())
         .then(data => {
@@ -85,8 +85,9 @@ function loadProfiles() {
                 if (window.innerHeight < document.documentElement.scrollHeight) {
                     console.log("Page has a vertical scroll bar");
                 } else {
-                    noMorePostsMessage();
-                    noMorePostsMessageShowed = true;
+                    //noMorePostsMessage();
+                    //noMorePostsMessageShowed = true;
+                    loadPosts();
                 }
             }
         })
