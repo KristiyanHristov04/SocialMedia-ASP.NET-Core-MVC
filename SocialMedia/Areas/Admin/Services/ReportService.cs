@@ -33,6 +33,10 @@ namespace SocialMedia.Areas.Admin.Services
                     reportsQuery = reportsQuery.OrderByDescending(r => r.ReportsCount);
                 }
             }
+            else
+            {
+                reportsQuery = reportsQuery.OrderBy(r => r.Id);
+            }
 
             List<ReportViewModel> reports = await reportsQuery
                 .Skip((currentPage - 1) * reportsPerPage)

@@ -58,13 +58,13 @@ namespace SocialMedia.Tests
             {
                 Id = "User1",
                 UserName = "John",
-                NormalizedUserName = "John",
+                NormalizedUserName = "JOHN",
                 Email = "john@yahoo.com",
-                NormalizedEmail = "John@YAHOO.COM",
+                NormalizedEmail = "JOHN@YAHOO.COM",
                 FirstName = "John",
                 LastName = "Doe",
                 Country = Country01,
-                RegistrationDate = DateTime.Now
+                RegistrationDate = DateTime.Now.AddDays(-1)
             };
 
             User02 = new ApplicationUser()
@@ -77,7 +77,7 @@ namespace SocialMedia.Tests
                 FirstName = "Jane",
                 LastName = "Smith",
                 Country = Country02,
-                RegistrationDate = DateTime.Now
+                RegistrationDate = DateTime.Now.AddDays(-2)
             };
 
             this.context.Users.Add(User01);

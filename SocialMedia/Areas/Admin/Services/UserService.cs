@@ -77,6 +77,10 @@ namespace SocialMedia.Areas.Admin.Services
                     usersQuery = usersQuery.OrderBy(u => u.RegistrationDate);
                 }
             }
+            else
+            {
+                usersQuery = usersQuery.OrderBy(u => u.Id);
+            }
 
             List<UserViewModel> users = await usersQuery
                 .Skip((currentPage - 1) * AllViewModel.UsersPerPage)
