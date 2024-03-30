@@ -29,6 +29,11 @@ function loadPosts() {
                 isFirstLoad = false;
             }
 
+            if (isFirstLoad && data.length === 0) {
+                noMorePostsMessage(`You don't have liked posts.`);
+                noMorePostsMessageShowed = true;
+            }
+
             if (data.length > 0) {
                 for (let post of data) {
                     let postId = post.id;
@@ -74,7 +79,7 @@ function loadPosts() {
             }
             else {
                 if (!noMorePostsMessageShowed) {
-                    noMorePostsMessage();
+                    noMorePostsMessage(`You have no more liked posts.`);
                     noMorePostsMessageShowed = true;
                 }
             }
@@ -269,9 +274,9 @@ function removePostFromDOM(container) {
     container.remove();
 }
 
-function noMorePostsMessage() {
+function noMorePostsMessage(message) {
     let noMorePostsParagraph = document.createElement('p');
-    noMorePostsParagraph.textContent = 'You have no more liked posts.';
+    noMorePostsParagraph.textContent = message;
     noMorePostsParagraph.classList.add('text-info', 'text-center');
     row.appendChild(noMorePostsParagraph);
 }

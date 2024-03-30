@@ -29,6 +29,11 @@ function loadPosts() {
                 isFirstLoad = false;
             }
 
+            if (isFirstLoad && data.length === 0) {
+                noMorePostsMessage(`You don't have posts.`);
+                noMorePostsMessageShowed = true;
+            }
+
             if (data.length > 0) {
                 for (let post of data) {
                     let postId = post.id;
@@ -73,7 +78,7 @@ function loadPosts() {
                 scrolled = false;
             } else {
                 if (!noMorePostsMessageShowed) {
-                    noMorePostsMessage();
+                    noMorePostsMessage(`You have no more posts.`);
                     noMorePostsMessageShowed = true;
                 }
             }
@@ -268,9 +273,9 @@ function checkIfPostIsLikedByUser(postId, likeText) {
         .catch(err => console.error(err));
 }
 
-function noMorePostsMessage() {
+function noMorePostsMessage(message) {
     let noMorePostsParagraph = document.createElement('p');
-    noMorePostsParagraph.textContent = 'You have no more posts.';
+    noMorePostsParagraph.textContent = message;
     noMorePostsParagraph.classList.add('text-info', 'text-center');
     row.appendChild(noMorePostsParagraph);
 }
