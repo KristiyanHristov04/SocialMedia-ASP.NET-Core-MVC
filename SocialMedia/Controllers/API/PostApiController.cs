@@ -7,6 +7,7 @@ namespace SocialMedia.Controllers.API
 {
     [Route("api/posts")]
     [ApiController]
+    [IgnoreAntiforgeryToken]
     public class PostApiController : ControllerBase
     {
         private readonly IPostService postService;

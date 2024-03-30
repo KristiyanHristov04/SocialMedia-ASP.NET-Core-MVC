@@ -67,7 +67,8 @@ namespace SocialMedia
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
-                app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
+                app.UseDeveloperExceptionPage();
+                //app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
             }
             else
             {
