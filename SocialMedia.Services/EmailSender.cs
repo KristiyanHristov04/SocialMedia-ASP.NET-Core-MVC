@@ -1,21 +1,27 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using static SocialMedia.Common.DataConstants.Email;
 
 namespace SocialMedia.Services
 {
     public class EmailSender : IEmailSender
     {
-        private readonly ILogger _logger;
+        private ILogger _logger;
+        private IConfiguration _configuration;
+        private string _email;
 
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
-                           ILogger<EmailSender> logger)
+        public EmailSender(
+            IOptions<AuthMessageSenderOptions> optionsAccessor,
+            ILogger<EmailSender> logger,
+            IConfiguration configuration)
         {
             Options = optionsAccessor.Value;
             _logger = logger;
+            _configuration = configuration;
+            _email = _configuration["Email"]!;
         }
 
         public AuthMessageSenderOptions Options { get; } //Set with Secret Manager.
@@ -35,7 +41,7 @@ namespace SocialMedia.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress(YourEmail, "SocialMedia"),
+                From = new EmailAddress(_email, "SocialMedia"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

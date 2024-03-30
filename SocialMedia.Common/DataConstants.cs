@@ -22,12 +22,6 @@ namespace SocialMedia.Common
             public const int TextMaxLength = 450;
         }
 
-        public static class Email
-        {
-            //public const int MessageMaxLength = 450;
-            public const string YourEmail = "kristiyan_hristov04@abv.bg";
-        }
-
         public static class FileConfiguration
         {
             public const int MaxAllowedFileSize = 3000000;
