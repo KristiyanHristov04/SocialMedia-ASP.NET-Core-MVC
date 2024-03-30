@@ -25,7 +25,7 @@ namespace SocialMedia.Common
         public static class Email
         {
             //public const int MessageMaxLength = 450;
-            public const string FromEmail = "kristiyan_hristov04@abv.bg";
+            public const string YourEmail = "kristiyan_hristov04@abv.bg";
         }
 
         public static class FileConfiguration

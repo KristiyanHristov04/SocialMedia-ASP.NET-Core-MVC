@@ -35,7 +35,7 @@ namespace SocialMedia.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress(FromEmail, "SocialMedia"),
+                From = new EmailAddress(YourEmail, "SocialMedia"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

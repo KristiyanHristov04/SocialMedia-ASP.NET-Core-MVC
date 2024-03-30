@@ -29,10 +29,10 @@ namespace SocialMedia.Services
 
             var apiKey = Options.SendGridKey;
             var client = new SendGridClient(apiKey);
-            var from_email = new EmailAddress(FromEmail, email); // Must be a verified sender
+            var from_email = new EmailAddress(YourEmail, email); // Must be a verified sender
             //from sendgrid. That's why I need to use my email address otherwise
             //it does not work.
-            var to_email = new EmailAddress(FromEmail);
+            var to_email = new EmailAddress(YourEmail);
             var plainTextContent = $"{email}: {message}";
             var msg = MailHelper.CreateSingleEmail(from_email, to_email, subject, plainTextContent, null);
             EmailAddress replyTo = new EmailAddress(email);
