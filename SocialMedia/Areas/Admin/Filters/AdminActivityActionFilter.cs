@@ -14,7 +14,7 @@ namespace SocialMedia.Areas.Admin.Filters
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             await next.Invoke();
-            await Console.Out.WriteLineAsync($"{this.activity} - {DateTime.Now}");
+            await Console.Out.WriteLineAsync($"{this.activity} => {DateTime.Now}");
         }
     }
 }
