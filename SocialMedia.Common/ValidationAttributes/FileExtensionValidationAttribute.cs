@@ -8,6 +8,11 @@ namespace SocialMedia.Common.ValidationAttributes
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
+            if (value == null)
+            {
+                return new ValidationResult("File extension cannot be processed!");
+            }
+
             IFormFile file = (IFormFile)value!;
 
             string currentFileExtension
