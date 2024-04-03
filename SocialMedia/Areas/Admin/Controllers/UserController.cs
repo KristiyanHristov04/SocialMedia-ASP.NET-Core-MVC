@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SocialMedia.Areas.Admin.Filters;
 using SocialMedia.Areas.Admin.Services.Interfaces;
 using SocialMedia.Areas.Admin.ViewModels.User;
 using SocialMedia.Data.Models;
+using SocialMedia.Extensions;
 
 namespace SocialMedia.Areas.Admin.Controllers
 {
@@ -61,6 +63,7 @@ namespace SocialMedia.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [AdminActivityActionFilter(nameof(Promote))]
         public async Task<IActionResult> Promote(string id, UserViewModel model)
         {
             if (!await this.userService.CheckIfUserEligibleForPromoteAsync(id))
@@ -83,6 +86,7 @@ namespace SocialMedia.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [AdminActivityActionFilter(nameof(Demote))]
         public async Task<IActionResult> Demote(string id)
         {
             if (!this.User.IsInRole("SuperAdministrator"))
