@@ -29,7 +29,7 @@ namespace SocialMedia.Controllers
         }
 
         [HttpGet]
-        public IActionResult Privacy()
+        public IActionResult Terms()
         {
             return View();
         }
