@@ -31,3 +31,7 @@
         border-color: #758a9b;
         color: #ffffff;
     }
+
+tbody tr {
+    height: 60px;
+}
