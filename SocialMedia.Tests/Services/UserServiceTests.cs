@@ -149,7 +149,7 @@ namespace SocialMedia.Tests.Services
             Assert.IsType<AllViewModel>(usersInformation);
             Assert.Equal(5, usersInformation.TotalUsers);
             Assert.IsType<int>(usersInformation.TotalUsers);
-            Assert.Equal(4, usersInformation.Users.Count);
+            Assert.Equal(5, usersInformation.Users.Count);
         }
 
         [Fact]
@@ -168,7 +168,7 @@ namespace SocialMedia.Tests.Services
             Assert.IsType<AllViewModel>(usersInformation);
             Assert.Equal(5, usersInformation.TotalUsers);
             Assert.IsType<int>(usersInformation.TotalUsers);
-            Assert.Equal(4, usersInformation.Users.Count);
+            Assert.Equal(5, usersInformation.Users.Count);
         }
 
         [Fact]
@@ -187,7 +187,7 @@ namespace SocialMedia.Tests.Services
             Assert.IsType<AllViewModel>(usersInformation);
             Assert.Equal(5, usersInformation.TotalUsers);
             Assert.IsType<int>(usersInformation.TotalUsers);
-            Assert.Equal(4, usersInformation.Users.Count);
+            Assert.Equal(5, usersInformation.Users.Count);
         }
     }
 }
