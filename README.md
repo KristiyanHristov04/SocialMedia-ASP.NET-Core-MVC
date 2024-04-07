@@ -40,8 +40,98 @@ Before running the application, ensure you have the necessary configurations eit
 ```
 <ol>
   <li>For the DefaultConnection, you only need to specify your database server name or use "." (a period) for the local server. Additionally, you have the option to change the database name from "SocialMediaDB" to a different name of your choice.</li>
-  <li>For the SendGridKey and Email > Register here https://sendgrid.com/en-us > Create a Sender(Marketing - Senders) > Create an API Key(Settings -> API Keys) > Inside the application replace "YourSendGridKey" with the API Key and replace "YourEmailAddress" with the email address you provided when made a sender(the email address you provided for the field "From Email Address").</li>
-  <li>For the external login provider with Google > Access this link and if you don't have a google account create one https://console.cloud.google.com/projectselector2/apis/dashboard?supportedpurview=project > Go to OAuth consent screen tab > Create Project > For User Type select External > Follow the instructions > At the end you'll be redirected back to the OAuth consent screen tab then click on Publish App > Go to Credentials tab > Create Credentials > OAuth Client ID > Follow the instructions > In Authorized redirect URIs place this https://localhost:{PORT}/signin-google where the {PORT} is the port number on which the application is hosted. A window with both Client ID and Client Secret will pop up. Copy and save them both > Place them for both "YourGoogleClientId" and "YourGoogleClientSecret".</li>
+  <li>
+    To configure the SendGridKey and Email settings:
+    <ol type="I">
+      <li>
+        SendGridKey:
+        <ul>
+          <li>
+            Register at SendGrid.
+          </li>
+          <li>
+            Create a Sender under "Marketing - Senders."
+          </li>
+          <li>
+            Generate an API Key under "Settings -> API Keys."
+          </li>
+          <li>
+            Inside your application, replace "YourSendGridKey" with the generated API Key.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Email Address:
+        <ul>
+          <li>
+            Use the email address you provided when setting up the Sender (under "From Email Address").
+          </li>
+          <li>
+            Replace "YourEmailAddress" in the application settings with this email address.
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    To set up the external login provider with Google, follow these steps:
+    <ol type="I">
+      <li>
+        Google OAuth Configuration:
+        <ul>
+          <li>
+            Access Google Cloud Console.
+          </li>
+          <li>
+            If you don't have a Google account, create one.
+          </li>
+          <li>
+            Go to the "OAuth consent screen" tab.
+          </li>
+          <li>
+            Create a new project and choose "External" for the User Type.
+          </li>
+          <li>
+            Follow the instructions provided to configure the OAuth consent screen.
+          </li>
+          <li>
+            After completing the setup, you will be redirected back to the OAuth consent screen tab. Click on "Publish App" to finalize.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Create OAuth Client ID:
+        <ul>
+          <li>
+            Go to the "Credentials" tab in the Google Cloud Console.
+          </li>
+          <li>
+            Create credentials and choose "OAuth Client ID".
+          </li>
+          <li>
+            Follow the instructions to configure the OAuth Client ID.
+          </li>
+          <li>
+            In the "Authorized redirect URIs" section, enter https://localhost:{PORT}/signin-google, replacing {PORT} with the port number where your application is hosted.
+          </li>
+          <li>
+            After completing the setup, a window will display your Client ID and Client Secret. Copy and save both securely.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Update Application Settings:
+        <ul>
+          <li>
+            Replace "YourGoogleClientId" in your application settings with the copied Client ID.
+          </li>
+          <li>
+            Replace "YourGoogleClientSecret" in your application settings with the copied Client Secret.
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
   <li>That's it! Now you should be able to start the application and use it.</li>
 </ol>
 
