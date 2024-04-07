@@ -22,7 +22,8 @@ Administrators can communicate with each other via Admin Chat to discuss various
 
 # Getting Started
 
-Before running the application, ensure you have the necessary configurations either in the secrets.json(will work only if you are running the application in Development Environment) or appsettings.json file. Everywhere you see "Your" replace it with the actual value. Below you are going to find out how to get each of these values if you don't know.
+Before running the application, ensure you have the necessary configurations either in the secrets.json (which works only if you are running the application in the Development Environment) or appsettings.json file. Replace every occurrence of "Your" with the actual value. Follow the steps below to obtain these values: [Google Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-8.0#create-the-google-oauth-20-client-id-and-secret) [SendGrid Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-8.0&tabs=visual-studio)
+
 ```
 {
   "ConnectionStrings": {
@@ -42,7 +43,7 @@ Before running the application, ensure you have the necessary configurations eit
   <li>For the DefaultConnection, you only need to specify your database server name or use "." (a period) for the local server. Additionally, you have the option to change the database name from "SocialMediaDB" to a different name of your choice.</li>
   <li>
     To configure the SendGridKey and Email settings:
-    <ol type="I">
+    <ol type="1">
       <li>
         SendGridKey:
         <ul>
@@ -75,7 +76,7 @@ Before running the application, ensure you have the necessary configurations eit
   </li>
   <li>
     To set up the external login provider with Google, follow these steps:
-    <ol type="I">
+    <ol type="1">
       <li>
         Google OAuth Configuration:
         <ul>
