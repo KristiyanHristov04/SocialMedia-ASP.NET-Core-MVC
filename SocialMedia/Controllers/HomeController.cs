@@ -28,6 +28,7 @@ namespace SocialMedia.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Terms()
         {

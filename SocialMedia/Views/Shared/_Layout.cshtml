@@ -17,7 +17,7 @@
             <div class="container-fluid">
                 @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
                 {
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">SocialMedia</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SocialMedia</a>
                 }
                 else
                 {
@@ -70,7 +70,7 @@
                             </li>
                         }
                     </ul>
-                    @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
+                    @if (this.User.Identity?.IsAuthenticated ?? false && !this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
                     {
                         <form asp-area="" asp-controller="Post" asp-action="Profiles" method="get" class="d-flex mx-xxl-4 my-3 my-xxl-0 ps-2">
                             <input name="search" class="form-control me-2" type="search" placeholder="Search for a profile" aria-label="Search">
