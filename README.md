@@ -191,3 +191,10 @@ User Report Post
 
 User Delete Post
 ![deletepost](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/633940dd-986a-4f19-890b-755a6e417bcc)
+
+
+Admin Dashboard Page
+![admindashboard](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/d11dd149-eb56-4ac4-b807-10bafaa4f940)
+
+Admin Dashboard(Admin Chat Showcase) Page
+![admindashboardchat](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/9b11fb99-f752-46b9-a098-9dcba3ef797b)
