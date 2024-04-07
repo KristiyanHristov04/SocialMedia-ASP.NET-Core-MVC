@@ -40,6 +40,7 @@ Before running the application, ensure you have the necessary configurations eit
 ```
 <ol>
   <li>For the DefaultConnection, you only need to specify your database server name or use "." (a period) for the local server. Additionally, you have the option to change the database name from "SocialMediaDB" to a different name of your choice.</li>
+  <li>For the SendGridKey and Email > Register here https://sendgrid.com/en-us > Create a Sender(Marketing - Senders) > Create an API Key(Settings -> API Keys) > Inside the application replace "YourSendGridKey" with the API Key and replace "YourEmailAddress" with the email address you provided when made a sender(the email address you provided for the field "From Email Address").</li>
 </ol>
 
 ## Database Diagram
