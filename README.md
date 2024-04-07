@@ -221,5 +221,13 @@ Admin Successfully Deleted Reported Post
 
 
 Admin Users Page
-![users](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/c97c9668-89ea-4d9b-b8a4-7229d740d27e)
+![users](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/b87df00a-d12b-4b14-a1e5-69a43a2d8a9e)
+
+
+Admin Demote Page
+![demote](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/e02f3125-0aa8-473e-942d-7f9c9e0c105e)
+
+
+Admin Promote Page
+![promote](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/9b4c4a41-f355-4b73-b334-778c91a80b9c)
 
