@@ -142,7 +142,8 @@ Before running the application, ensure you have the necessary configurations eit
 ## Functionality
 
 User Registration
-![registration](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/8c0f2122-165d-4a27-94ee-fd4500909d84)
+![register](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/3a29466b-8f1b-4471-af44-5c18ce5c4518)
+
 
 User Login
 ![login](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/a710df70-bfcd-4e1d-984a-1873f9c6feb8)
