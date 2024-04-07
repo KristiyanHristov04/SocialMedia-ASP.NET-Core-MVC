@@ -41,6 +41,8 @@ Before running the application, ensure you have the necessary configurations eit
 <ol>
   <li>For the DefaultConnection, you only need to specify your database server name or use "." (a period) for the local server. Additionally, you have the option to change the database name from "SocialMediaDB" to a different name of your choice.</li>
   <li>For the SendGridKey and Email > Register here https://sendgrid.com/en-us > Create a Sender(Marketing - Senders) > Create an API Key(Settings -> API Keys) > Inside the application replace "YourSendGridKey" with the API Key and replace "YourEmailAddress" with the email address you provided when made a sender(the email address you provided for the field "From Email Address").</li>
+  <li>For the external login provider with Google > Access this link and if you don't have a google account create one https://console.cloud.google.com/projectselector2/apis/dashboard?supportedpurview=project > Go to OAuth consent screen tab > Create Project > For User Type select External > Follow the instructions > At the end you'll be redirected back to the OAuth consent screen tab then click on Publish App > Go to Credentials tab > Create Credentials > OAuth Client ID > Follow the instructions > In Authorized redirect URIs place this https://localhost:{PORT}/signin-google where the {PORT} is the port number on which the application is hosted. A window with both Client ID and Client Secret will pop up. Copy and save them both > Place them for both "YourGoogleClientId" and "YourGoogleClientSecret".</li>
+  <li>That's it! Now you should be able to start the application and use it.</li>
 </ol>
 
 ## Database Diagram
