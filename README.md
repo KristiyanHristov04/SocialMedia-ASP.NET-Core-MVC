@@ -156,6 +156,7 @@ User Home Page
 User Add Page
 ![add](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/008137f2-9b99-476b-93ff-ad076e3e0577)
 
+
 User My Posts Page
 ![myposts](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/fc455f53-f456-482a-b685-7f87eb3fe652)
 
@@ -167,8 +168,10 @@ User Liked Posts Page
 User Contact Us Page
 ![contactus](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/1f6d5f77-61f1-4b2e-a079-616e2ae1ce74)
 
+
 User Terms and Conditions(T&C) Page
 ![termsandconditions](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/d58ada61-8441-44fa-8f28-dbdcc8e8b7de)
+
 
 User Search For Profiles Page
 ![profiles](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/b21e3fc1-48b3-4be6-a0aa-d7de321143d1)
@@ -185,6 +188,7 @@ User Status Code 404 Not Found
 User Status Code 400 Bad Request
 ![badrequest](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/2cbaf901-62c4-4471-8dfe-93eac6b7bdb8)
 
+
 User Report Post
 ![reportpost](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/046b0285-cb7e-4a2d-b9ba-6d935c911f28)
 
@@ -200,8 +204,21 @@ Admin Dashboard Page
 Admin Dashboard(Admin Chat Showcase) Page
 ![dashboardchat](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/b52f0db7-36ad-438a-87db-552e3b39a588)
 
+
 Admin Reports Page
 ![reports](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/dd09ad23-dcc0-4e55-b46c-5c020e52bb29)
+
+Admin Preview Reported Post
+![previewreportedPost](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/640ddce3-5a1f-4e92-a035-5fe68053f777)
+
+
+Admin Dismiss Reported Post
+![dismisspost](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/ebe51520-3abe-4e02-bf47-37ee531932de)
+
+
+Admin Successfully Deleted Reported Post
+![successfullydeletedreportedpost](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/58336992-c2b5-4e58-aa50-56103cc2b78d)
+
 
 Admin Users Page
 ![users](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/c97c9668-89ea-4d9b-b8a4-7229d740d27e)
