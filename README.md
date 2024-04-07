@@ -177,3 +177,10 @@ User Search For Profiles Page
 User Profile Settings
 ![userprofilesettings](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/47b33e0c-bc35-4719-adc9-bf775bc6aa16)
 
+
+User Status Code 404 Not Found
+![notfound](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/d840216c-2a35-4b1f-a351-5451c5eeb79d)
+
+
+User Status Code 400 Bad Request
+![badrequest](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/2cbaf901-62c4-4471-8dfe-93eac6b7bdb8)
