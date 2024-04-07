@@ -184,3 +184,10 @@ User Status Code 404 Not Found
 
 User Status Code 400 Bad Request
 ![badrequest](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/2cbaf901-62c4-4471-8dfe-93eac6b7bdb8)
+
+User Report Post
+![reportpost](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/046b0285-cb7e-4a2d-b9ba-6d935c911f28)
+
+
+User Delete Post
+![deletepost](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/633940dd-986a-4f19-890b-755a6e417bcc)
