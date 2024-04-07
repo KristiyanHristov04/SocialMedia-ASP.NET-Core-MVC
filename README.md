@@ -17,6 +17,7 @@ Administrators can communicate with each other via Admin Chat to discuss various
   <li>Bootstrap</li>
   <li>xUnit</li>
   <li>Moq</li>
+  <li>SignalR</li>
 </ul>
 
 # Getting Started
