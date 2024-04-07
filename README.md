@@ -5,7 +5,7 @@
 The SocialMedia application aims to replicate a real social media web platform. It features different user roles such as User, Administrator, and SuperAdministrator. Users have various capabilities within the application, including creating, editing, and deleting posts, reporting others' posts, previewing their own and others' posts, viewing liked posts, contacting support, and searching for other people's profiles and posts.
 Administrators can communicate with each other via Admin Chat to discuss various topics. They also have the ability to review reported posts and decide whether they should be taken down. Both Admins and SuperAdmins can promote regular Users to Admins, but only SuperAdmins can demote Admins back to regular Users. This project is developed as part of the final course at SoftUni C# Web(ASP.NET Core Advanced).
 
-# Technologies Used
+## Technologies Used
 <ul>
   <li>.NET Core 8.0</li>
   <li>ASP.NET Core</li>
@@ -20,7 +20,7 @@ Administrators can communicate with each other via Admin Chat to discuss various
   <li>SignalR</li>
 </ul>
 
-# Getting Started
+## Getting Started
 
 Before running the application, ensure you have the necessary configurations either in the secrets.json (which works only if you are running the application in the Development Environment) or appsettings.json file. Replace every occurrence of "Your" with the actual value. Follow the steps below to obtain these values: [Google Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-8.0#create-the-google-oauth-20-client-id-and-secret) [SendGrid Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-8.0&tabs=visual-studio)
 
@@ -138,3 +138,13 @@ Before running the application, ensure you have the necessary configurations eit
 
 ## Database Diagram
 ![database](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/5ee4476b-0839-4ffe-9e60-696b2dda4a7f)
+
+## Functionality
+
+User Registration
+![registration](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/8c0f2122-165d-4a27-94ee-fd4500909d84)
+
+User Login
+![login](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/a710df70-bfcd-4e1d-984a-1873f9c6feb8)
+
+
