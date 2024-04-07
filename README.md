@@ -22,7 +22,7 @@ Administrators can communicate with each other via Admin Chat to discuss various
 
 # Getting Started
 
-Before running the application, ensure you have the necessary configurations either in the secrets.json or appsettings.json file. Everywhere you see "Your" replace it with the actual value. Below you are going to find out how to get each of these values if you don't know.
+Before running the application, ensure you have the necessary configurations either in the secrets.json(will work only if you are using the application in Development Environment) or appsettings.json file. Everywhere you see "Your" replace it with the actual value. Below you are going to find out how to get each of these values if you don't know.
 ```
 {
   "ConnectionStrings": {
