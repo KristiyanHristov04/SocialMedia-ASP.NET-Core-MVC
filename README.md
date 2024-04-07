@@ -48,7 +48,7 @@ Before running the application, ensure you have the necessary configurations eit
         SendGridKey:
         <ul>
           <li>
-            Register at SendGrid.
+            Register at SendGrid(https://shorturl.at/gvyBR).
           </li>
           <li>
             Create a Sender under "Marketing - Senders."
@@ -81,7 +81,7 @@ Before running the application, ensure you have the necessary configurations eit
         Google OAuth Configuration:
         <ul>
           <li>
-            Access Google Cloud Console.
+            Access Google Cloud Console(https://shorturl.at/bdmJU).
           </li>
           <li>
             If you don't have a Google account, create one.
