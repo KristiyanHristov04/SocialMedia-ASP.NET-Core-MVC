@@ -39,7 +39,7 @@ Before running the application, ensure you have the necessary configurations eit
 }
 ```
 <ol>
-  <li>For the DefaultConnection, you simply need to add your database server name or use "." instead. You can also change the database name from "SocialMediaDB" to something else if you want.</li>
+  <li>For the DefaultConnection, you only need to specify your database server name or use "." (a period) for the local server. Additionally, you have the option to change the database name from "SocialMediaDB" to a different name of your choice.</li>
 </ol>
 
 ## Database Diagram
