@@ -1,4 +1,4 @@
-# SocialMedia
+![reports](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/075d6d09-9694-4dab-bff9-0ffe1e886eee)# SocialMedia
 
 ## Overview
 
@@ -194,7 +194,15 @@ User Delete Post
 
 
 Admin Dashboard Page
-![admindashboard](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/d11dd149-eb56-4ac4-b807-10bafaa4f940)
+![dashboard](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/b1c22c80-47d3-4cc9-8f47-cbc5717b94c7)
+
 
 Admin Dashboard(Admin Chat Showcase) Page
-![admindashboardchat](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/9b11fb99-f752-46b9-a098-9dcba3ef797b)
+![dashboardchat](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/b52f0db7-36ad-438a-87db-552e3b39a588)
+
+Admin Reports Page
+![reports](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/dd09ad23-dcc0-4e55-b46c-5c020e52bb29)
+
+Admin Users Page
+![users](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/c97c9668-89ea-4d9b-b8a4-7229d740d27e)
+
