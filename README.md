@@ -1,4 +1,4 @@
-![reports](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/075d6d09-9694-4dab-bff9-0ffe1e886eee)# SocialMedia
+# SocialMedia
 
 ## Overview
 
