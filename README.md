@@ -11,13 +11,30 @@ Administrators can communicate with each other via Admin Chat to discuss various
   <li>ASP.NET Core</li>
   <li>Entity Framework Core</li>
   <li>Microsoft SQL Server</li>
-  <li>HTML</li>
-  <li>CSS</li>
+  <li>HTML5</li>
+  <li>CSS3</li>
   <li>Javascript(AJAX, toastr)</li>
   <li>Bootstrap</li>
   <li>xUnit</li>
   <li>Moq</li>
 </ul>
+
+# Getting Started
+```
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=YourLocalDB;Database=SocialMediaDB;Trusted_Connection=True;TrustServerCertificate=True"
+  },
+  "SendGridKey": "YourSendGridKey",
+  "Authentication": {
+    "Google": {
+      "ClientId": "YourGoogleClientId",
+      "ClientSecret": "YourGoogleClientSecret"
+    }
+  },
+  "Email": "YourEmailAddress"
+}
+```
 
 ## Database Diagram
 ![database](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/5ee4476b-0839-4ffe-9e60-696b2dda4a7f)
