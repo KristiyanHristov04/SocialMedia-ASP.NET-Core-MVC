@@ -22,7 +22,7 @@ Administrators can communicate with each other via Admin Chat to discuss various
 
 # Getting Started
 
-Before running the application, ensure you have the necessary configurations either in the secrets.json or appsettings.json file. Everywhere you see "Your" replace it with the actual value.
+Before running the application, ensure you have the necessary configurations either in the secrets.json or appsettings.json file. Everywhere you see "Your" replace it with the actual value. Below you are going to find out how to get each of these values if you don't know.
 ```
 {
   "ConnectionStrings": {
@@ -38,6 +38,9 @@ Before running the application, ensure you have the necessary configurations eit
   "Email": "YourEmailAddress"
 }
 ```
+<ol>
+  <li>For the DefaultConnection, you simply need to add your database server name or use "." instead. You can also change the database name from "SocialMediaDB" to something else if you want.</li>
+</ol>
 
 ## Database Diagram
 ![database](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/5ee4476b-0839-4ffe-9e60-696b2dda4a7f)
