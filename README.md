@@ -21,6 +21,8 @@ Administrators can communicate with each other via Admin Chat to discuss various
 </ul>
 
 # Getting Started
+
+Before running the application, ensure you have the necessary configurations either in the secrets.json or appsettings.json file. Everywhere you see "Your" replace it with the actual value.
 ```
 {
   "ConnectionStrings": {
