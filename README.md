@@ -146,6 +146,34 @@ User Registration
 
 
 User Login
-![login](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/a710df70-bfcd-4e1d-984a-1873f9c6feb8)
+![login](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/c29595eb-3252-4877-92e9-67d513794d9c)
 
+
+User Home Page
+![home](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/f17a76a3-2994-4540-8d98-3c7a8dc474f8)
+
+
+User Add Page
+![add](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/008137f2-9b99-476b-93ff-ad076e3e0577)
+
+User My Posts Page
+![myposts](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/fc455f53-f456-482a-b685-7f87eb3fe652)
+
+
+User Liked Posts Page
+![likedposts](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/badbed2e-ed75-4f3f-b004-b6801c1bac00)
+
+
+User Contact Us Page
+![contactus](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/1f6d5f77-61f1-4b2e-a079-616e2ae1ce74)
+
+User Terms and Conditions(T&C) Page
+![termsandconditions](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/d58ada61-8441-44fa-8f28-dbdcc8e8b7de)
+
+User Search For Profiles Page
+![profiles](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/b21e3fc1-48b3-4be6-a0aa-d7de321143d1)
+
+
+User Profile Settings
+![userprofilesettings](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/47b33e0c-bc35-4719-adc9-bf775bc6aa16)
 
