@@ -149,6 +149,10 @@ User Login
 ![login](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/c29595eb-3252-4877-92e9-67d513794d9c)
 
 
+User Login With External Login Provider(Google)
+![googlelogin](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/8535c4a2-d1d5-484c-b86a-66626a559c44)
+
+
 User Home Page
 ![home](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/f17a76a3-2994-4540-8d98-3c7a8dc474f8)
 
