@@ -13,7 +13,7 @@ Administrators can communicate with each other via Admin Chat to discuss various
   <li>Microsoft SQL Server</li>
   <li>HTML5</li>
   <li>CSS3</li>
-  <li>Javascript(AJAX, toastr)</li>
+  <li>JavaScript(AJAX, toastr)</li>
   <li>Bootstrap</li>
   <li>xUnit</li>
   <li>Moq</li>
