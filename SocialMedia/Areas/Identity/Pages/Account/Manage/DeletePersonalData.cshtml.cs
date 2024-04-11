@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SocialMedia.Data;
 using SocialMedia.Data.Models;
 
 namespace SocialMedia.Areas.Identity.Pages.Account.Manage
@@ -18,15 +19,18 @@ namespace SocialMedia.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<DeletePersonalDataModel> _logger;
+        private readonly ApplicationDbContext _context;
 
         public DeletePersonalDataModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<DeletePersonalDataModel> logger)
+            ILogger<DeletePersonalDataModel> logger,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         /// <summary>
@@ -92,6 +96,11 @@ namespace SocialMedia.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            var removeLikedPosts = _context.LikedPosts
+                .Where(lp => lp.UserId == user.Id)
+                .ToList();
+
+            _context.LikedPosts.RemoveRange(removeLikedPosts);
             var result = await _userManager.DeleteAsync(user);
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
