@@ -41,6 +41,7 @@ namespace SocialMedia.Areas.Admin.Controllers
             string currentUserId = this.User.GetUserId();
 
             await this.announcementService.CreateAnnouncementAsync(currentUserId, model);
+            TempData["SuccessAdd"] = "Announcement added successfully!";
             return RedirectToAction(nameof(All));
         }
 
