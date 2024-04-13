@@ -70,5 +70,13 @@ namespace SocialMedia.Areas.Admin.Services
 
             await this.context.SaveChangesAsync();
         }
+
+        public async Task DeleteAnnouncementAsync(int id, AnnouncementFormModel model)
+        {
+            Announcement announcement = this.context.Announcements.First(a => a.Id == id);
+
+            this.context.Announcements.Remove(announcement);
+            await this.context.SaveChangesAsync();
+        }
     }
 }

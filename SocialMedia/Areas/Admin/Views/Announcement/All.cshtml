@@ -38,6 +38,16 @@
             toastr.success('@TempData["SuccessEdit"]');
         </script>
     }
+    @if (TempData["SuccessDelete"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('@TempData["SuccessDelete"]');
+        </script>
+    }
 }
 
 @section Styles {

@@ -1,0 +1,42 @@
+﻿@using SocialMedia.Areas.Admin.ViewModels.Announcement
+@using static SocialMedia.Common.DataConstants.Announcement
+
+@model AnnouncementFormModel
+
+@{
+    ViewData["Title"] = "Delete Announcement";
+}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h1 class="text-white text-center display-4">Delete Announcement</h1>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-controller="Announcement" asp-action="Delete" method="post">
+            <div class="mb-3">
+                <div class="form-floating">
+                    <input asp-for="Title" class="form-control" placeholder="" disabled>
+                    <label asp-for="Title" class="form-label"></label>
+                </div>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <div class="textarea-container form-floating">
+                    <textarea asp-for="Description" id="textarea-symbols" class="form-control" placeholder="" style="resize: none; height: 250px;" disabled></textarea>
+                    <label asp-for="Description" class="form-label"></label>
+                    <span id="textarea-counter" data-max-length="@DescriptionMaxLength"></span>
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Delete Announcement</button>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/textarea-symbols-count.css" />
+}
+
+@section Scripts {
+    <script src="~/js/textarea-symbols-count.js"></script>
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

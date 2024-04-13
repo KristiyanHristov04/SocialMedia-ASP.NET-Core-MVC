@@ -71,5 +71,28 @@ namespace SocialMedia.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (!await this.announcementService.CheckIfAnnouncementExistsById(id))
+            {
+                return BadRequest();
+            }
+
+            AnnouncementFormModel model
+                = await this.announcementService.GetAnnouncementByIdAsync(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, AnnouncementFormModel model)
+        {
+            await this.announcementService.DeleteAnnouncementAsync(id, model);
+            TempData["SuccessDelete"] = "Announcement deleted successfully!";
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace SocialMedia.Areas.Admin.Services.Interfaces
         public Task<AnnouncementFormModel> GetAnnouncementByIdAsync(int id);
         public Task<bool> CheckIfAnnouncementExistsById(int id);
         Task EditAnnouncementAsync(int id, AnnouncementFormModel model);
+        Task DeleteAnnouncementAsync(int id, AnnouncementFormModel model);
     }
 }
