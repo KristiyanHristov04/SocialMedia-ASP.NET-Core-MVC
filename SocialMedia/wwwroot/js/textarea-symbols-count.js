@@ -1,6 +1,6 @@
-﻿const maxSymbols = 450;
-const textarea = document.getElementById('textarea-symbols');
+﻿const textarea = document.getElementById('textarea-symbols');
 const textareaCounter = document.getElementById('textarea-counter');
+const maxSymbols = textareaCounter.dataset.maxLength;
 
 let currentLength = textarea.value.length;
 textareaCounter.textContent = `${currentLength} / ${maxSymbols}`;

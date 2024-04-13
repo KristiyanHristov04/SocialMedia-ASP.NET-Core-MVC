@@ -1,5 +1,6 @@
 ﻿@using SocialMedia.ViewModels.Post
 @using System.Security.Claims
+@using static SocialMedia.Common.DataConstants.Post;
 @model PostAddFormModel
 
 @{
@@ -15,7 +16,7 @@
                 <div class="textarea-container form-floating">
                     <textarea asp-for="Text" id="textarea-symbols" class="form-control" placeholder="" style="resize: none; height: 250px;"></textarea>
                     <label asp-for="Text" class="form-label"></label>
-                    <span id="textarea-counter">0 / 450</span>
+                    <span id="textarea-counter" data-max-length="@TextMaxLength"></span>
                 </div>
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>

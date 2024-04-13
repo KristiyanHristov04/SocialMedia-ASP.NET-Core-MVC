@@ -52,6 +52,7 @@ namespace SocialMedia
             builder.Services.AddScoped<IStatisticService, StatisticService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IAdminChatService, AdminChatService>();
+            builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
