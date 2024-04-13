@@ -4,7 +4,7 @@ using static SocialMedia.Common.DataConstants.Announcement;
 
 namespace SocialMedia.Areas.Admin.ViewModels.Announcement
 {
-    public class AnnouncementCreateFormModel
+    public class AnnouncementFormModel
     {
         [Required]
         [MaxLength(TitleMaxLength)]

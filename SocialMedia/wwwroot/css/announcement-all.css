@@ -8,3 +8,12 @@
         background-color: #a7774f;
         border-color: #a7774f;
     }
+
+
+#announcements p {
+    margin-bottom: 7px;
+}
+
+#announcement {
+    margin-bottom: 10px;
+}

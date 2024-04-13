@@ -31,7 +31,7 @@ namespace SocialMedia.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AnnouncementCreateFormModel model)
+        public async Task<IActionResult> Create(AnnouncementFormModel model)
         {
             if(!ModelState.IsValid)
             {
@@ -41,6 +41,34 @@ namespace SocialMedia.Areas.Admin.Controllers
             string currentUserId = this.User.GetUserId();
 
             await this.announcementService.CreateAnnouncementAsync(currentUserId, model);
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (!await this.announcementService.CheckIfAnnouncementExistsById(id))
+            {
+                return BadRequest();
+            }
+
+            AnnouncementFormModel model
+                = await this.announcementService.GetAnnouncementByIdAsync(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, AnnouncementFormModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await this.announcementService.EditAnnouncementAsync(id, model);
+            TempData["SuccessEdit"] = "Announcement edited successfully!";
+
             return RedirectToAction(nameof(All));
         }
     }

@@ -14,7 +14,7 @@ namespace SocialMedia.Areas.Admin.Services
             this.context = context;
         }
 
-        public async Task CreateAnnouncementAsync(string userId, AnnouncementCreateFormModel model)
+        public async Task CreateAnnouncementAsync(string userId, AnnouncementFormModel model)
         {
             Announcement announcement = new Announcement()
             {
@@ -27,19 +27,48 @@ namespace SocialMedia.Areas.Admin.Services
             await context.Announcements.AddAsync(announcement);
             await context.SaveChangesAsync();
         }
-
         public async Task<List<AnnouncementViewModel>> GetAnnouncementsAsync()
         {
             return await this.context.Announcements
                 .OrderByDescending(a => a.Id)
                 .Select(a => new AnnouncementViewModel()
                 {
+                    Id = a.Id,
                     Title = a.Title,
                     Description = a.Description,
                     PublishDate = a.PublishDate.ToString("dd.MM.yyyy"),
                     UserUsername = a.User == null ? null : a.User.UserName
                 })
                 .ToListAsync();
+        }
+
+
+        public Task<AnnouncementFormModel> GetAnnouncementByIdAsync(int id)
+        {
+            return this.context.Announcements
+                .Where(a => a.Id == id)
+                .Select(a => new AnnouncementFormModel()
+            {
+                Description = a.Description,
+                Title = a.Title
+            })
+            .FirstAsync();
+        }
+
+        public async Task<bool> CheckIfAnnouncementExistsById(int id)
+        {
+            return await this.context.Announcements.AnyAsync(a => a.Id == id);
+        }
+
+        public async Task EditAnnouncementAsync(int id, AnnouncementFormModel model)
+        {
+            Announcement announcement = await this.context.Announcements
+                .FirstAsync(a => a.Id == id);
+
+            announcement.Title = model.Title;
+            announcement.Description = model.Description;
+
+            await this.context.SaveChangesAsync();
         }
     }
 }

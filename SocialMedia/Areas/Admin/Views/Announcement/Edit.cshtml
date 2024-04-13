@@ -4,14 +4,14 @@
 @model AnnouncementFormModel
 
 @{
-    ViewData["Title"] = "Create Announcement";
+    ViewData["Title"] = "Edit Announcement";
 }
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
-        <h1 class="text-white display-4 text-center">Create Announcement</h1>
+        <h1 class="text-white text-center display-4">Edit Announcement</h1>
         <div asp-validation-summary="All" class="text-danger"></div>
-        <form asp-controller="Announcement" asp-action="Create" method="post">
+        <form asp-controller="Announcement" asp-action="Edit" method="post">
             <div class="mb-3">
                 <div class="form-floating">
                     <input asp-for="Title" class="form-control" placeholder="">
@@ -27,7 +27,7 @@
                 </div>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Publish Announcement</button>
+            <button type="submit" class="btn btn-primary w-100">Edit Announcement</button>
         </form>
     </div>
 </div>
