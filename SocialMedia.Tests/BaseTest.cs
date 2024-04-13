@@ -22,6 +22,7 @@ namespace SocialMedia.Tests
             SeedLikedPosts();
             SeedReportedPost();
             SeedStatistic();
+            SeedAnnouncement();
         }
         protected Country Country01 { get; private set; }
         protected Country Country02 { get; private set; }
@@ -32,6 +33,7 @@ namespace SocialMedia.Tests
         protected LikedPost LikedPost01 { get; private set; }
         protected LikedPost LikedPost02 { get; private set; }
         protected ReportPost ReportPost01 { get; private set; }
+        protected Announcement Announcement01 { get; private set; }
 
         private void SeedCountries()
         {
@@ -154,6 +156,21 @@ namespace SocialMedia.Tests
             };
 
             this.context.Statistics.Add(statistic);
+            this.context.SaveChanges();
+        }
+
+        private void SeedAnnouncement()
+        {
+            Announcement01 = new Announcement()
+            {
+                Id = 1,
+                Title = "MyTitle",
+                Description = "MyDescription",
+                PublishDate = DateTime.Now,
+                UserId = User01.Id
+            };
+
+            this.context.Announcements.Add(Announcement01);
             this.context.SaveChanges();
         }
     }
