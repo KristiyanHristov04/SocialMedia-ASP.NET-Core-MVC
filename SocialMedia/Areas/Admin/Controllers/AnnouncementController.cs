@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SocialMedia.Areas.Admin.Services.Interfaces;
 using SocialMedia.Areas.Admin.ViewModels.Announcement;
 using SocialMedia.Extensions;
@@ -14,6 +15,7 @@ namespace SocialMedia.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> All()
         {
             List<AnnouncementViewModel> announcements
