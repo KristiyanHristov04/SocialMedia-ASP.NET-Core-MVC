@@ -16,7 +16,10 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            return View();
+            List<AnnouncementViewModel> announcements
+                = await this.announcementService.GetAnnouncementsAsync();
+
+            return View(announcements);
         }
 
         [HttpGet]

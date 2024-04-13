@@ -1,4 +1,5 @@
-﻿using SocialMedia.Areas.Admin.Services.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SocialMedia.Areas.Admin.Services.Interfaces;
 using SocialMedia.Areas.Admin.ViewModels.Announcement;
 using SocialMedia.Data;
 using SocialMedia.Data.Models;
@@ -25,6 +26,20 @@ namespace SocialMedia.Areas.Admin.Services
 
             await context.Announcements.AddAsync(announcement);
             await context.SaveChangesAsync();
+        }
+
+        public async Task<List<AnnouncementViewModel>> GetAnnouncementsAsync()
+        {
+            return await this.context.Announcements
+                .OrderByDescending(a => a.Id)
+                .Select(a => new AnnouncementViewModel()
+                {
+                    Title = a.Title,
+                    Description = a.Description,
+                    PublishDate = a.PublishDate.ToString("dd.MM.yyyy"),
+                    UserUsername = a.User == null ? null : a.User.UserName
+                })
+                .ToListAsync();
         }
     }
 }

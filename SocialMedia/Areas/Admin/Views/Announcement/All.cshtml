@@ -1,0 +1,21 @@
+﻿@using SocialMedia.Areas.Admin.ViewModels.Announcement
+@model IEnumerable<AnnouncementViewModel>
+
+@{
+    ViewData["Title"] = "All Announcements";
+}
+
+<div class="text-white">
+    <h1 class="display-4 text-center">@ViewData["Title"]</h1>
+    @if(!this.User.IsInRole("User"))
+    {
+        <a asp-controller="Announcement" asp-action="Create" class="btn btn-primary">Create Announcement</a>
+    }
+
+    @foreach (var announcement in Model)
+    {
+        <p>@announcement.Title - (@@@announcement.UserUsername @announcement.PublishDate)</p>
+        <p>@announcement.Description</p>
+    }
+
+</div>
