@@ -1,8 +1,11 @@
 ﻿@using SocialMedia.Areas.Admin.ViewModels.Announcement
 @model IEnumerable<AnnouncementViewModel>
+@inject IAdminChatService adminChatService
 
 @{
     ViewData["Title"] = "All Announcements";
+    string currentAdminUsername = this.User.GetUsername();
+    List<AdminMessageViewModel> messages = await adminChatService.LoadMessagesFromDatabaseAsync();
 }
 
 <div class="text-white">
@@ -20,12 +23,21 @@
             <div id="announcement">
                 <h4 class="">@announcement.Title - (@@@announcement.UserUsername @announcement.PublishDate)</h4>
                 <p>@announcement.Description</p>
-                <a asp-controller="Announcement" asp-action="Edit" asp-route-id="@announcement.Id">Edit</a>
-                <a asp-controller="Announcement" asp-action="Delete" asp-route-id="@announcement.Id">Delete</a>
+                @if (!this.User.IsInRole("User"))
+                {
+                    <a asp-controller="Announcement" asp-action="Edit" asp-route-id="@announcement.Id">Edit</a>
+                    <a asp-controller="Announcement" asp-action="Delete" asp-route-id="@announcement.Id">Delete</a>
+                }
             </div>
         }
     </div>
 </div>
+
+@if (!this.User.IsInRole("User"))
+{
+    <partial name="_ChatPartial" model="@messages" />
+}
+
 
 @section Scripts {
     @if (TempData["SuccessEdit"] != null)
@@ -48,8 +60,53 @@
             toastr.success('@TempData["SuccessDelete"]');
         </script>
     }
+    @if(!this.User.IsInRole("User"))
+    {
+        <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/admin-chat.js"></script>
+        <script>
+            let currentAdminUsername = '@@@currentAdminUsername';
+
+            var connection = new signalR.HubConnectionBuilder().withUrl("/adminChatHub").build();
+
+            document.getElementById("send-button").disabled = true;
+
+            connection.on("ReceiveMessage", function (user, message) {
+                var li = document.createElement("li");
+                document.getElementById("messages-list").appendChild(li);
+
+                let span = document.createElement('span');
+                span.classList.add('new-message');
+                span.textContent = '*NEW';
+
+                li.appendChild(span);
+                li.innerHTML += `${user}: ${message}`;
+            });
+
+            connection.start().then(function () {
+                document.getElementById("send-button").disabled = false;
+            }).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            document.getElementById("send-button").addEventListener("click", function (event) {
+                var message = document.getElementById("message-input").value;
+                if (message.length > 0) {
+                    document.getElementById("message-input").value = '';
+                    connection.invoke("SendMessage", currentAdminUsername, message).catch(function (err) {
+                        return console.error(err.toString());
+                    });
+                    event.preventDefault();
+                }
+            });
+        </script>
+    }
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/announcement-all.css" />
+    @if(!this.User.IsInRole("User"))
+    {
+        <link rel="stylesheet" href="~/css/admin-chat.css" />
+    }
 }

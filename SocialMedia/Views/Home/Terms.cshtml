@@ -1,5 +1,17 @@
-﻿@{
+﻿@using SocialMedia.Areas.Admin.Services.Interfaces
+@using SocialMedia.Areas.Admin.ViewModels.AdminChat
+@inject IAdminChatService adminChatService
+
+@{
     ViewData["Title"] = "Terms and Conditions";
+    string currentAdminUsername = string.Empty;
+    @if(this.User.Identity?.IsAuthenticated ?? false)
+    {
+        currentAdminUsername = this.User.GetUsername();
+    }
+    
+    List<AdminMessageViewModel> messages = await adminChatService.LoadMessagesFromDatabaseAsync();
+}
 }
 
 <div class="text-white">
@@ -43,4 +55,60 @@
         </li>
     </ol>
 </div>
+
+@if (this.User.Identity?.IsAuthenticated ?? false && !this.User.IsInRole("User"))
+{
+    <partial name="~/Areas/Admin/Views/Shared/_ChatPartial.cshtml" model="@messages" />
+}
+
+@section Styles {
+    @if(!this.User.IsInRole("User"))
+    {
+        <link rel="stylesheet" href="~/css/admin-chat.css" />
+    }
+}
+
+@section Scripts {
+    @if (!this.User.IsInRole("User"))
+    {
+        <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/admin-chat.js"></script>
+        <script>
+            let currentAdminUsername = '@@@currentAdminUsername';
+
+            var connection = new signalR.HubConnectionBuilder().withUrl("/adminChatHub").build();
+
+            document.getElementById("send-button").disabled = true;
+
+            connection.on("ReceiveMessage", function (user, message) {
+                var li = document.createElement("li");
+                document.getElementById("messages-list").appendChild(li);
+
+                let span = document.createElement('span');
+                span.classList.add('new-message');
+                span.textContent = '*NEW';
+
+                li.appendChild(span);
+                li.innerHTML += `${user}: ${message}`;
+            });
+
+            connection.start().then(function () {
+                document.getElementById("send-button").disabled = false;
+            }).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            document.getElementById("send-button").addEventListener("click", function (event) {
+                var message = document.getElementById("message-input").value;
+                if (message.length > 0) {
+                    document.getElementById("message-input").value = '';
+                    connection.invoke("SendMessage", currentAdminUsername, message).catch(function (err) {
+                        return console.error(err.toString());
+                    });
+                    event.preventDefault();
+                }
+            });
+        </script>
+    }
+}
 

@@ -15,7 +15,7 @@ namespace SocialMedia.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> All()
         {
             List<AnnouncementViewModel> announcements
