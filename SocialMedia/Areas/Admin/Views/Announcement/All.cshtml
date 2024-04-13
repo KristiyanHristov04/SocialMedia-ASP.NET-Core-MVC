@@ -9,13 +9,18 @@
     <h1 class="display-4 text-center">@ViewData["Title"]</h1>
     @if(!this.User.IsInRole("User"))
     {
-        <a asp-controller="Announcement" asp-action="Create" class="btn btn-primary">Create Announcement</a>
+        <div class="text-center">
+            <a asp-controller="Announcement" asp-action="Create" id="announcement-button" class="btn btn-primary">Create Announcement</a>
+        </div>
     }
 
     @foreach (var announcement in Model)
     {
-        <p>@announcement.Title - (@@@announcement.UserUsername @announcement.PublishDate)</p>
+        <h4 class="">@announcement.Title - (@@@announcement.UserUsername @announcement.PublishDate)</h4>
         <p>@announcement.Description</p>
     }
-
 </div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/announcement-all.css" />
+}

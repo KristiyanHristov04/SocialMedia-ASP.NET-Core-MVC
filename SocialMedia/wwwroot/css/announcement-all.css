@@ -1,0 +1,10 @@
+﻿#announcement-button {
+    margin-bottom: 7px;
+    background-color: #c38b5c;
+    border-color: #c38b5c;
+}
+
+    #announcement-button:hover {
+        background-color: #a7774f;
+        border-color: #a7774f;
+    }
