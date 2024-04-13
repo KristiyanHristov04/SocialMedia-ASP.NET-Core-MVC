@@ -40,8 +40,16 @@ namespace SocialMedia.Areas.Admin.Controllers
 
             string currentUserId = this.User.GetUserId();
 
-            await this.announcementService.CreateAnnouncementAsync(currentUserId, model);
-            TempData["SuccessAdd"] = "Announcement added successfully!";
+            try
+            {
+                await this.announcementService.CreateAnnouncementAsync(currentUserId, model);
+                TempData["SuccessAdd"] = "Announcement added successfully!";
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went wrong!";
+            }
+            
             return RedirectToAction(nameof(All));
         }
 
@@ -67,8 +75,16 @@ namespace SocialMedia.Areas.Admin.Controllers
                 return View(model);
             }
 
-            await this.announcementService.EditAnnouncementAsync(id, model);
-            TempData["SuccessEdit"] = "Announcement edited successfully!";
+            try
+            {
+                await this.announcementService.EditAnnouncementAsync(id, model);
+                TempData["SuccessEdit"] = "Announcement edited successfully!";
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went wrong!";
+            }
+            
 
             return RedirectToAction(nameof(All));
         }
@@ -90,9 +106,16 @@ namespace SocialMedia.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id, AnnouncementFormModel model)
         {
-            await this.announcementService.DeleteAnnouncementAsync(id, model);
-            TempData["SuccessDelete"] = "Announcement deleted successfully!";
-
+            try
+            {
+                await this.announcementService.DeleteAnnouncementAsync(id, model);
+                TempData["SuccessDelete"] = "Announcement deleted successfully!";
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Something went wrong!";
+            }
+            
             return RedirectToAction(nameof(All));
         }
     }
