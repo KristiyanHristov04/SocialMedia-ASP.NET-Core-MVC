@@ -12,7 +12,6 @@
     
     List<AdminMessageViewModel> messages = await adminChatService.LoadMessagesFromDatabaseAsync();
 }
-}
 
 <div class="text-white">
     <h1 class="display-4">@ViewData["Title"]</h1>
@@ -56,13 +55,13 @@
     </ol>
 </div>
 
-@if (this.User.Identity?.IsAuthenticated ?? false && !this.User.IsInRole("User"))
+@if (this.User.IsInRole("Administrator") || this.User.IsInRole("SuperAdministrator"))
 {
     <partial name="~/Areas/Admin/Views/Shared/_ChatPartial.cshtml" model="@messages" />
 }
 
 @section Styles {
-    @if(!this.User.IsInRole("User"))
+    @if (this.User.IsInRole("Administrator") || this.User.IsInRole("SuperAdministrator"))
     {
         <link rel="stylesheet" href="~/css/admin-chat.css" />
     }

@@ -1,19 +1,39 @@
 ﻿#announcement-button {
     margin-bottom: 7px;
-    background-color: #c38b5c;
-    border-color: #c38b5c;
+    background-color: #648932;
+    border-color: #648932;
 }
 
     #announcement-button:hover {
-        background-color: #a7774f;
-        border-color: #a7774f;
+        background-color: #4e6b28;
+        border-color: #4e6b28;
     }
 
 
 #announcements p {
     margin-bottom: 7px;
+    word-break: break-word;
 }
 
-#announcement {
-    margin-bottom: 10px;
+.announcement {
+    margin-bottom: 20px;
+    border-bottom: 1px solid white;
 }
+
+.edit-button {
+    font-size: 20px;
+    color: #6362fb;
+}
+
+    .edit-button:hover {
+        color: #8180f3;
+    }
+
+.delete-button {
+    font-size: 20px;
+    color: #d15454;
+}
+
+    .delete-button:hover {
+        color: #f36060;
+    }

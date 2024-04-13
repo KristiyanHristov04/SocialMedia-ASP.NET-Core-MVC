@@ -4,13 +4,17 @@
 
 @{
     ViewData["Title"] = "All Announcements";
-    string currentAdminUsername = this.User.GetUsername();
+    string currentAdminUsername = string.Empty;
+    @if (this.User.Identity?.IsAuthenticated ?? false)
+    {
+        currentAdminUsername = this.User.GetUsername();
+    }
     List<AdminMessageViewModel> messages = await adminChatService.LoadMessagesFromDatabaseAsync();
 }
 
 <div class="text-white">
     <h1 class="display-4 text-center">@ViewData["Title"]</h1>
-    @if (!this.User.IsInRole("User"))
+    @if ((this.User.Identity?.IsAuthenticated ?? false) && !this.User.IsInRole("User"))
     {
         <div class="text-center">
             <a asp-controller="Announcement" asp-action="Create" id="announcement-button" class="btn btn-primary">Create Announcement</a>
@@ -20,20 +24,28 @@
     <div id="announcements">
         @foreach (var announcement in Model)
         {
-            <div id="announcement">
-                <h4 class="">@announcement.Title - (@@@announcement.UserUsername @announcement.PublishDate)</h4>
-                <p>@announcement.Description</p>
-                @if (!this.User.IsInRole("User"))
+            <div class="announcement">
+                @if (announcement.UserUsername != null)
                 {
-                    <a asp-controller="Announcement" asp-action="Edit" asp-route-id="@announcement.Id">Edit</a>
-                    <a asp-controller="Announcement" asp-action="Delete" asp-route-id="@announcement.Id">Delete</a>
+                    <h4 class="">@announcement.Title - (@@@announcement.UserUsername @announcement.PublishDate)</h4>
+                }
+                else
+                {
+                    <h4 class="">@announcement.Title - (@announcement.PublishDate)</h4>
+                }
+
+                <p>@announcement.Description</p>
+                @if ((this.User.Identity?.IsAuthenticated ?? false) && !this.User.IsInRole("User"))
+                {
+                    <a class="edit-button" asp-controller="Announcement" asp-action="Edit" asp-route-id="@announcement.Id"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a class="delete-button" asp-controller="Announcement" asp-action="Delete" asp-route-id="@announcement.Id"><i class="fa-regular fa-trash-can"></i></a>
                 }
             </div>
         }
     </div>
 </div>
 
-@if (!this.User.IsInRole("User"))
+@if ((this.User.Identity?.IsAuthenticated ?? false) && !this.User.IsInRole("User"))
 {
     <partial name="_ChatPartial" model="@messages" />
 }
@@ -60,7 +72,7 @@
             toastr.success('@TempData["SuccessDelete"]');
         </script>
     }
-    @if(!this.User.IsInRole("User"))
+    @if ((this.User.Identity?.IsAuthenticated ?? false) && !this.User.IsInRole("User"))
     {
         <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
         <script src="~/js/admin-chat.js"></script>
@@ -105,7 +117,7 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/announcement-all.css" />
-    @if(!this.User.IsInRole("User"))
+    @if ((this.User.Identity?.IsAuthenticated ?? false) && !this.User.IsInRole("User"))
     {
         <link rel="stylesheet" href="~/css/admin-chat.css" />
     }

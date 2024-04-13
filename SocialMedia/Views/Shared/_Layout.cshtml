@@ -34,7 +34,7 @@
                                 <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                         }
-                        
+
                         @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator") && this.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -58,9 +58,6 @@
                             <li class="nav-item">
                                 <a class="link-item nav-link text-dark p-2" asp-area="Admin" asp-controller="User" asp-action="All">Users</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="link-item nav-link text-dark p-2" asp-area="Admin" asp-controller="Announcement" asp-action="All">Announcements</a>
-                            </li>
                         }
 
                         @if (!this.User.IsInRole("Administrator") && !this.User.IsInRole("SuperAdministrator"))
@@ -68,10 +65,14 @@
                             <li class="nav-item">
                                 <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Home" asp-action="Terms">T&C</a>
-                            </li>
                         }
+
+                        <li class="nav-item">
+                            <a class="link-item nav-link text-dark p-2" asp-area="Admin" asp-controller="Announcement" asp-action="All">Announcements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="link-item nav-link text-dark p-2" asp-area="" asp-controller="Home" asp-action="Terms">T&C</a>
+                        </li>
                     </ul>
                     @if (this.User.IsInRole("User"))
                     {
@@ -80,7 +81,7 @@
                             <button class="btn btn-outline-success" style="width: 130px;" type="submit">Search <i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     }
-                    
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -92,10 +93,10 @@
         </main>
     </div>
 
-   @*  <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - SocialMedia - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    @*  <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; @DateTime.Now.Year - SocialMedia - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
     </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
