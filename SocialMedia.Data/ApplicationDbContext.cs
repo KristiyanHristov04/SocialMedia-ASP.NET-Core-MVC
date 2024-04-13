@@ -21,6 +21,7 @@ namespace SocialMedia.Data
         public DbSet<ReportPost> ReportPosts { get; set; }
         public DbSet<Statistic> Statistics { get; set; }
         public DbSet<AdminMessage> AdminMessages { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,6 +30,12 @@ namespace SocialMedia.Data
                 .WithOne(lp => lp.User)
                 .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(au => au.Announcements)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.Entity<ApplicationUser>()
                 .Property(au => au.CountryId)

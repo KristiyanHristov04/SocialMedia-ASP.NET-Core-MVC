@@ -22,6 +22,12 @@ namespace SocialMedia.Common
             public const int TextMaxLength = 450;
         }
 
+        public static class Announcement
+        {
+            public const int TitleMaxLength = 100;
+            public const int DescriptionMaxLength = 1000;
+        }
+
         public static class FileConfiguration
         {
             public const int MaxAllowedFileSize = 3000000;

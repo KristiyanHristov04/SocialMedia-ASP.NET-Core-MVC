@@ -27,6 +27,9 @@ namespace SocialMedia.Data.Models
             = new List<LikedPost>();
 
         public ICollection<Post> Posts { get; set; }
-      = new List<Post>();
+            = new List<Post>();
+
+        public ICollection<Announcement> Announcements { get; set; }
+            = new List<Announcement>();
     }
 }
