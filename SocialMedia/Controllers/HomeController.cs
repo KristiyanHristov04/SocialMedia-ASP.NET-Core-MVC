@@ -49,6 +49,7 @@ namespace SocialMedia.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Contact(ContactFormModel model)
         {
@@ -61,6 +62,20 @@ namespace SocialMedia.Controllers
             }
 
             bool isSent = await this.customEmailSender.SendEmailAsync(model.FromEmail, model.Subject, model.Message);
+
+            if(!this.User.Identity?.IsAuthenticated ?? false)
+            {
+                if (isSent)
+                {
+                    TempData["EmailSentAnonymous"] = "Email sent successfully!";
+                }
+                else
+                {
+                    TempData["EmailNotSentAnonymous"] = "Something went wrong!";
+                }
+
+                return RedirectToAction(nameof(Contact));
+            }
 
             if (isSent)
             {

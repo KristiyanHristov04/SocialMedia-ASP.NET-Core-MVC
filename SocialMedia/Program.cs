@@ -32,9 +32,9 @@ namespace SocialMedia
                         //Make sure this is set to true if you want
                         //All users to confirm their emails before
                         //Using the application!
-                        //options.SignIn.RequireConfirmedAccount = true;
+                        options.SignIn.RequireConfirmedAccount = true;
 
-                        options.SignIn.RequireConfirmedAccount = false;
+                        //options.SignIn.RequireConfirmedAccount = false;
                     })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

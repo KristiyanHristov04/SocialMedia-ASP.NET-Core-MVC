@@ -34,4 +34,25 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    @if (TempData["EmailSentAnonymous"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.success('@TempData["EmailSentAnonymous"]');
+        </script>
+    }
+
+    @if (TempData["EmailNotSentAnonymous"] != null)
+    {
+        <script>
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+
+            toastr.error('@TempData["EmailNotSentAnonymous"]');
+        </script>
+    }
 }
