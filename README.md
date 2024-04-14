@@ -137,7 +137,8 @@ Before running the application, ensure you have the necessary configurations eit
 </ol>
 
 ## Database Diagram
-![database](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/5ee4476b-0839-4ffe-9e60-696b2dda4a7f)
+![databaseNew](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/42b06537-128e-4d94-8e46-b60faa741d98)
+
 
 ## Functionality
 
