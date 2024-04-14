@@ -235,3 +235,15 @@ Admin Demote Page
 Admin Promote Page
 ![promote](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/9b4c4a41-f355-4b73-b334-778c91a80b9c)
 
+
+Admin Announcements Page
+![announcements](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/c258027a-85bb-49ac-9344-1a5fba28aa59)
+
+Admin Announcement Create Page
+![createannouncement](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/088466eb-e682-4bc0-a21b-ec6eb5167027)
+
+Admin Announcement Edit Page
+![editannouncement](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/bc6e9b13-e1d2-4511-8d92-5def75df7148)
+
+Admin Announcement Delete Page
+![deleteannouncement](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/072b415c-ba5c-4d4f-91df-dbd2f8b7f5e7)
