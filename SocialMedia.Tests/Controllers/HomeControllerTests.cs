@@ -114,6 +114,16 @@ namespace SocialMedia.Tests.Controllers
         }
 
         [Fact]
+        public void GetErrorAction_ShouldReturnUnauthorizedCustomErrorPageWithStatusCode401()
+        {
+            var result = this.homeController.Error(401) as ViewResult;
+
+            Assert.NotNull(result);
+            Assert.IsType<ViewResult>(result);
+            Assert.Equal("Error401", result.ViewName);
+        }
+
+        [Fact]
         public void GetErrorAction_ShouldReturnPageNotFoundCustomErrorPageWithStatusCode404()
         {
             var result = this.homeController.Error(404) as ViewResult;
