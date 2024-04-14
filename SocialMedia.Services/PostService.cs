@@ -26,7 +26,7 @@ namespace SocialMedia.Services
         public async Task AddPostAsync(PostAddFormModel model, string userId)
         {
             string generatedGuid = Guid.NewGuid().ToString();
-            string filesFolderPath = "files/" + generatedGuid + "_" + model.File.FileName;
+            string filesFolderPath = "files\\" + generatedGuid + "_" + model.File.FileName;
             string fullPath = Path.Combine(webHostEnvironment.WebRootPath, filesFolderPath);
 
             string folderPath = Path.Combine(webHostEnvironment.WebRootPath, "files");
@@ -85,7 +85,7 @@ namespace SocialMedia.Services
 
             string pathToDelete = Path.Combine(webHostEnvironment.WebRootPath, postToDelete!.Path);
 
-            if (Directory.Exists(pathToDelete))
+            if (File.Exists(pathToDelete))
             {
                 File.Delete(pathToDelete);
             }
