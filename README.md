@@ -22,7 +22,7 @@ Administrators can communicate with each other via Admin Chat to discuss various
 
 ## Getting Started
 
-Before running the application, ensure you have the necessary configurations either in the secrets.json (which works only if you are running the application in the Development Environment) or appsettings.json file. Replace every occurrence of "Your" with the actual value. Follow the steps below to obtain these values: [Google Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-8.0#create-the-google-oauth-20-client-id-and-secret) [SendGrid Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-8.0&tabs=visual-studio)
+Before running the application, ensure you have the necessary configurations either in the secrets.json (which works only if you are running the application in the Development Environment) or appsettings.json file. Replace every occurrence of "Your" with the actual value. Follow the steps below to obtain these values or follow the official documentation by Microsoft: [Google Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-8.0#create-the-google-oauth-20-client-id-and-secret) [SendGrid Configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-8.0&tabs=visual-studio)
 
 ```json
 {
