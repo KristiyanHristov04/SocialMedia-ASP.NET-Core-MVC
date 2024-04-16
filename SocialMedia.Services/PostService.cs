@@ -382,5 +382,18 @@ namespace SocialMedia.Services
 
             await this.context.SaveChangesAsync();
         }
+
+        public async Task<bool> CheckIfUserExistsByUsernameAsync(string username)
+        {
+            var user = await this.context.Users
+                .FirstOrDefaultAsync(u => u.NormalizedUserName == username.ToUpper());
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

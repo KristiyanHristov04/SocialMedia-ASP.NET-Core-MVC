@@ -100,8 +100,13 @@ namespace SocialMedia.Controllers
         }
 
         [HttpGet]
-        public IActionResult Profile(string username)
+        public async Task<IActionResult> Profile(string username)
         {
+            if(!await this.postService.CheckIfUserExistsByUsernameAsync(username))
+            {
+                return BadRequest();
+            }
+
             if (this.User.Identity?.Name == username)
             {
                 return RedirectToAction(nameof(Mine));

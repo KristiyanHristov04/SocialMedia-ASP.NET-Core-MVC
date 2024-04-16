@@ -295,5 +295,21 @@ namespace SocialMedia.Tests.Services
 
             Assert.Equal(3, totalPostsCount);
         }
+
+        [Fact]
+        public async Task CheckIfUserExistsByUsernameAsync_ShouldReturnTrue()
+        {
+            bool result = await postService.CheckIfUserExistsByUsernameAsync(User01.UserName);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async Task CheckIfUserExistsByUsernameAsync_ShouldReturnFalse()
+        {
+            bool result = await postService.CheckIfUserExistsByUsernameAsync("none");
+
+            Assert.False(result);
+        }
     }
 }

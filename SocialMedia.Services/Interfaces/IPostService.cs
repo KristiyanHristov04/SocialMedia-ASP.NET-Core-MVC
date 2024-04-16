@@ -23,5 +23,6 @@ namespace SocialMedia.Services.Interfaces
         Task DismissReportedPostAsync(int postId);
         Task IncreaseDeletedReportedPostsCountAsync();
         Task<List<string>> AllAdminIdsAsync();
+        Task<bool> CheckIfUserExistsByUsernameAsync(string username);
     }
 }
