@@ -139,7 +139,7 @@ Before running the application, ensure you have the necessary configurations eit
 ## Seed
 When you update the database and apply the migrations, countries, roles and one super admin will be seeded and ready for use.
 
-Admin credentials: <br>
+SuperAdmin credentials: <br>
 email: ```admin@socialmedia.com``` <br>
 password: ```admin123```
 
