@@ -136,6 +136,9 @@ Before running the application, ensure you have the necessary configurations eit
   <li>That's it! Now you should be able to start the application and use it.</li>
 </ol>
 
+## Seed
+When you update the database and apply the migrations, countries, roles and one super admin will be seeded and ready for use.
+
 ## Database Diagram
 ![databaseNew](https://github.com/KristiyanHristov04/SocialMedia-ASP.NET-Core-MVC/assets/92588334/42b06537-128e-4d94-8e46-b60faa741d98)
 
